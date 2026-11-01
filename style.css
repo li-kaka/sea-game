@@ -110,12 +110,11 @@ h1 svg{stroke-width:1.2}.rank svg g{stroke-width:1}
 /* Buff duration lives on the balance perimeter and fill, separate from the effect label. */
 .special-apple span{display:none}
 .frenzy-badge:after{display:none}
-.golden-frenzy .balance{background:linear-gradient(to right,#ffe58b 0 var(--buff-progress),#fff var(--buff-progress) 100%)}
 .frenzy-ring{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:2;fill:none}
 .frenzy-ring path{stroke:#f1b714;stroke-width:clamp(2px,.7cqw,3px);stroke-linecap:round;vector-effect:non-scaling-stroke}
 .balance .apple-mark{z-index:3}
 /* The perimeter alone carries the timer; its mask fills the full gap between black outlines. */
-.golden-frenzy .balance{background:#fff}
+.golden-frenzy .balance{background:linear-gradient(to right,#ffe58b 0 var(--buff-progress),#fff var(--buff-progress) 100%)}
 .frenzy-ring path{stroke:#FCF043;stroke-linecap:butt}
 .golden-frenzy.phone{}
 .gold-rain{position:absolute;top:17.2%;bottom:20%;left:0;right:0;overflow:hidden;pointer-events:none;z-index:0}
@@ -538,8 +537,8 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 .building-shop .bulk{gap:1.7cqw;font-size:1.8cqw}
 .building-shop .bulk button{background:#AEAEAE;color:#555;border:1px solid #000;box-shadow:0 .25cqw #000;padding:0 1.5cqw;font-size:2.1cqw}
 .building-shop .bulk button[aria-pressed=true]{background:#fff;color:#000}
-.building-list{gap:5cqw;padding:.5cqw 7.8cqw 2cqw;align-items:flex-start}
-.building{flex:0 0 17cqw;width:17cqw;opacity:1!important;padding:0;border:0;background:none}
+.building-list{gap:3.4cqw;padding:.5cqw 1.5cqw 2cqw;align-items:flex-start;justify-content:center}
+.building{flex:0 0 15cqw;width:15cqw;opacity:1!important;padding:0;border:0;background:none}
 .building .tile,.golden-frenzy .building .tile,.building.locked .tile{--tag-color:#AEAEAE;position:relative;display:block;height:16.8cqw;padding:0;border:0;border-radius:0;background:none!important;box-shadow:none;overflow:visible}
 .building.affordable .tile{--tag-color:#CCDC45}
 .building.locked .tile{--tag-color:#515151}
@@ -614,6 +613,10 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 .building .fish-upgrade svg{display:block;width:100%;height:100%;pointer-events:none}
 .building .fish-upgrade.can-upgrade{color:#70dc48}
 .building .fish-upgrade:active{transform:translateY(.2cqw)}
+.unlock-info{position:absolute;z-index:2;left:1.1cqw;right:1.1cqw;top:50%;transform:translateY(-50%);display:flex;flex-direction:column;align-items:center;gap:.25cqw;padding:.45cqw .35cqw;background:#fffef0;border:.15cqw solid #000;border-radius:.7cqw;color:#000;line-height:1.2;pointer-events:none}
+.unlock-title{max-width:100%;font-size:1.25cqw;font-weight:600;line-height:1.1;text-align:center;white-space:normal;overflow-wrap:anywhere}
+.unlock-progress{font-size:1.5cqw;font-weight:800;white-space:nowrap}
+.building .cost-label{font-size:1.5cqw;color:#000;-webkit-text-stroke:0}
 .fish-upgrade-dialog{width:min(88vw,430px);padding:28px 24px 24px;border:2px solid #000;border-radius:22px;background:#fffef0;color:#000;box-shadow:0 5px #000;overflow:visible}
 .fish-upgrade-dialog::backdrop{background:#142c5070}
 .fish-upgrade-dialog h2{font-size:24px;margin:0 38px 22px 0}
@@ -933,10 +936,17 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 .operation-tutorial .actions>#openGacha,.operation-tutorial .actions>.wardrobe-entry,.operation-tutorial .bulk{visibility:hidden;pointer-events:none}
 .operation-tutorial .purchase-speech{width:55%;left:25%;font-size:2.8cqw}
 .tutorial-five{color:#9146bd;font-weight:900}
-.build-factory.tutorial-start{background:#ffed32}
-.build-factory.tutorial-start:before{background:#fff98a}
-.build-factory.tutorial-start>img{display:none}
-.build-factory.tutorial-start>span{font-size:4.4cqw}
+.building.recruit-pulse{z-index:5}
+.building.recruit-pulse .tile{animation:recruit-ready-pulse .6s ease-in-out 5}
+@keyframes recruit-ready-pulse{0%,100%{transform:scale(1);filter:none}50%{transform:scale(1.08);filter:drop-shadow(0 0 .8cqw #ffdc3d) drop-shadow(0 0 2.5cqw #ffb500)}}
+.produce.tutorial-pulse,.construction-phase .build-factory:not(:disabled){z-index:1;animation:tutorial-cta-pulse .7s ease-in-out infinite alternate}
+@keyframes tutorial-cta-pulse{to{transform:scale(1.08);filter:drop-shadow(0 0 .8cqw #ffdc3d) drop-shadow(0 0 2.5cqw #ffb500)}}
+.balance strong.tutorial-wallet-flash,.coin-balance.tutorial-wallet-flash{animation:tutorial-wallet-flash .32s ease-in-out infinite alternate}
+.balance strong.tutorial-wallet-flash{border-radius:18px 0 0 18px}
+.coin-balance.tutorial-wallet-flash{border-radius:0 16px 16px 0}
+@keyframes tutorial-wallet-flash{to{background:#fff176;filter:drop-shadow(0 0 1.4cqw #ffb500)}}
+@media(prefers-reduced-motion:reduce){.produce.tutorial-pulse,.construction-phase .build-factory:not(:disabled),.balance strong.tutorial-wallet-flash,.coin-balance.tutorial-wallet-flash{animation:none}.produce.tutorial-pulse,.construction-phase .build-factory:not(:disabled){filter:drop-shadow(0 0 .8cqw #ffdc3d) drop-shadow(0 0 2.5cqw #ffb500)}.balance strong.tutorial-wallet-flash,.coin-balance.tutorial-wallet-flash{background:#fff176;filter:drop-shadow(0 0 1.4cqw #ffb500);outline:none}}
+@media(prefers-reduced-motion:reduce){.building.recruit-pulse .tile{animation:none;filter:drop-shadow(0 0 .8cqw #ffdc3d) drop-shadow(0 0 2.5cqw #ffb500)}}
 .operation-tutorial #constructionPanel{z-index:102}
 
 /* Production labels stay above the scene during the tutorial HUD reveal. */
@@ -1006,6 +1016,8 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 .recruit-goal-actions{display:grid;gap:1.2cqw;margin-top:1.5cqw}
 .recruit-goal-actions button{border:1px solid #000;border-radius:1cqw;padding:1.1cqw .5cqw;font-size:2.6cqw;font-weight:bold;box-shadow:0 .35cqw #000}
 #goalNewFarm{background:#d6a6ef}#goalContinue{background:#CBFF8D}
+#goalNewFarm.goal-next-pulse{animation:recruit-ready-pulse .6s ease-in-out 5}
+@media(prefers-reduced-motion:reduce){#goalNewFarm.goal-next-pulse{animation:none;filter:drop-shadow(0 0 .8cqw #ffdc3d) drop-shadow(0 0 2.5cqw #ffb500)}}
 #goalUnavailable{font-size:2.2cqw;margin:1.5cqw 0 0;line-height:1.4}
 :lang(ja) .recruit-goal-title{font-size:2.6cqw}
 .recruit-goal-fill{display:block;height:100%;background:#CBFF8D;transition:width .25s ease}
@@ -1045,3 +1057,35 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 #frenzyGlowLayer .frenzy-glow{mix-blend-mode:normal;color:#fff34c;-webkit-text-fill-color:#fff34c;-webkit-text-stroke:0;text-shadow:0 0 .25em #fff98a,0 0 .7em #ffe92d,0 0 1.25em #ffdf3299;filter:blur(3px);opacity:.7}
 .frenzy-number:not(.frenzy-glow){text-shadow:none}
 #testBuildComplete,#testFiveEmployees,#testFirstFarmUpgrade{font-size:11px}
+
+/* Shared currency and crate sales stay inside the existing HUD and action area. */
+.balance strong{padding-right:22cqw}
+.coin-balance{position:absolute;right:2.4cqw;z-index:3;display:flex;align-items:center;justify-content:flex-end;gap:1cqw;width:18cqw;font-size:2.7cqw;font-weight:700;font-variant-numeric:tabular-nums;white-space:nowrap}
+.coin-balance img{width:4cqw;height:4cqw;object-fit:contain}
+.sell-crate{position:absolute;z-index:2;left:31%;top:-7.4cqw;width:38cqw;height:6.4cqw;display:flex;align-items:center;justify-content:center;gap:1.1cqw;padding:.5cqw 1cqw;border:.2cqw solid #000;border-radius:1.5cqw;background:#fffef0;box-shadow:0 .35cqw #000;font-size:2.2cqw;line-height:1}
+.sell-crate>span{font-size:3cqw}
+.sell-crate b{font-size:2.25cqw;white-space:nowrap}
+.sell-crate small{font-size:1.9cqw;white-space:nowrap}
+.sell-crate:disabled{opacity:.65}
+.sell-crate.tutorial-target{outline:.65cqw solid #ffcc38;outline-offset:.6cqw}
+
+/* Give apple and coin balances equal, clearly separated halves. */
+.balance strong{flex:0 0 50%;width:50%;padding:0;text-align:center;position:relative;z-index:3}
+.coin-balance{position:relative;right:auto;flex:0 0 50%;width:50%;height:72%;border-left:.2cqw solid #c8d9e5;justify-content:center;gap:1.5cqw;font-size:3.2cqw}
+.coin-balance img{width:4.5cqw;height:4.5cqw}
+
+/* Highlight the right-hand apple basket only while at least one crate is ready to sell. */
+.factory-art .basket-cue{position:absolute;left:70%;top:78%;width:23%;height:auto;overflow:visible;z-index:2;opacity:0;pointer-events:none;transform-box:fill-box;transform-origin:center}
+.basket-cue path{fill:#ffdc3d26;stroke:#ffb500;stroke-width:3;stroke-linejoin:round;vector-effect:non-scaling-stroke}
+.basket-cue path+path{fill:none;stroke:#fff8d5;stroke-width:1.5}
+.basket-cue.is-ready{opacity:1;animation:basket-cue-pulse 1.2s ease-in-out infinite}
+@keyframes basket-cue-pulse{0%,100%{transform:scale(.94);opacity:.62;filter:drop-shadow(0 0 1px #ffbf00)}50%{transform:scale(1.09);opacity:1;filter:drop-shadow(0 0 7px #ffbf00)}}
+.sell-crate.crate-ready{animation:sell-crate-pulse 1.2s ease-in-out infinite;box-shadow:0 .45cqw #000,0 0 0 .7cqw #ffdc3d,0 0 2.8cqw #ffb500}
+@keyframes sell-crate-pulse{0%,100%{transform:scale(1);filter:brightness(1)}50%{transform:scale(1.055);filter:brightness(1.08)}}
+.construction-phase .basket-cue{display:none}
+@media(prefers-reduced-motion:reduce){.basket-cue.is-ready,.sell-crate.crate-ready{animation:none}.basket-cue.is-ready{opacity:1;filter:drop-shadow(0 0 5px #ffbf00)}.sell-crate.crate-ready{outline:.65cqw solid #ffcc38;outline-offset:.6cqw}}
+
+
+/* Recruit cards keep their role and effect visible without hover-only flipping. */
+.role-front{position:absolute;inset:0}
+.building .unlock-info.awaiting-reveal{background:#e6e6e6}

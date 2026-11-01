@@ -1,4 +1,4 @@
-// Original Figma assets; four gears per component.
+// Original Figma assets; each threshold group appears with one build click.
 const FACTORY_BUILD_ART={
   "source": "https://www.figma.com/design/svGQ2LY9ADt5w6B1EGluNd?node-id=4990-568",
   "width": 383.14337158203125,
@@ -54,7 +54,7 @@ const FACTORY_BUILD_ART={
           "mirror": false
         }
       ],
-      "threshold": 4,
+      "threshold": 1,
       "bounds": [
         104.018691,
         93.314616,
@@ -76,7 +76,7 @@ const FACTORY_BUILD_ART={
           "mirror": true
         }
       ],
-      "threshold": 8,
+      "threshold": 2,
       "bounds": [
         179.30901,
         130.066794,
@@ -98,7 +98,7 @@ const FACTORY_BUILD_ART={
           "mirror": false
         }
       ],
-      "threshold": 12,
+      "threshold": 2,
       "bounds": [
         56.111542,
         128.774313,
@@ -128,7 +128,7 @@ const FACTORY_BUILD_ART={
           "mirror": false
         }
       ],
-      "threshold": 16,
+      "threshold": 3,
       "bounds": [
         59.07461,
         72.94384765625,
@@ -150,7 +150,7 @@ const FACTORY_BUILD_ART={
           "mirror": false
         }
       ],
-      "threshold": 20,
+      "threshold": 4,
       "bounds": [
         92.24419403076172,
         -0.166209,
@@ -172,7 +172,7 @@ const FACTORY_BUILD_ART={
           "mirror": false
         }
       ],
-      "threshold": 24,
+      "threshold": 5,
       "bounds": [
         72.2510986328125,
         41.919921875,
@@ -194,7 +194,7 @@ const FACTORY_BUILD_ART={
           "mirror": false
         }
       ],
-      "threshold": 28,
+      "threshold": 6,
       "bounds": [
         95.7984619140625,
         29.550537109375,
@@ -216,7 +216,7 @@ const FACTORY_BUILD_ART={
           "mirror": false
         }
       ],
-      "threshold": 32,
+      "threshold": 7,
       "bounds": [
         69.92236328125,
         16.923095703125,
@@ -238,7 +238,7 @@ const FACTORY_BUILD_ART={
           "mirror": false
         }
       ],
-      "threshold": 36,
+      "threshold": 8,
       "bounds": [
         49.94677734375,
         28.412353515625,
@@ -260,7 +260,7 @@ const FACTORY_BUILD_ART={
           "mirror": false
         }
       ],
-      "threshold": 40,
+      "threshold": 9,
       "bounds": [
         118.6729736328125,
         16.923095703125,
@@ -282,7 +282,7 @@ const FACTORY_BUILD_ART={
           "mirror": false
         }
       ],
-      "threshold": 44,
+      "threshold": 10,
       "bounds": [
         60.193115234375,
         34.15673828125,
