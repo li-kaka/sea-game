@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="18.7812 766.998 54.5625 54.5625"><mask id="mask4_1038_2140" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="18" y="766" width="56" height="56">
+<rect x="18.7812" y="766.998" width="54.5625" height="54.5625" fill="#46BEFF" stroke-width="0.5625" stroke="black" />
+</mask>
+<g mask="url(#mask4_1038_2140)">
+<path d="M76.1154 803.78C73.2647 802.287 66.8236 798.934 63.8654 797.465L63.0957 803.339L65.6801 813.089L76.1154 803.78Z" fill="#C5C5C5" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+<path d="M30.8498 785.956C25.8123 793.782 24.2891 805.187 24.7723 818.948L25.9895 831.967H63.9658C63.9658 831.967 65.6026 822.537 65.6026 817.557C65.6026 812.577 66.2973 809.092 63.9658 797.715C61.6343 786.338 48.8576 774.68 42.5476 774.03L38.5399 792.235C35.8683 790.749 33.1968 788.241 30.8498 785.956Z" fill="#C5C5C5" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+<path d="M48.6422 800.99C46.8574 799.033 47.1745 795.992 50.0617 793.785C52.3753 792.035 57.0865 791.6 58.7997 795.403C60.5128 799.205 56.2973 801.811 54.9613 802.343C53.6253 802.874 50.4271 802.947 48.6422 800.99Z" fill="white" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+<ellipse cx="53.3504" cy="797.08" rx="1.2948" ry="1.16738" transform="rotate(-14.9815 53.3504 797.08)" fill="black" />
+<path d="M34.4521 812.817C37.9615 815.039 47.4144 815.42 51.3777 813.676" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+<path d="M39.0093 819.978C41.6603 820.912 46.0627 820.776 48.123 819.978" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+</g>
+<defs /></svg>

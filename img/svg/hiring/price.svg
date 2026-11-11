@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="65" height="15" viewBox="13.5 138.5 65 15" fill="none">
+  <path d="M18.5 142.5L22.5 139H78V153H14V146.5L18.5 142.5Z" fill="#FFFBF0" />
+  <mask id="stroke38_1104_9337" fill="white">
+    <path d="M18.5 142.5L22.5 139H78V153H14V146.5L18.5 142.5Z" />
+  </mask>
+  <path d="M22.5 146.5V146.75H22.75V146.5H22.5ZM14 146.5V146.75H22.5V146.5V146.25H14V146.5ZM22.5 146.5H22.75V139.5H22.5H22.25V146.5H22.5ZM18.5 142.5L18.1707 142.124L18.1678 142.126L18.5 142.5ZM78 139H78.5V138.5H78V139ZM78 153V153.5H78.5V153H78ZM14 153H13.5V153.5H14V153ZM14 146.5L13.6678 146.126L13.5 146.275V146.5H14ZM22.5 139V138.5H22.3121L22.1707 138.624L22.5 139ZM78 139H77.5V153H78H78.5V139H78ZM78 153V152.5H14V153V153.5H78V153ZM14 153H14.5V146.5H14H13.5V153H14ZM14 146.5L14.3322 146.874L18.8322 142.874L18.5 142.5L18.1678 142.126L13.6678 146.126L14 146.5ZM18.5 142.5L18.8293 142.876L22.8293 139.376L22.5 139L22.1707 138.624L18.1707 142.124L18.5 142.5ZM22.5 139V139.5H78V139V138.5H22.5V139Z" fill="black" mask="url(#stroke38_1104_9337)" />
+  <circle cx="74.25" cy="143.25" r="1.5" fill="#9D9D9D" stroke-width="0.5" stroke="#9D9D9D" />
+  <circle cx="73.5" cy="142.5" r="1.75" fill="url(#paint5_radial_1104_9337)" stroke-width="0.5" stroke="black" />
+  <defs>
+    <radialGradient id="paint5_radial_1104_9337" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(73 142) rotate(75.9638) scale(2.06155)">
+      <stop stop-color="#FFF5C4" />
+      <stop offset="1" stop-color="#FCDD43" />
+    </radialGradient>
+  </defs>
+</svg>

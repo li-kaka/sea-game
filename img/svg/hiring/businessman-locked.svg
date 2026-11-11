@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="125" viewBox="246.65 8 64 125" fill="none">
+  <rect x="246.969" y="41.311" width="63" height="90.5625" rx="2.53125" fill="#656565" stroke-width="0.5625" stroke="black" />
+  <rect x="265.25" y="44.9673" width="26.4375" height="4.5" rx="2.25" fill="black" />
+  <rect x="276.219" y="38.4985" width="4.5" height="10.6875" fill="#D9D9D9" stroke-width="0.5625" stroke="black" />
+  <use xlink:href="#stroke14_1103_1307" fill="#656565" />
+  <mask id="stroke15_1103_1307" fill="white">
+    <use xlink:href="#stroke14_1103_1307" />
+  </mask>
+  <path d="M273.688 35.8126H283.25V-17.3123C283.25 -18.2443 282.494 -18.9998 281.562 -18.9998H275.375C274.443 -18.9998 273.688 -18.2443 273.688 -17.3123V35.8126Z" stroke-width="1.125" stroke="black" mask="url(#stroke15_1103_1307)" />
+  <path d="M272.562 35.9673C271.662 34.1673 273.219 33.3423 273.969 33.1548L273.969 34.8423C273.778 35.8735 274.353 38.0485 278.178 38.4985C282.003 38.9485 283.812 35.686 282.969 34.561L282.96 33.436C284.085 33.436 285.169 34.039 284.366 35.9673C282.96 39.3423 280.71 39.6235 278.178 39.6235C275.647 39.6235 273.687 38.2173 272.562 35.9673Z" fill="#D9D9D9" stroke-width="0.5625" stroke="black" />
+  <rect x="251.469" y="51.9985" width="54.5625" height="54.5625" fill="url(#paint3_radial_1103_1307)" stroke-width="0.5625" stroke="black" />
+  <mask id="mask4_1103_1307" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="251" y="51" width="56" height="56">
+    <rect x="251.469" y="51.9985" width="54.5625" height="54.5625" fill="black" stroke-width="0.5625" stroke="black" />
+  </mask>
+  <g mask="url(#mask4_1103_1307)">
+    <path d="M308.803 88.7798C305.952 87.2871 299.511 83.9344 296.553 82.4652L295.783 88.339L298.368 98.0888L308.803 88.7798Z" fill="black" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+    <path d="M263.537 70.9563C258.5 78.7818 256.977 90.1871 257.46 103.948L258.677 116.967H296.653C296.653 116.967 298.29 107.537 298.29 102.557C298.29 97.5768 298.985 94.0921 296.653 82.7153C294.322 71.3386 281.545 59.6798 275.235 59.0298L271.227 77.2351C268.556 75.7489 265.884 73.241 263.537 70.9563Z" fill="black" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+    <path d="M281.33 85.9904C279.545 84.0332 279.862 80.9921 282.749 78.7847C285.063 77.0351 289.774 76.6005 291.487 80.4028C293.2 84.2052 288.985 86.8115 287.649 87.3429C286.313 87.8744 283.115 87.9476 281.33 85.9904Z" fill="black" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+    <ellipse cx="286.038" cy="82.0805" rx="1.2948" ry="1.16738" transform="rotate(-14.9815 286.038 82.0805)" fill="black" />
+    <path d="M267.14 97.817C270.649 100.039 280.102 100.42 284.065 98.6757" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+    <path d="M271.697 104.978C274.348 105.913 278.75 105.776 280.811 104.978" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+    <rect x="257.767" y="102.141" width="39.6475" height="67.6908" fill="black" />
+    <path d="M248.097 105.042L257.767 102.141V117.613L242.779 111.811L248.097 105.042Z" fill="black" />
+    <path d="M307.085 105.042L297.415 102.141V117.613L312.404 111.811L307.085 105.042Z" fill="black" />
+    <path d="M271.305 102.141L270.338 117.613L261.635 102.141H271.305Z" fill="black" />
+    <path d="M283.876 102.141L284.843 117.613L293.546 102.141H283.876Z" fill="black" />
+    <rect x="269.371" y="102.141" width="15.4722" height="10.6371" fill="black" />
+    <path d="M277.591 110.844L283.872 102.141H271.31L277.591 110.844Z" fill="black" />
+    <rect x="275.173" y="106.009" width="4.83506" height="37.7135" fill="black" />
+    <path d="M257.375 102.342H298.156" stroke-width="0.5625" stroke="black" />
+    <path d="M261.875 102.624L264.688 107.686" stroke-width="0.5625" stroke="black" />
+    <path d="M257.375 102.342L251.469 104.03" stroke-width="0.5625" stroke="black" />
+    <path d="M271.438 102.342L275.094 107.686" stroke-width="0.5625" stroke="black" />
+    <path d="M283.531 102.342L280.156 107.686" stroke-width="0.5625" stroke="black" />
+    <path d="M293.375 102.342L290.562 107.686" stroke-width="0.5625" stroke="black" />
+    <path d="M298.156 102.342L305.75 104.592" stroke-width="0.5625" stroke="black" />
+  </g>
+  <rect x="251.469" y="51.9985" width="54.5625" height="54.5625" stroke-width="0.5625" stroke="black" />
+  <defs>
+    <radialGradient id="paint3_radial_1103_1307" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(278.75 79.2798) rotate(90) scale(40.2187)">
+      <stop stop-color="white" />
+      <stop offset="1" stop-color="#9B9B9B" />
+    </radialGradient>
+    <path id="stroke14_1103_1307" d="M273.688 35.8126H283.25V-17.3123C283.25 -18.2443 282.494 -18.9998 281.562 -18.9998H275.375C274.443 -18.9998 273.688 -18.2443 273.688 -17.3123V35.8126Z" />
+  </defs>
+</svg>

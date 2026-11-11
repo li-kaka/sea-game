@@ -1,12 +1,12 @@
 *{box-sizing:border-box}body{margin:0;background:#555b61;color:#20242a;font:14px 'Trebuchet MS',system-ui,sans-serif}button{font:inherit;color:inherit;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}button:focus-visible{outline:3px solid #8755be;outline-offset:3px}button:disabled{cursor:default;opacity:.5}[hidden]{display:none!important}.phone{max-width:480px;min-height:100dvh;margin:auto;overflow:hidden;background:#a7ddf7;display:flex;flex-direction:column;position:relative}header{display:flex;gap:10px;align-items:center;padding:24px 22px 18px}.rank,.nameplate{border:1.5px solid;border-radius:15px;background:#fff;box-shadow:0 3px #20242a;height:39px;display:flex;align-items:center;overflow:hidden}.rank{padding:0;width:87px;flex-shrink:0}.rank span{padding:6px 9px;font-size:23px;background:#ffb1e8;color:#307f45}.rank b{flex:1;font-size:23px}.nameplate{flex:1;gap:10px;padding:0 12px;font-size:11px;white-space:nowrap}.nameplate b{font-size:15px}.nameplate i{height:16px;border-left:1px solid #8ab6e7}.nameplate small{color:#598bc7;margin-left:auto;font-size:19px}.settings{border:0;background:none;padding:0;font-size:35px;line-height:1}.balance{margin:0 23px;min-height:50px;display:flex;align-items:center;border:1.5px solid;border-radius:21px;background:#fff;box-shadow:0 4px #20242a;position:relative}.apple-mark{display:grid;place-items:center;position:absolute;left:-2px;top:-3px;width:51px;height:54px;border:1.5px solid;border-radius:16px;background:#fff49b;color:#d95055;font-size:38px;transform:rotate(-4deg)}.balance strong{padding:4px 14px 4px 58px;text-align:center;width:100%;font-size:28px;font-variant-numeric:tabular-nums}.rate{text-align:right;margin:12px 24px 0;font-size:11px}.stage{position:relative;min-height:240px;flex:1;display:flex;align-items:center;justify-content:center;background:linear-gradient(160deg,transparent 69%,#f9dbe7 69%)}.factory-art{width:83%;max-width:360px;position:relative}.factory-art svg{display:block;width:100%}.art-label{position:absolute;bottom:4px;left:45%;font-size:8px;letter-spacing:2px;color:#6c6970}.art-label i{color:#c299ae}.actions{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:25px 22px 30px;background:#f9dbe7;min-height:145px}.box,.capsule{border:0;background:none;padding:0;display:flex;flex-direction:column;align-items:center;gap:5px}.box{width:48px}.box svg{width:43px}.box span,.capsule span{font-size:9px;white-space:nowrap}.capsule-wrap{position:relative;width:55px;flex-shrink:0}.capsule{width:100%}.capsule svg{width:54px}.produce{flex:1;position:relative;border:2px solid;border-radius:60px;background:#fff477;box-shadow:0 5px #20242a;min-width:0;height:88px;display:flex;justify-content:center;align-items:center;gap:9px;user-select:none;-webkit-user-select:none}.produce:before{content:'';position:absolute;inset:6px;border:1px solid;border-radius:50px;pointer-events:none}.produce strong{font-size:29px;letter-spacing:2px}.hand{font-size:40px;line-height:1}.produce small{position:absolute;bottom:12px;right:26px;font-size:9px}.produce:active{transform:translateY(4px);box-shadow:0 1px #20242a}.offer{position:absolute;bottom:calc(100% + 15px);right:-5px;min-width:100px;max-width:150px;background:#fff;border:1.5px solid;border-radius:10px;padding:9px;font-size:10px;z-index:2;box-shadow:0 3px #20242a14}.offer:after{content:'';position:absolute;bottom:-7px;right:25px;width:11px;height:11px;background:#fff;border-right:1.5px solid;border-bottom:1.5px solid;transform:rotate(45deg)}.offer b{display:block;color:#447d28;font-size:13px;margin-top:5px}.building-shop{background:#86d0f4;border-top:1.5px solid;border-radius:13px 13px 0 0;padding:15px 0 8px}.shop-head{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:0 20px 12px}h1{font-size:13px;font-weight:500;border:1.5px solid;border-radius:20px;box-shadow:0 2px #20242a;background:#e2ffff;width:145px;margin:0;padding:4px 12px}h1 span{margin-right:19px}.bulk{display:flex;align-items:center;gap:6px;font-size:9px}.bulk button{padding:2px 6px;border:1px solid;border-radius:3px;background:#a5c4d5;font-size:10px}.bulk button[aria-pressed=true]{background:#eaffff;box-shadow:0 2px #20242a}.building-list{display:flex;gap:13px;overflow-x:auto;padding:3px 20px 10px;scrollbar-width:thin}.building{flex:0 0 98px;background:none;border:0;padding:0;text-align:center;opacity:1!important}.tile{border:1.5px solid;border-radius:8px;background:#c9c9e6;height:100px;padding:9px;position:relative;box-shadow:inset 0 0 0 3px #ffffff66,0 3px #20242a;display:flex;flex-direction:column;justify-content:center;align-items:center}.building.affordable .tile{background:#ceff89}.tile .owned{position:absolute;right:7px;top:4px;font-size:20px;font-weight:bold;color:#fff;-webkit-text-stroke:.7px #20242a}.tile .icon{font-size:28px;margin-top:10px}.tile .label{font-size:11px;font-weight:bold;margin-top:3px}.building.locked .tile{background:#3d414c;color:#b3b5bf}.building .cost{display:block;font-size:11px;font-weight:bold;margin-top:8px}.building .gain{display:block;font-size:8px;margin-top:3px;color:#405566}.building.affordable .cost{color:#315e16}.shop-foot{display:flex;align-items:center;justify-content:space-between;margin:0 20px;font-size:9px;color:#42667a}.shop-foot button{border:0;background:none;font-size:9px;color:inherit;padding:6px}dialog{padding:23px;border:1.5px solid;border-radius:20px;background:#fffdf7;width:calc(100% - 28px);max-width:440px;max-height:87dvh;color:#20242a}dialog::backdrop{background:#1a283b88;backdrop-filter:blur(3px)}.modal-head{display:flex;justify-content:space-between;align-items:center}.modal-head small{font-size:9px;letter-spacing:2px;color:#777}.modal-head h2{font-size:23px;margin:5px 0}.modal-head button{font-size:27px;border:0;background:none}.modal-wallet{background:#e3f4fc;padding:10px 12px;border-radius:7px;margin:15px 0;font-size:12px}h3{font-size:15px;margin:20px 0 10px}h3 span{font-size:10px;font-weight:normal;color:#777;margin-left:8px}.upgrade{display:flex;gap:10px;align-items:center;padding:12px 0;border-bottom:1px solid #dedbd4}.upgrade .up-icon{font-size:22px;background:#fff1ac;border:1px solid;border-radius:7px;padding:8px}.upgrade .up-copy{flex:1}.upgrade b{font-size:12px}.upgrade small{display:block;font-size:10px;color:#777;line-height:1.6;margin-top:3px}.upgrade button,#draw{border:1px solid;border-radius:7px;background:#d6f2a9;padding:10px;font-size:11px;white-space:nowrap}.empty{color:#777;font-size:12px;line-height:1.8;padding:10px 0}.gacha{border-top:2px dashed #d6ccd0;margin-top:23px}.gacha p{font-size:11px;color:#777;line-height:1.7}.prizes{display:flex;gap:8px;margin:15px 0}.prize{flex:1;border:1px solid;border-radius:9px;text-align:center;padding:12px 4px;font-size:10px}.prize strong{display:block;font-size:23px;margin-bottom:6px}#draw{width:100%;background:#f3c7e1;font-weight:bold}#drawResult{text-align:center;min-height:18px}#toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#222d;color:#fff;padding:10px 18px;border-radius:12px;z-index:50;font-size:12px;pointer-events:none;opacity:0;transition:opacity .2s;max-width:90vw}#toast.show{opacity:1}#fx{position:fixed;inset:0;pointer-events:none;z-index:10;overflow:hidden}.float{position:absolute;font-size:23px;font-weight:bold;color:#527c2b;text-shadow:0 2px #fff;animation:rise .7s ease-out forwards}.factory-art.bump{animation:bump .18s}.running .belt-apple{animation:belt 1s ease-in-out infinite alternate}@keyframes rise{to{transform:translateY(-65px);opacity:0}}@keyframes bump{50%{transform:translateY(-4px)}}@keyframes belt{to{transform:translate(4px,1px)}}@media(min-height:850px){.stage{min-height:330px}.actions{padding-top:35px;padding-bottom:35px}}@media(max-width:360px){header{padding-left:14px;padding-right:14px;gap:7px}.nameplate{padding:0 8px;gap:6px}.nameplate small{display:none}.actions{gap:9px;padding-left:17px;padding-right:17px}.shop-head{padding-left:15px;padding-right:15px}.produce strong{font-size:25px}.rank{width:72px}.bulk{gap:4px}}@media(prefers-reduced-motion:reduce){*,*:before{animation:none!important;transition:none!important}}
 @media(max-height:740px){header{padding-top:16px;padding-bottom:13px}.stage{min-height:150px}.factory-art{width:65%;max-width:260px}.actions{min-height:116px;padding-top:12px;padding-bottom:20px}.produce{height:75px}.building-shop{padding-top:10px}.tile{height:86px}.shop-head{padding-bottom:8px}.building-list{padding-bottom:7px}.building .gain{font-size:8px}.rate{margin-top:9px}}
-/* Reference-art layout: responsive coordinates on the supplied 932 × 1772 composition. */
+/* Reference-art layout: shared responsive coordinates on the supplied 402 × 874 frame. */
 body{background:#565656;font-family:Arial,'Microsoft Yahei',sans-serif;color:#000}.phone{width:100%;max-width:500px;min-height:0;aspect-ratio:932/1772;display:block;background:#a2daf9;isolation:isolate;container-type:inline-size}header{position:absolute;z-index:2;top:6.7%;left:6%;right:6.3%;padding:0;gap:2.2cqw;height:8.1cqw}.rank,.nameplate{height:100%;box-shadow:0 .55cqw #000;border: .2cqw solid #000;border-radius:3cqw}.rank{width:22.5cqw;flex-shrink:0}.rank span{width:9.4cqw;height:100%;padding:0;display:grid;place-items:center;background:#ffabef}.rank svg{width:5.6cqw;height:5.4cqw}.rank b{font-size:5.4cqw;color:#000}.nameplate{gap:2.4cqw;padding:0 3.6cqw;font-size:2.65cqw}.nameplate b{font-size:3.5cqw}.nameplate i{height:3cqw;border-color:#a0c1fa}.nameplate small{display:block;font-size:4cqw;line-height:1}.settings{flex:0 0 7.7cqw;width:7.7cqw;height:7.7cqw;margin-left:.3cqw}.settings img{width:100%;height:100%}.balance{position:absolute;z-index:2;top:13.2%;left:13.3%;right:6.3%;margin:0;height:9.6cqw;min-height:0;border:.2cqw solid #000;border-radius:4cqw;box-shadow:0 .65cqw #000}.balance:before{content:'';position:absolute;inset:1.2cqw;border:.2cqw solid #000;border-radius:3.2cqw;pointer-events:none}.balance strong{font-size:4.6cqw;padding:0 4cqw 0 7cqw;line-height:1;font-weight:700}.apple-mark{left:-7.4cqw;top:-.6cqw;width:10.5cqw;height:10.6cqw;border:.2cqw solid #000;border-radius:3cqw;box-shadow:0 .5cqw #000;background:#fff59e;transform:none}.apple-mark:after{content:'';position:absolute;top:1cqw;left:1.1cqw;width:1.1cqw;height:2cqw;transform:rotate(40deg);background:#fff;border-radius:50%}.apple-mark img{width:7.5cqw;height:7cqw}.rate{position:absolute;top:19.65%;right:6.5%;margin:0;font-size:2.25cqw;color:#000;z-index:2;font-weight:500}.rate b{font-weight:500}.stage{position:absolute;inset:20.9% 0 19.5%;min-height:0;background:none;display:block;overflow:hidden;z-index:-1}.factory-art{position:absolute;width:200%;max-width:none;left:-20%;top:0;height:auto}.factory-art img{width:100%;display:block}.actions{position:absolute;top:65.9%;left:4%;right:5.3%;height:11.6%;min-height:0;padding:0;background:none;gap:1.4cqw;align-items:center}.box{flex:0 0 18.5cqw;width:18.5cqw}.box img{width:100%;display:block}.produce{flex:1;height:auto;border:0;border-radius:0;background:none;box-shadow:none;padding:0;min-width:0}.produce:before{display:none}.produce img{display:block;width:100%}.produce:active{transform:translateY(.5cqw);box-shadow:none}.capsule-wrap{flex:0 0 16.2cqw;width:16.2cqw}.capsule{width:100%}.capsule img{width:100%;display:block}.offer{bottom:calc(100% + 3cqw);right:-1.5cqw;min-width:16cqw;width:16cqw;max-width:none;min-height:16cqw;border:.2cqw solid #000;border-radius:1.7cqw;padding:2cqw 1cqw;font-size:2.3cqw;display:flex;flex-direction:column;justify-content:center;box-shadow:none}.offer b{font-size:2.8cqw;margin-top:2cqw;color:#b9f269;-webkit-text-stroke:.07cqw #000;paint-order:stroke fill}.offer:after{width:2cqw;height:2cqw;bottom:-1.2cqw;right:7cqw;border-width:.2cqw}.building-shop{position:absolute;left:0;right:0;top:80.5%;bottom:0;background:#89d3fb;border-top:.2cqw solid #000;border-radius:2cqw 2cqw 0 0;padding:2cqw 0 0}.shop-head{padding:0 2.8cqw 2.2cqw;gap:2cqw;height:7.6cqw;align-items:center}h1{position:relative;width:41cqw;height:5.5cqw;font-size:3cqw;text-align:center;border:.2cqw solid #000;border-radius:4cqw;padding:.6cqw 0;background:#deffff;box-shadow:0 .5cqw #000;flex-shrink:0}h1>span{position:absolute;width:6.5cqw;height:6.5cqw;left:0;top:-.7cqw;border:.2cqw solid #000;border-radius:50%;background:#deffff;display:grid;place-items:center;margin:0;box-shadow:0 .4cqw #000}h1 svg{width:4.3cqw;height:4.3cqw;fill:none;stroke:#000;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}.bulk{gap:1.8cqw;font-size:1.9cqw;font-weight:700}.bulk button{font-size:2.1cqw;border:.15cqw solid #000;border-radius:.4cqw;padding:.1cqw 1.1cqw;background:#77adc9;color:#36556a;font-weight:bold}.bulk button[aria-pressed=true]{background:#dfffff;box-shadow:0 .3cqw #000;color:#000}.building-list{gap:3.8cqw;padding:.8cqw 4.6cqw 1.3cqw;scrollbar-width:none}.building-list::-webkit-scrollbar{display:none}.building{flex:0 0 17.8cqw;width:17.8cqw}.tile{height:17.8cqw;padding:1cqw;border:.2cqw solid #000;border-radius:1.3cqw;box-shadow:none;background:#cdcee9}.tile:before{content:'';position:absolute;inset:.65cqw;border:.15cqw solid #000;border-radius:.8cqw;pointer-events:none}.building.affordable .tile{background:#d1ff81}.tile .owned{top:1cqw;right:1.7cqw;font-size:4.5cqw;line-height:1;font-weight:800;color:white;-webkit-text-stroke:.13cqw #000;paint-order:stroke fill}.tile .icon{font-size:3.6cqw;margin-top:3cqw;line-height:1.2}.tile .label{font-size:2.2cqw;margin-top:2cqw;font-weight:700}.building.locked .tile{background:#cdcee9;color:#626262}.building.locked .tile:before{background:#000;z-index:0}.building.locked .icon,.building.locked .label{z-index:1}.building.locked .icon{font-size:9cqw;font-weight:bold;margin-top:0;line-height:.9}.building.locked .label{margin-top:1.2cqw}.building .cost{font-size:2.5cqw;margin-top:1.5cqw;color:#fff;-webkit-text-stroke:.1cqw #000;paint-order:stroke fill;white-space:nowrap;display:flex;align-items:center;justify-content:center;gap:.5cqw}.building.affordable .cost{color:#caff89}.cost img{width:2.8cqw;height:2.5cqw}.cost .quantity{font-size:1.15cqw;color:#000;-webkit-text-stroke:0;border:.1cqw solid #66878d;border-radius:.2cqw;background:#e6ffff;padding:0 .45cqw;margin-right:.2cqw}.building .gain{display:none}.shop-foot{margin:.3cqw 4.8cqw 0;font-size:1.5cqw}.shop-foot button{font-size:1.5cqw;padding:.2cqw}.factory-art.bump{animation:none}.running .belt-apple{animation:none}
 .phone{min-height:100dvh}
 /* Fit the complete reference composition inside the visible window. */
 html,body{width:100%;height:100%;overflow:hidden;background:#839EE2}
 body{display:flex;justify-content:center;align-items:center}
-.phone{flex:none;width:min(100vw,52.59594dvh);max-width:none;height:auto;min-height:0;aspect-ratio:932/1772;max-height:100dvh}
+.phone{flex:none;width:min(100vw,46.0dvh,500px);max-width:none;height:auto;min-height:0;aspect-ratio:402/874;max-height:100dvh}
 img{-webkit-user-drag:none;user-select:none;-webkit-user-select:none}
 .stage,.factory-art{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
 /* Rapid clicks intentionally retain independent overlapping feedback. */
@@ -19,12 +19,12 @@ html,body,body *{user-select:none;-webkit-user-select:none;-webkit-touch-callout
 @keyframes apple-fall{0%{transform:translateY(0) rotate(0);opacity:1}24%{transform:translateY(-45px) rotate(70deg);opacity:1}75%{opacity:1}100%{transform:translateY(var(--fall)) rotate(var(--spin));opacity:0}}
 .fish-character{position:absolute;left:-5%;top:39%;width:40%;height:25%;border:0;background:transparent;z-index:1;touch-action:none}
 /* Explicit height also gives embedded character frames a resolved containing block. */
-.phone{height:min(100dvh,190.128755vw)}
+.phone{height:auto}
 header{top:3%}.balance{top:9.5%}.rate{top:16%}.stage{top:17.2%}
 .fish-character{display:block;visibility:visible;opacity:1;left:-4%;top:39%;width:40%;height:25%;min-height:1px}
 @media(max-width:768px) and (orientation:portrait){
  html,body{background:#a2daf9}
- .phone{width:100vw;height:100dvh;max-height:none;aspect-ratio:auto;margin:0}
+ .phone{width:min(100vw,46.0dvh,500px);height:auto;max-height:100dvh;aspect-ratio:402/874;margin:auto}
 }
 @media(max-width:768px) and (orientation:portrait){
  .shop-foot{position:absolute;left:4.8cqw;right:4.8cqw;bottom:.8cqw;margin:0}
@@ -107,30 +107,19 @@ h1 svg{stroke-width:1.2}.rank svg g{stroke-width:1}
 .special-apple{animation:none}
 .special-apple img{animation:apple-shimmer 1.8s ease-in-out infinite}
 @keyframes apple-shimmer{50%{transform:translateY(-5%) rotate(7deg)}}
-/* Buff duration lives on the balance perimeter and fill, separate from the effect label. */
 .special-apple span{display:none}
 .frenzy-badge:after{display:none}
-.frenzy-ring{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:2;fill:none}
-.frenzy-ring path{stroke:#f1b714;stroke-width:clamp(2px,.7cqw,3px);stroke-linecap:round;vector-effect:non-scaling-stroke}
 .balance .apple-mark{z-index:3}
-/* The perimeter alone carries the timer; its mask fills the full gap between black outlines. */
-.golden-frenzy .balance{background:linear-gradient(to right,#ffe58b 0 var(--buff-progress),#fff var(--buff-progress) 100%)}
-.frenzy-ring path{stroke:#FCF043;stroke-linecap:butt}
 .golden-frenzy.phone{}
-.gold-rain{position:absolute;top:17.2%;bottom:20%;left:0;right:0;overflow:hidden;pointer-events:none;z-index:0}
+.gold-rain{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
 .rain-apple{position:absolute;top:-9cqw;height:auto;opacity:.75;filter:drop-shadow(0 2px 3px #bd771f50);animation:gold-rain-fall 3s linear forwards;will-change:transform}
-.golden-frenzy #balance{display:block;transform-origin:55% 50%;animation:urgent-balance .24s ease-in-out infinite}
-@keyframes urgent-balance{0%,100%{transform:scale(1.03) rotate(-1deg) translateX(-.5px)}25%{transform:scale(1.09) rotate(1.5deg) translateY(-1px)}50%{transform:scale(1) rotate(-1.5deg) translateX(1px)}75%{transform:scale(1.07) rotate(1deg) translateY(1px)}}
-@keyframes gold-rain-fall{to{transform:translate(var(--rain-drift),72cqh) rotate(var(--rain-turn));opacity:.1}}
+@keyframes gold-rain-fall{to{transform:translate(var(--rain-drift),110cqh) rotate(var(--rain-turn));opacity:.1}}
 /* Repaint both black outlines above the timer, using the same rounded geometry. */
 .balance{isolation:isolate}
-.frenzy-ring{z-index:0}
 .balance:before{z-index:2}
 .balance:after{content:'';position:absolute;inset:calc(-1 * var(--ui-stroke));border:var(--ui-stroke) solid #000;border-radius:inherit;pointer-events:none;z-index:2}
 #balance{position:relative;z-index:1}
 .balance .apple-mark{z-index:3}
-.golden-frenzy #balance{animation:urgent-rush .18s linear infinite;transform-origin:54% 50%}
-@keyframes urgent-rush{0%,100%{transform:scale(1.12) rotate(-3deg) translate(-1px,-1px)}16%{transform:scale(1.25) rotate(4deg) translate(2px,1px)}33%{transform:scale(1.05) rotate(-4deg) translate(-2px,1px)}50%{transform:scale(1.2) rotate(3deg) translate(1px,-2px)}67%{transform:scale(1.08) rotate(-3deg) translate(-1px,2px)}84%{transform:scale(1.24) rotate(4deg) translate(2px,-1px)}}
 .gold-waterfall{display:none;position:absolute;top:17.2%;bottom:20%;left:0;right:0;overflow:hidden;pointer-events:none;z-index:0}
 .golden-frenzy .gold-waterfall{display:block}
 .gold-wave{position:absolute;top:0;left:-20%;width:140%;height:30%;opacity:0;animation:golden-cascade 2.4s linear infinite}
@@ -150,7 +139,7 @@ h1 svg{stroke-width:1.2}.rank svg g{stroke-width:1}
 @keyframes reward-jitter{0%,100%{transform:scale(1.12) translate(-2px,0) rotate(-5deg)}25%{transform:scale(1.22) translate(3px,-1px) rotate(5deg)}50%{transform:scale(1.08) translate(-3px,1px) rotate(-4deg)}75%{transform:scale(1.2) translate(2px,-1px) rotate(4deg)}}
 /* Background colors fade; animated artwork swaps exclusively to avoid ghost limbs. */
 .phone:before{content:'';position:absolute;inset:0;z-index:-2;pointer-events:none;background:linear-gradient(#fff0a2 0 80.5%,#fce592 80.5% 100%);opacity:0;transition:opacity .28s ease-out}
-.golden-frenzy.phone:before{opacity:1}
+.golden-frenzy.phone:before{opacity:.24}
 .factory-art .golden-art{position:absolute;inset:0;opacity:0;pointer-events:none;transition:none}
 .golden-frenzy .factory-art .golden-art{opacity:1}
 .building-shop,h1,h1>span,.bulk button,.tile,.modal-wallet{transition:background-color .28s ease-out,color .28s ease-out}
@@ -163,16 +152,16 @@ h1 svg{stroke-width:1.2}.rank svg g{stroke-width:1}
 .golden-frenzy .shop-foot{color:#795e24}
 /* Screen blending adds luminance to the scene instead of laying a yellow tint over it. */
 .gold-edge-glow,.golden-frenzy .gold-edge-glow{display:block;opacity:0;mix-blend-mode:screen;background:radial-gradient(ellipse at center,transparent 55%,#fff59dcc 100%);box-shadow:inset 0 0 6cqw 2cqw #fff59dcc,inset 0 0 15cqw #fff59d99;transition:opacity .28s ease-out;animation:none}
-.golden-frenzy .gold-edge-glow{opacity:1;animation:edge-luminance 1.3s ease-in-out infinite alternate}
+.golden-frenzy .gold-edge-glow{opacity:.36;animation:edge-luminance 1.3s ease-in-out infinite alternate}
 @keyframes edge-luminance{from{filter:brightness(1)}to{filter:brightness(1.3)}}
 /* Put rays directly in the scene's blending group, below the production button. */
 .produce:before,.produce:after,.golden-frenzy .produce:before,.golden-frenzy .produce:after{display:none}
 .golden-frenzy .produce{filter:none;animation:none}
 .button-aura{position:absolute;left:var(--aura-x,50%);top:var(--aura-y,70%);width:85%;aspect-ratio:1;z-index:1;pointer-events:none;opacity:0;mix-blend-mode:screen;background:repeating-conic-gradient(from 0deg,#fff36acc 0deg,#fff36acc 9deg,transparent 18deg,transparent 27deg);-webkit-mask-image:radial-gradient(circle,#000 15%,#000a 42%,transparent 70%);mask-image:radial-gradient(circle,#000 15%,#000a 42%,transparent 70%);animation:golden-halo-spin 6s linear infinite;transition:opacity .28s ease-out}
-.golden-frenzy .button-aura{opacity:1}
+.golden-frenzy .button-aura{opacity:.48}
 .button-aura:after{content:'';position:absolute;inset:10%;background:radial-gradient(circle,#fff36a99,transparent 70%);border-radius:50%}
 .gold-waterfall,.golden-frenzy .gold-waterfall{display:block;opacity:0;transition:opacity .28s ease-out}
-.golden-frenzy .gold-waterfall{opacity:1}
+.golden-frenzy .gold-waterfall{opacity:.4}
 .gold-wave{animation-play-state:paused}.golden-frenzy .gold-wave{animation-play-state:running}
 /* Only the drifting click reward gets the wider, slower sway. */
 .reward-impact{animation:reward-pop .32s cubic-bezier(.15,.85,.3,1) both,reward-sway .52s ease-in-out .32s infinite}
@@ -270,8 +259,24 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 .golden-frenzy .balance{box-shadow:0 var(--ui-shadow) #000}
 .rain-apple,.reward-impact{filter:none}
 
-/* A quiet countdown sits beside the animated total, inside the white field. */
-.frenzy-countdown{position:absolute;right:3cqw;top:50%;transform:translateY(-50%);z-index:3;font-size:2.5cqw;line-height:1;color:#58450c;font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums;pointer-events:none}
+/* Keep the frenzy status clear of the balance and right-side shortcuts. */
+.frenzy-timer{
+ position:absolute;top:23%;left:50%;transform:translateX(-50%);z-index:104;
+ width:55%;padding:1.6cqw 2.2cqw;border:1px solid #55360a;border-radius:2.8cqw;
+ background:#fff8d5;color:#352208;box-shadow:0 .55cqw #55360a;pointer-events:none;
+}
+.frenzy-timer-label{
+ display:flex;align-items:center;justify-content:space-between;gap:1cqw;
+ margin-bottom:1cqw;font-size:2.9cqw;line-height:1.2;font-weight:800;font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+.frenzy-timer progress{
+ display:block;width:100%;height:1.7cqw;appearance:none;border:0;border-radius:1cqw;
+ overflow:hidden;background:#ead9ab;color:#8d5000;
+}
+.frenzy-timer progress::-webkit-progress-bar{background:#ead9ab}
+.frenzy-timer progress::-webkit-progress-value{background:#8d5000}
+.frenzy-timer progress::-moz-progress-bar{background:#8d5000}
+.wardrobe-open .frenzy-timer{visibility:hidden}
 
 /* Keep the outline, but use deep gold rather than brown for the extrusion. */
 .frenzy-badge{filter:drop-shadow(0 2px 0 #f3c21b)}
@@ -288,7 +293,6 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 .frenzy-power{overflow:visible}
 .frenzy-multiplier{position:relative;z-index:1;overflow:visible;padding:.08em .06em;margin:-.08em -.06em}
 .rate-multiplier{animation-duration:.14s}
-.frenzy-countdown{font-size:2.3cqw;right:4cqw}
 
 /* Reset is a desktop testing control outside the phone, never mobile UI. */
 .debug-reset{display:none;position:fixed;right:calc(50% + 26.3dvh + 24px);top:36%;width:160px}
@@ -591,7 +595,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 /* The sign covers the market rim; only the hanging tag responds to a purchase. */
 .building-shop h1{z-index:4}
 .building:active:not(:disabled){transform:none}
-.tag-motion{position:absolute;inset:0;display:block;pointer-events:none}
+.tag-motion{position:absolute;inset:0;display:block;pointer-events:none;transform-origin:50% 0}
 
 /* DEMO: the arrival animation on demand, one row per fishman. Twenty small
    buttons join the apple tests in the same column, which starts higher up to
@@ -681,6 +685,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 /* Wardrobe changes the lower scene while the existing header/HUD remain mounted. */
 .phone.wardrobe-open,.phone.wardrobe-open.golden-frenzy{background:#fbd9e7}
 .wardrobe-open .stage,.wardrobe-open .actions,.wardrobe-open .building-shop,
+.wardrobe-open .construction-panel,
 .wardrobe-open .fish-worker,.wardrobe-open .purchase-speech,.wardrobe-open .rate-gain,
 .wardrobe-open .special-layer,.wardrobe-open .special-glow,.wardrobe-open .gold-waterfall,
 .wardrobe-open .gold-rain,.wardrobe-open .button-aura,.wardrobe-open .gold-edge-glow{visibility:hidden!important;pointer-events:none!important}
@@ -846,7 +851,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 
 /* v1.0.1 — build first, then operate. The header stays mounted throughout. */
 .construction-phase .balance,.construction-phase .rate,.construction-phase .factory-hud,
-.construction-phase .actions,.construction-phase .building-shop,
+.construction-phase #produce,.construction-phase #sellCrate,.construction-phase .building-shop,
 .construction-phase .special-layer,.construction-phase .special-glow,
 .construction-phase .fish-worker,.construction-phase .gold-waterfall,
 .construction-phase .gold-rain,.construction-phase .button-aura,.construction-phase .gold-edge-glow{display:none!important}
@@ -933,7 +938,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 
 /* Operating tutorial reveals the existing HUD in conversation order. */
 .tutorial-hidden{visibility:hidden!important;pointer-events:none!important}
-.operation-tutorial .actions>#openGacha,.operation-tutorial .actions>.wardrobe-entry,.operation-tutorial .bulk{visibility:hidden;pointer-events:none}
+.operation-tutorial .bulk{visibility:hidden;pointer-events:none}
 .operation-tutorial .purchase-speech{width:55%;left:25%;font-size:2.8cqw}
 .tutorial-five{color:#9146bd;font-weight:900}
 .building.recruit-pulse{z-index:5}
@@ -1036,7 +1041,6 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 
 .construction-smoke{position:absolute;left:0;top:0;width:var(--smoke-size);height:var(--smoke-size);overflow:visible;transform:translate(-50%,-50%)}
 
-.farm-awaiting-choice .actions>#openGacha,.farm-awaiting-choice .actions>.wardrobe-entry{visibility:hidden;pointer-events:none}
 .new-farm-dialog{width:min(88vw,390px);max-height:85dvh;overflow:auto;border:1px solid #000;border-radius:18px;padding:24px 20px;background:#fffef0;box-shadow:0 3px #000;color:#000}
 .new-farm-dialog h2{margin:0 24px 16px 0;font-size:21px}.new-farm-dialog p{font-size:14px;line-height:1.7;margin:14px 0}
 .new-farm-close{position:absolute;right:10px;top:8px;border:0;background:none;font-size:25px}
@@ -1056,7 +1060,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 #frenzyGlowLayer{position:fixed;inset:0;z-index:9;overflow:hidden;pointer-events:none;mix-blend-mode:plus-lighter}
 #frenzyGlowLayer .frenzy-glow{mix-blend-mode:normal;color:#fff34c;-webkit-text-fill-color:#fff34c;-webkit-text-stroke:0;text-shadow:0 0 .25em #fff98a,0 0 .7em #ffe92d,0 0 1.25em #ffdf3299;filter:blur(3px);opacity:.7}
 .frenzy-number:not(.frenzy-glow){text-shadow:none}
-#testBuildComplete,#testFiveEmployees,#testFirstFarmUpgrade{font-size:11px}
+#testBuildComplete,#testFiveEmployees,#testFarmLevelTwo,#testFarmLevelThree,#testUnlockAllRecruits{font-size:11px}
 
 /* Shared currency and crate sales stay inside the existing HUD and action area. */
 .balance strong{padding-right:22cqw}
@@ -1067,7 +1071,6 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 .sell-crate b{font-size:2.25cqw;white-space:nowrap}
 .sell-crate small{font-size:1.9cqw;white-space:nowrap}
 .sell-crate:disabled{opacity:.65}
-.sell-crate.tutorial-target{outline:.65cqw solid #ffcc38;outline-offset:.6cqw}
 
 /* Give apple and coin balances equal, clearly separated halves. */
 .balance strong{flex:0 0 50%;width:50%;padding:0;text-align:center;position:relative;z-index:3}
@@ -1080,12 +1083,328 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 .basket-cue path+path{fill:none;stroke:#fff8d5;stroke-width:1.5}
 .basket-cue.is-ready{opacity:1;animation:basket-cue-pulse 1.2s ease-in-out infinite}
 @keyframes basket-cue-pulse{0%,100%{transform:scale(.94);opacity:.62;filter:drop-shadow(0 0 1px #ffbf00)}50%{transform:scale(1.09);opacity:1;filter:drop-shadow(0 0 7px #ffbf00)}}
-.sell-crate.crate-ready{animation:sell-crate-pulse 1.2s ease-in-out infinite;box-shadow:0 .45cqw #000,0 0 0 .7cqw #ffdc3d,0 0 2.8cqw #ffb500}
+.sell-crate.crate-ready .sell-crate-cta{animation:sell-crate-pulse 1.2s ease-in-out infinite}
 @keyframes sell-crate-pulse{0%,100%{transform:scale(1);filter:brightness(1)}50%{transform:scale(1.055);filter:brightness(1.08)}}
 .construction-phase .basket-cue{display:none}
-@media(prefers-reduced-motion:reduce){.basket-cue.is-ready,.sell-crate.crate-ready{animation:none}.basket-cue.is-ready{opacity:1;filter:drop-shadow(0 0 5px #ffbf00)}.sell-crate.crate-ready{outline:.65cqw solid #ffcc38;outline-offset:.6cqw}}
+@media(prefers-reduced-motion:reduce){.basket-cue.is-ready,.sell-crate.crate-ready .sell-crate-cta{animation:none}.basket-cue.is-ready{opacity:1;filter:drop-shadow(0 0 5px #ffbf00)}}
 
 
 /* Recruit cards keep their role and effect visible without hover-only flipping. */
 .role-front{position:absolute;inset:0}
 .building .unlock-info.awaiting-reveal{background:#e6e6e6}
+
+/* Apple Factory Level 1: SVG scenery with live game controls above it. */
+.phone:not(.wardrobe-open){
+ background:#4eb5ff url("img/svg/level-one-scene.svg?v=1.0.158") center / 100% 100% no-repeat;
+}
+.phone>header{top:2.5%;left:4%;right:3%;height:9cqw;justify-content:space-between}
+.phone .nameplate{
+ flex:0 0 31cqw;overflow:visible;gap:1cqw;padding:0 2cqw 0 0;
+ border:1px solid #000;border-radius:10cqw;background:#ff92c1;
+ box-shadow:0 0 0 1cqw #fff;font-size:2.8cqw;font-weight:900;
+}
+.nameplate img{width:11.5cqw;margin-left:-1.5cqw}
+.phone .settings{width:8.7cqw;height:9.2cqw;flex:0 0 8.7cqw}
+.phone .balance,.golden-frenzy.phone .balance{
+ top:2.9%;left:38%;right:14%;height:5.9cqw;gap:4%;
+ border:0;border-radius:0;background:none;box-shadow:none;
+}
+.balance:before,.balance:after,.apple-mark:after{display:none}
+.balance #balance,.balance .coin-balance{
+ display:flex;align-items:center;justify-content:center;min-width:0;height:100%;
+ border:1px solid #000;border-radius:10cqw;background:#ffde90;box-shadow:0 0 0 1cqw #fff;
+ color:#fff;font-size:3.1cqw;-webkit-text-stroke:.5cqw #000;paint-order:stroke fill;
+}
+.balance #balance{order:2;flex:0 0 55%;padding:0 1cqw 0 6cqw}
+.balance .coin-balance{order:1;flex:0 0 41%;padding-left:6cqw}
+.balance .coin-balance img,.balance .apple-mark{
+ position:absolute;left:-1cqw;top:50%;transform:translateY(-50%);width:8cqw;height:8cqw;
+ border:0;background:none;box-shadow:none;
+}
+.balance .apple-mark{left:43%;z-index:5;pointer-events:none}
+.balance .apple-mark img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 1px #fff)}
+.phone .rate{
+ top:7.1%;left:4.3%;min-width:18cqw;height:5.4cqw;padding:0 2cqw;
+ border:1px solid #000;border-radius:10cqw;background:#fff;box-shadow:0 0 0 .8cqw #fff;
+}
+.rate .rate-ticket{opacity:0}
+.rate .rate-unit{width:auto;flex:0 0 auto;font-size:0;margin-right:1cqw}
+.phone .rate #rate{padding:0}
+.factory-hud{top:10.4%;left:4.3%;right:auto;width:29cqw}
+.factory-hud .factory-entry,.recruit-goal{background:#ffe6f0}
+
+.phone .stage{top:20.2%;bottom:20%}
+.phone .factory-art{width:202%;left:-17.4%;top:0}
+#constructionScene [id="Rectangle 81"]{display:none}
+
+.phone .actions,.phone .construction-panel{top:68%;height:7.5%}
+.phone .actions{left:6.8%;right:7.7%;display:block;min-height:0;padding:0;background:transparent}
+.phone #produce,.phone .build-factory{
+ width:100%;height:100%;border:1px solid #111;border-radius:20cqw;
+ background:#fff2a5;box-shadow:0 .65cqw #e1b94f,0 0 2cqw #ffcc6b;
+}
+.phone #produce{display:block;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none}
+.phone #produce:before{display:none}
+.phone #produce .produce-visual{display:block;width:100%;height:100%;object-fit:contain}
+.phone .sell-crate{
+ top:auto;bottom:calc(100% + .8cqw);left:0;width:100%;height:auto;aspect-ratio:360/73;
+ display:block;padding:0;overflow:visible;border:0;border-radius:0;
+ background:transparent;box-shadow:none;color:#171717;
+}
+.phone .sell-crate-visual{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;pointer-events:none}
+@font-face{
+ font-family:'Futehodo Maru Gothic';
+ src:local('Futehodo-MaruGothic'),local('ふてほど丸ゴシック');
+ font-weight:900;
+}
+.phone .sell-crate-progress,.phone .sell-crate-reward b{
+ font-family:'Futehodo Maru Gothic','Zen Maru Gothic',Xiaolai,sans-serif;
+ font-weight:900;line-height:1;white-space:nowrap;
+ -webkit-text-stroke:.55cqw #fff;paint-order:stroke fill;
+}
+.phone .sell-crate-progress{
+ position:absolute;left:18.6%;top:56%;width:18.9%;height:20%;
+ display:flex;align-items:center;justify-content:center;
+ font-size:min(2.8cqw,calc(19.5cqw / var(--sell-label-length,1)));
+}
+.phone .sell-crate-reward{
+ position:absolute;left:52.6%;top:56%;width:12.4%;height:20%;
+ display:flex;align-items:center;justify-content:flex-start;
+}
+.phone .sell-crate-reward b{
+ font-size:min(2.8cqw,calc(13.5cqw / var(--sell-label-length,1)));
+}
+.phone .sell-crate-cta{
+ position:absolute;left:66.08%;top:22.71%;width:27.26%;height:65.85%;
+ display:block;pointer-events:none;
+}
+.phone .sell-crate:disabled{opacity:1;cursor:default}
+.phone .sell-crate:disabled .sell-crate-cta{filter:grayscale(1)}
+.actions:has(> #produce.tutorial-hidden) > .sell-crate{visibility:hidden}
+@media(prefers-reduced-motion:no-preference){
+ .phone:not(.construction-phase) #produce:not(.tutorial-hidden) .produce-visual{
+  animation:action-fade-in .28s ease-out backwards;
+ }
+ .phone:not(.construction-phase) .actions:has(> #produce:not(.tutorial-hidden)) > .sell-crate{
+  animation:action-fade-in .28s ease-out .28s backwards;
+ }
+}
+@keyframes action-fade-in{from{opacity:0;visibility:hidden}to{opacity:1;visibility:visible}}
+.phone #sellCrate:focus-visible,.phone #produce:focus-visible{outline:none}
+.phone .actions>#openGacha,.phone .actions>.wardrobe-entry{
+ position:absolute;left:auto;
+}
+/* Place both shortcuts at their original anchors in the Lv.1 artwork. */
+.phone .actions>#openGacha{top:-1069%;right:-2.86cqw;width:9.7cqw}
+.phone .actions>.wardrobe-entry{top:-1258%;right:-5.6cqw;width:16.42cqw}
+.phone .actions>.wardrobe-entry button{width:100%}
+.phone #openGacha img{width:100%;height:auto;object-fit:contain}
+.phone .actions .action-caption{bottom:-2.5cqw;border:0;border-radius:10cqw;padding:0 2cqw;background:#ffffffd9}
+
+.phone .construction-panel{left:6.8%;right:7.7%}
+.phone .building-shop .building .tile{
+ height:22cqw;border:1px solid #000;border-radius:.8cqw;
+ background:linear-gradient(#a7ddff,#f0fbff) !important;
+ box-shadow:inset 0 0 0 .8cqw #fff;
+}
+.phone .building-shop .building.locked .tile{
+ background:linear-gradient(#a3a3a3,#555) !important;
+ box-shadow:inset 0 0 0 .8cqw #575757;
+}
+.phone .building-shop .building .tag-shape{top:2.7cqw;bottom:auto;width:13cqw}
+.building-shop .building .tile::before{
+ display:block;inset:.8cqw 28% auto;height:1cqw;border:0;border-radius:1cqw;background:#262626;
+}
+.building-shop .building .tile .gain{top:auto;bottom:1.5cqw}
+
+/* Keep farm level and upgrades in the single header from the SVG. */
+.phone #farmUpgradeControls.nameplate{
+ position:relative;display:block;flex-basis:33cqw;height:7cqw;padding:0;
+ border:0;background:none;box-shadow:none;
+}
+.level-pill{
+ position:relative;display:flex;align-items:center;justify-content:flex-end;gap:2.6cqw;
+ width:100%;height:100%;padding:0 2.5cqw 0 11cqw;border:1px solid #000;border-radius:10cqw;
+ background:#ffe6f0;isolation:isolate;
+ box-shadow:0 0 0 1cqw white;color:#fff;
+}
+.level-pill::before{
+ content:'';position:absolute;inset:0 auto 0 0;width:max(70%,var(--level-progress,0%));
+ border-radius:inherit;background:#ff92c1;z-index:-1;pointer-events:none;
+}
+.level-pill:disabled{opacity:1}
+.level-pill img{position:absolute;left:0;top:50%;transform:translateY(-50%);width:12cqw}
+.level-pill b{font-size:4cqw;-webkit-text-stroke:.65cqw #000;paint-order:stroke fill}
+.level-plus{
+ display:grid;place-items:center;width:4.4cqw;height:4.4cqw;
+ border:1px solid #000;border-radius:50%;background:white;color:#000;font-size:3.8cqw;line-height:1;
+}
+.level-pill.level-up-ready .level-plus{
+ animation:level-plus-ready .6s ease-in-out infinite alternate;
+}
+@keyframes level-plus-ready{
+ from{transform:scale(1);background:#fff;box-shadow:0 0 0 0 transparent}
+ to{transform:scale(1.35);background:#ffe45e;box-shadow:0 0 1.25cqw .35cqw #ffd84a}
+}
+@media(prefers-reduced-motion:reduce){
+ .level-pill.level-up-ready .level-plus{animation:none;background:#ffe45e}
+}
+.phone #quickFactoryUpgrade{
+ position:absolute;top:100%;left:auto;right:0;width:max-content;margin:0;padding:.55cqw 1.5cqw;
+ gap:.8cqw;border:0;border-radius:0 0 3cqw 3cqw;background:#fff;color:#000;
+ box-shadow:none;font-size:2.25cqw;
+}
+.phone #quickFactoryUpgrade img{width:2.8cqw;height:2.8cqw;margin:0;flex:none}
+.phone #quickFactoryUpgrade b{font-size:2.8cqw}
+.phone .rate{top:7.55%;padding-inline:2.1cqw;gap:.55cqw}
+.phone .factory-hud{top:11%}
+#constructionScene [data-build-step="3"]>image{visibility:hidden}
+.phone .rate{
+ top:calc(2.5% + 14.6cqw);min-width:20cqw;height:6.1cqw;
+ justify-content:center;gap:1.1cqw;
+}
+.phone .rate #rate{min-width:0;font-size:3.55cqw;font-weight:900}
+.phone .factory-hud{top:calc(2.5% + 24cqw)}
+.level-pill b{font-size:4.8cqw}
+
+/* Straps scroll with their cards and sit behind the badge slots. */
+.phone .building-shop .building-list{padding-top:3.5cqw}
+.phone .building-shop .building .tile::after{
+ content:'';position:absolute;left:50%;top:-3.7cqw;width:2.1cqw;height:5.1cqw;
+ transform:translateX(-50%);border:1px solid #302821;border-radius:.4cqw;
+ background:linear-gradient(90deg,#615548,#a58e70 55%,#665645);
+ pointer-events:none;
+}
+
+/* Hiring Section artwork uses a 402 × 159 design grid. */
+.phone .building-shop{
+ top:82.61%;border:0;border-radius:0;padding:0;overflow:visible;
+ background:#edba69 url("img/svg/hiring/board.svg?v=1.0.158") center / 100% 100% no-repeat;
+}
+.phone .building-shop::before{display:none}
+.phone .building-shop .shop-head{position:absolute;inset:0 0 auto;height:18%;padding:0;z-index:6;pointer-events:none}
+.phone .building-shop .shop-head::before{
+ content:'';position:absolute;left:35.82%;top:6.99%;width:28.36%;height:94.34%;
+ background:url("img/svg/hiring/board-title.svg?v=1.0.158") center / 100% 100% no-repeat;
+}
+.phone .building-shop h1{
+ position:absolute;left:36.6%;top:11%;width:25.7%;height:82%;
+ margin:0;border:0;background:none;box-shadow:none;
+}
+.phone .building-shop h1 b{padding:0;font-size:4.35cqw;font-weight:700;line-height:1}
+.phone .building-shop .bulk{position:absolute;right:2.5cqw;top:2.4cqw;pointer-events:auto}
+.phone .building-shop .building-list{
+ position:absolute;inset:0;display:grid;grid-template-columns:repeat(5,1fr);
+ gap:3.37cqw;padding:0 3.34cqw;overflow:visible;
+}
+.recruit-card{position:relative;min-width:0;height:100%;text-align:center;isolation:isolate}
+.recruit-card .tag-motion{
+ inset:5.03% 0 16.35%;transform-origin:50% 0;
+}
+.recruit-art{position:absolute;inset:0;width:100%;height:100%;object-fit:fill}
+.recruit-card.unaffordable .tag-motion{filter:grayscale(1)}
+.recruit-card .recruit-hit{
+ inset:25.8% 0 3.75%;height:auto;border-radius:1cqw;
+}
+.recruit-card .recruit-hit:disabled{cursor:default}
+.recruit-name,.recruit-english,.recruit-count,.recruit-ability,.recruit-condition{
+ position:absolute;line-height:1.05;color:#171717;
+}
+.recruit-name{
+ inset:82.7% 0 auto;font:900 2.8cqw/1.05 'Futehodo Maru Gothic','Zen Maru Gothic',Xiaolai,sans-serif;
+ white-space:nowrap;
+}
+.recruit-english{inset:92% 0 auto;font:700 1.32cqw/1 Itim,sans-serif;white-space:nowrap}
+.recruit-card.locked .recruit-name{top:83.8%;font-size:4.25cqw;letter-spacing:-.3cqw}
+.recruit-count{
+ top:15.9%;left:-9%;z-index:2;color:#ffec8b;font:900 7.2cqw/.9 'Futehodo Maru Gothic',Itim,sans-serif;
+ letter-spacing:-.27cqw;-webkit-text-stroke:.38cqw #221e17;paint-order:stroke fill;
+}
+.recruit-card[data-building="3"] .recruit-count{color:#fff}
+.recruit-count:empty,.recruit-card.locked .recruit-english,.recruit-card.locked .recruit-ability,
+.recruit-card:not(.locked) .recruit-condition{display:none}
+.recruit-ability{
+ top:40.2%;left:53%;width:73%;min-height:11.6%;padding:.32cqw .32cqw;
+ display:grid;place-items:center;background:#ff88b6;border:.16cqw solid #2b2026;border-radius:4cqw;
+ color:#fff;font-size:1.92cqw;font-weight:900;
+ -webkit-text-stroke:.28cqw #52323e;paint-order:stroke fill;
+}
+.recruit-card[data-building="0"] .recruit-ability{left:59%;width:68%}
+.recruit-card[data-building="2"] .recruit-ability{left:63%;width:62%}
+.recruit-card[data-building="4"] .recruit-ability{top:37.6%;left:51.8%;width:70%;min-height:15.6%;padding-inline:1.25cqw}
+.recruit-condition{
+ top:48.4%;inset-inline:2%;min-height:12.8%;display:grid;place-items:center;
+ padding:.65cqw .65cqw;background:#ffffffe6;border:.16cqw solid #363636;border-radius:4cqw;
+ font-size:2cqw;font-weight:900;white-space:pre-line;
+}
+.recruit-card[data-building="1"] .recruit-condition,.recruit-card[data-building="4"] .recruit-condition{top:48.2%;min-height:18.3%;padding-inline:1cqw}
+.recruit-price{
+ position:absolute;inset:87.1% 0 3.45%;
+ display:flex;align-items:center;justify-content:center;gap:.7cqw;padding:.1cqw .8cqw 0;
+ background:url("img/svg/hiring/price.svg?v=1.0.158") center / 100% 100% no-repeat;
+ font:700 2.75cqw/1 Itim,sans-serif;color:#211a13;white-space:nowrap;pointer-events:none;
+}
+.recruit-price img{width:2.4cqw;height:2.4cqw}
+.recruit-card[data-building="3"] .recruit-price{font-size:2.53cqw}
+@media(prefers-reduced-motion:no-preference){
+ .recruit-card.recruit-pulse .tag-motion{animation:recruit-ready-pulse .6s ease-in-out 5}
+}
+
+/* Scale the resident and its shadow together, keeping the floor contact in place. */
+.phone:not(.wardrobe-open) :is(.fish-character,.fish-character-shadow){
+ left:3%;top:34.3%;width:48%;height:48%;
+}
+
+/* Keep operating controls anchored above the recruitment board. */
+.phone .actions{left:6.84%;right:7.84%;top:74.31%;height:5.38%}
+.phone #produce{position:absolute;left:0;top:-19.1cqw;width:100%;height:100%}
+.phone .sell-crate{left:.015%;width:100.86%;top:auto;bottom:0}
+.phone .construction-panel{top:68%;height:7.5%}
+
+/* The first farm upgrade reveals the juice factory. */
+.phone.farm-level-two:not(.wardrobe-open){
+ background-image:url("img/svg/level-two-scene.svg?v=1.0.158");
+}
+.farm-level-two .factory-art .operating-factory-art,
+.farm-level-two .factory-art .golden-art,
+.farm-level-two .factory-art .basket-cue{visibility:hidden}
+
+/* The live SVG lets the game reveal one packed bottle per arrival. */
+.juice-factory-scene{
+ display:none;visibility:hidden;position:absolute;inset:0;width:100%;height:100%;z-index:-3;pointer-events:none;
+}
+.phone.farm-level-two:not(.farm-level-three) .juice-factory-scene{display:block}
+.phone.wardrobe-open .juice-factory-scene[data-ready]{visibility:hidden}
+.juice-factory-scene[data-ready]{visibility:visible}
+.phone.farm-level-two:not(.farm-level-three,.wardrobe-open):has(.juice-factory-scene[data-ready]){background-image:none}
+.phone .sell-crate:is(.juice-sale,.laptop-sale){aspect-ratio:360/74}
+.phone .juice-sale .sell-crate-progress{left:19.1%;top:54%;width:20.2%}
+.phone .juice-sale .sell-crate-reward{left:52.3%;top:56%}
+.phone .juice-sale .sell-crate-cta{left:66.2%;top:22.7%;width:27.26%;height:64.96%}
+.phone .laptop-sale .sell-crate-progress{left:19.4%;top:54%;width:20.6%}
+.phone .laptop-sale .sell-crate-reward{left:52.7%;top:56%}
+.phone .laptop-sale .sell-crate-cta{left:66.02%;top:22.7%;width:27.26%;height:64.96%}
+
+/* Keep the Level 3 factory visible through later enhancements. */
+.phone.farm-level-three:not(.wardrobe-open){
+ background-image:url("img/svg/level-three-scene.svg?v=1.0.158");
+}
+/* Match the resident's resting pose to the fishman at the right of the 402 × 874 design. */
+.phone.farm-level-three:not(.wardrobe-open) :is(.fish-character,.fish-character-shadow){
+ left:49.73%;top:38.50%;width:66.53%;height:40%;
+}
+.phone.farm-level-three:not(.wardrobe-open) .fish-character-shadow:before{top:54.1%}
+.computer-factory-art{
+ display:none;visibility:hidden;position:absolute;inset:0;width:100%;height:100%;pointer-events:none;
+}
+.phone.farm-level-three .computer-factory-art{display:block}
+.phone.wardrobe-open .computer-factory-art[data-ready]{visibility:hidden}
+.computer-factory-art[data-ready]{visibility:visible}
+.computer-factory-scene{z-index:-3}
+.computer-factory-conveyor{z-index:24}
+.phone.farm-level-three:not(.wardrobe-open):has(.computer-factory-scene[data-ready]){background-image:none}
+.factory-awaiting-output #purchaseSpeech{display:none}
+#factoryStartupPrompt .speech-text{white-space:normal;text-align:center}
+
+.phone.farm-level-three .purchase-speech{left:36%;top:42%}
+.phone.farm-level-three .speech-outline{left:auto;right:-3cqw;transform:scaleX(-1)}

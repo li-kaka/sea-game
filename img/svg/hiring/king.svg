@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64" height="125" viewBox="324.2 8 64 125" fill="none">
+  <rect x="324.531" y="41.314" width="63" height="90.5625" rx="2.53125" fill="#FFED29" stroke-width="0.5625" stroke="black" />
+  <rect x="342.812" y="44.9702" width="26.4375" height="4.5" rx="2.25" fill="black" />
+  <rect x="353.78" y="38.5015" width="4.5" height="10.6875" fill="#D9D9D9" stroke-width="0.5625" stroke="black" />
+  <path d="M351.25 35.8125H360.812V-17.3125C360.812 -18.2444 360.057 -19 359.125 -19H352.937C352.006 -19 351.25 -18.2444 351.25 -17.3125V35.8125Z" fill="#FFED29" />
+  <mask id="stroke28_1104_9337" fill="white">
+    <path d="M351.25 35.8125H360.812V-17.3125C360.812 -18.2444 360.057 -19 359.125 -19H352.937C352.006 -19 351.25 -18.2444 351.25 -17.3125V35.8125Z" />
+  </mask>
+  <path d="M351.25 35.8125H360.812V-17.3125C360.812 -18.2445 360.057 -19 359.125 -19H352.937C352.006 -19 351.25 -18.2444 351.25 -17.3125V35.8125Z" stroke-width="1.125" stroke="black" mask="url(#stroke28_1104_9337)" />
+  <path d="M350.124 35.9702C349.224 34.1702 350.781 33.3452 351.531 33.1577L351.531 34.8452C351.34 35.8765 351.915 38.0515 355.74 38.5015C359.565 38.9515 361.374 35.689 360.531 34.564L360.522 33.439C361.647 33.439 362.731 34.0419 361.928 35.9702C360.522 39.3452 358.272 39.6265 355.74 39.6265C353.209 39.6265 351.249 38.2202 350.124 35.9702Z" fill="#D9D9D9" stroke-width="0.5625" stroke="black" />
+  <rect x="329.03" y="52.0015" width="54.5625" height="54.5625" fill="url(#paint4_radial_1104_9337)" stroke-width="0.5625" stroke="black" />
+  <mask id="mask5_1104_9337" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="328" y="51" width="56" height="56">
+    <rect x="329.03" y="52.0015" width="54.5625" height="54.5625" fill="#46BEFF" stroke-width="0.5625" stroke="black" />
+  </mask>
+  <g mask="url(#mask5_1104_9337)">
+    <g filter="url(#filter1_f_1104_9337)">
+      <path d="M341.099 70.9592C336.061 78.7847 334.538 90.19 335.021 103.951L336.238 116.97H374.215C374.215 116.97 375.852 107.54 375.852 102.56C375.852 97.5798 376.546 94.095 374.215 82.7183C371.883 71.3415 359.107 59.6827 352.797 59.0327L348.789 77.238C346.117 75.7519 343.446 73.244 341.099 70.9592Z" fill="#FFED29" />
+    </g>
+    <g filter="url(#filter2_f_1104_9337)">
+      <path d="M384.719 74.2172L373.188 78.9984L376.281 98.1234L390.062 99.8109L382.188 95.0297L394.844 86.8734L382.188 82.6547L384.719 74.2172Z" fill="#FFD500" />
+    </g>
+    <path d="M386.364 88.7826C383.514 87.2899 377.073 83.9372 374.114 82.468L373.345 88.3418L375.929 98.0916L386.364 88.7826Z" fill="#F4ECE6" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+    <path d="M341.099 70.9592C336.061 78.7847 334.538 90.19 335.021 103.951L336.238 116.97H374.215C374.215 116.97 375.852 107.54 375.852 102.56C375.852 97.5798 376.546 94.095 374.215 82.7183C371.883 71.3415 359.107 59.6827 352.797 59.0327L348.789 77.238C346.117 75.7519 343.446 73.244 341.099 70.9592Z" fill="#FFED29" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+    <path d="M358.891 85.9933C357.106 84.0361 357.424 80.995 360.311 78.7876C362.624 77.038 367.336 76.6034 369.049 80.4058C370.762 84.2081 366.546 86.8144 365.21 87.3459C363.874 87.8773 360.676 87.9505 358.891 85.9933Z" fill="white" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+    <ellipse cx="363.599" cy="82.0835" rx="1.2948" ry="1.16738" transform="rotate(-14.9815 363.599 82.0835)" fill="black" />
+    <mask id="stroke33_1104_9337" maskUnits="userSpaceOnUse" x="359.598" y="78.066" width="8.57162" height="8.57162" fill="black">
+      <rect fill="white" x="359.598" y="78.066" width="8.57162" height="8.57162" />
+      <path d="M364.85 81.7488C365.017 82.3716 364.592 83.0264 363.901 83.2112C363.21 83.3961 362.515 83.041 362.349 82.4182C362.182 81.7954 362.607 81.1407 363.298 80.9558C363.988 80.771 364.684 81.126 364.85 81.7488Z" />
+    </mask>
+    <path d="M364.85 81.7488C365.017 82.3716 364.592 83.0264 363.901 83.2112C363.21 83.3961 362.515 83.041 362.349 82.4182C362.182 81.7954 362.607 81.1407 363.298 80.9558C363.988 80.771 364.684 81.126 364.85 81.7488Z" stroke-width="3.375" stroke="black" mask="url(#stroke33_1104_9337)" />
+    <path d="M344.702 97.8199C348.211 100.042 357.664 100.423 361.627 98.6786" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+    <path d="M349.258 104.981C351.909 105.915 356.312 105.779 358.372 104.981" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+    <use xlink:href="#stroke34_1104_9337" fill="white" />
+    <mask id="stroke35_1104_9337" fill="white">
+      <use xlink:href="#stroke34_1104_9337" />
+    </mask>
+    <path d="M370.094 100.092C375.53 100.092 379.937 102.988 379.938 106.561C379.938 110.133 375.53 113.029 370.094 113.029C367.339 113.029 364.849 112.285 363.062 111.086C361.276 112.285 358.786 113.029 356.031 113.029C353.129 113.029 350.52 112.203 348.719 110.89C346.917 112.203 344.309 113.029 341.406 113.029C335.97 113.029 331.562 110.133 331.562 106.561C331.563 102.988 335.97 100.092 341.406 100.092C344.308 100.092 346.917 100.918 348.719 102.231C350.52 100.918 353.129 100.092 356.031 100.092C358.786 100.092 361.276 100.836 363.062 102.034C364.849 100.836 367.339 100.092 370.094 100.092Z" stroke-width="1.125" stroke="black" mask="url(#stroke35_1104_9337)" />
+    <path d="M384.719 74.2172L373.188 78.9984L376.281 98.1234L390.062 99.8109L382.188 95.0297L394.844 86.8734L382.188 82.6547L384.719 74.2172Z" fill="#FFB700" stroke-width="0.5625" stroke="black" />
+  </g>
+  <rect x="329.03" y="52.0015" width="54.5625" height="54.5625" stroke-width="0.5625" stroke="black" />
+  <defs>
+    <path id="stroke34_1104_9337" d="M370.094 100.092C375.53 100.092 379.937 102.988 379.938 106.561C379.938 110.133 375.53 113.029 370.094 113.029C367.339 113.029 364.849 112.285 363.062 111.086C361.276 112.285 358.786 113.029 356.031 113.029C353.129 113.029 350.52 112.203 348.719 110.89C346.917 112.203 344.309 113.029 341.406 113.029C335.97 113.029 331.562 110.133 331.562 106.561C331.563 102.988 335.97 100.092 341.406 100.092C344.308 100.092 346.917 100.918 348.719 102.231C350.52 100.918 353.129 100.092 356.031 100.092C358.786 100.092 361.276 100.836 363.062 102.034C364.849 100.836 367.339 100.092 370.094 100.092Z" />
+    <filter id="filter2_f_1104_9337" x="370.938" y="71.9672" width="26.1562" height="30.0938" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+      <feGaussianBlur stdDeviation="1.125" result="effect1_foregroundBlur_1104_9337" />
+    </filter>
+    <filter id="filter1_f_1104_9337" x="332.687" y="56.7827" width="45.5117" height="62.4375" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix" />
+      <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+      <feGaussianBlur stdDeviation="1.125" result="effect1_foregroundBlur_1104_9337" />
+    </filter>
+    <radialGradient id="paint4_radial_1104_9337" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(356.312 79.2827) rotate(90) scale(40.2187)">
+      <stop stop-color="#FFF47D" />
+      <stop offset="1" stop-color="white" />
+    </radialGradient>
+  </defs>
+</svg>

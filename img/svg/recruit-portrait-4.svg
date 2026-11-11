@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="251.469 766.999 54.5625 54.5625"><mask id="mask7_1038_2140" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="251" y="766" width="56" height="56">
+<rect x="251.469" y="766.999" width="54.5625" height="54.5625" fill="black" stroke-width="0.5625" stroke="black" />
+</mask>
+<g mask="url(#mask7_1038_2140)">
+<path d="M308.803 803.78C305.952 802.287 299.511 798.934 296.553 797.465L295.783 803.339L298.368 813.089L308.803 803.78Z" fill="black" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+<path d="M263.537 785.956C258.5 793.782 256.977 805.187 257.46 818.948L258.677 831.967H296.653C296.653 831.967 298.29 822.537 298.29 817.557C298.29 812.577 298.985 809.092 296.653 797.715C294.322 786.339 281.545 774.68 275.235 774.03L271.227 792.235C268.556 790.749 265.884 788.241 263.537 785.956Z" fill="black" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+<path d="M281.33 800.99C279.545 799.033 279.862 795.992 282.749 793.785C285.063 792.035 289.774 791.6 291.487 795.403C293.2 799.205 288.985 801.811 287.649 802.343C286.313 802.874 283.115 802.948 281.33 800.99Z" fill="black" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+<ellipse cx="286.038" cy="797.08" rx="1.2948" ry="1.16738" transform="rotate(-14.9815 286.038 797.08)" fill="black" />
+<path d="M267.14 812.817C270.649 815.039 280.102 815.42 284.065 813.676" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+<path d="M271.697 819.978C274.348 820.913 278.75 820.776 280.811 819.978" stroke-width="0.5625" stroke-linecap="round" stroke-linejoin="round" stroke="black" />
+<rect x="257.767" y="817.141" width="39.6475" height="67.6908" fill="black" />
+<path d="M248.097 820.042L257.767 817.141V832.613L242.779 826.811L248.097 820.042Z" fill="black" />
+<path d="M307.085 820.042L297.415 817.141V832.613L312.404 826.811L307.085 820.042Z" fill="black" />
+<path d="M271.305 817.141L270.338 832.613L261.635 817.141H271.305Z" fill="black" />
+<path d="M283.876 817.141L284.843 832.613L293.546 817.141H283.876Z" fill="black" />
+<rect x="269.371" y="817.141" width="15.4722" height="10.6371" fill="black" />
+<path d="M277.591 825.844L283.872 817.141H271.31L277.591 825.844Z" fill="black" />
+<rect x="275.173" y="821.009" width="4.83506" height="37.7135" fill="black" />
+<path d="M257.375 817.342H298.156" stroke-width="0.5625" stroke="black" />
+<path d="M261.875 817.624L264.688 822.686" stroke-width="0.5625" stroke="black" />
+<path d="M257.375 817.342L251.469 819.03" stroke-width="0.5625" stroke="black" />
+<path d="M271.438 817.342L275.094 822.686" stroke-width="0.5625" stroke="black" />
+<path d="M283.531 817.342L280.156 822.686" stroke-width="0.5625" stroke="black" />
+<path d="M293.375 817.342L290.562 822.686" stroke-width="0.5625" stroke="black" />
+<path d="M298.156 817.342L305.75 819.592" stroke-width="0.5625" stroke="black" />
+</g>
+<defs /></svg>
