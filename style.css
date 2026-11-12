@@ -241,7 +241,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 .rate-multiplier{display:inline-block;margin-left:.5cqw;padding:.25cqw .9cqw;background:#FCF043;border:1px solid #000;border-radius:.7cqw;color:#000;-webkit-text-fill-color:#000;font-weight:900;font-size:2.65cqw;line-height:1.1;box-shadow:0 1px #000;transform-origin:center;animation:rate-tag-wiggle .24s ease-in-out infinite alternate}
 @keyframes rate-tag-wiggle{from{transform:translate(-.3px,.4px) rotate(-6deg)}to{transform:translate(.3px,-.4px) rotate(6deg)}}
 /* A subtle invitation on the artwork keeps the actual tap target stationary. */
-.golden-frenzy .produce>img{transform-origin:center;animation:produce-invitation 1.6s ease-in-out infinite}
+.golden-frenzy .produce>.produce-visual{transform-origin:center;animation:produce-invitation 1.6s ease-in-out infinite}
 @keyframes produce-invitation{0%,100%{transform:scale(1) rotate(-.4deg)}50%{transform:scale(1.035) rotate(.4deg)}}
 /* Brighter lemon-gold palette, including the floor and shop. */
 .phone:before{background:linear-gradient(#fff5a3 0 80.5%,#fff19a 80.5% 100%)}
@@ -1084,7 +1084,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 .basket-cue.is-ready{opacity:1;animation:basket-cue-pulse 1.2s ease-in-out infinite}
 @keyframes basket-cue-pulse{0%,100%{transform:scale(.94);opacity:.62;filter:drop-shadow(0 0 1px #ffbf00)}50%{transform:scale(1.09);opacity:1;filter:drop-shadow(0 0 7px #ffbf00)}}
 .sell-crate.crate-ready .sell-crate-cta{animation:sell-crate-pulse 1.2s ease-in-out infinite}
-@keyframes sell-crate-pulse{0%,100%{transform:scale(1);filter:brightness(1)}50%{transform:scale(1.055);filter:brightness(1.08)}}
+@keyframes sell-crate-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.055)}}
 .construction-phase .basket-cue{display:none}
 @media(prefers-reduced-motion:reduce){.basket-cue.is-ready,.sell-crate.crate-ready .sell-crate-cta{animation:none}.basket-cue.is-ready{opacity:1;filter:drop-shadow(0 0 5px #ffbf00)}}
 
@@ -1095,7 +1095,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 
 /* Apple Factory Level 1: SVG scenery with live game controls above it. */
 .phone:not(.wardrobe-open){
- background:#4eb5ff url("img/svg/level-one-scene.svg?v=1.0.158") center / 100% 100% no-repeat;
+ background:#4eb5ff url("img/svg/level-one-scene.svg?v=1.0.159") center / 100% 100% no-repeat;
 }
 .phone>header{top:2.5%;left:4%;right:3%;height:9cqw;justify-content:space-between}
 .phone .nameplate{
@@ -1179,7 +1179,14 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
  display:block;pointer-events:none;
 }
 .phone .sell-crate:disabled{opacity:1;cursor:default}
-.phone .sell-crate:disabled .sell-crate-cta{filter:grayscale(1)}
+.produce-visual> :is(svg,img),.sell-crate-visual> :is(svg,img),.sell-crate-cta> :is(svg,img){
+ display:block;width:100%;height:100%;object-fit:contain;
+}
+.phone .sell-crate:disabled .sell-crate-cta{
+ --sale-button-fill:#dedede;--sale-button-lettering:#676767;
+}
+.phone .sell-crate:disabled .sell-crate-cta>img,
+.phone .sell-crate:disabled .sale-cta-base{filter:grayscale(1)}
 .actions:has(> #produce.tutorial-hidden) > .sell-crate{visibility:hidden}
 @media(prefers-reduced-motion:no-preference){
  .phone:not(.construction-phase) #produce:not(.tutorial-hidden) .produce-visual{
@@ -1279,13 +1286,13 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 /* Hiring Section artwork uses a 402 × 159 design grid. */
 .phone .building-shop{
  top:82.61%;border:0;border-radius:0;padding:0;overflow:visible;
- background:#edba69 url("img/svg/hiring/board.svg?v=1.0.158") center / 100% 100% no-repeat;
+ background:#edba69 url("img/svg/hiring/board.svg?v=1.0.159") center / 100% 100% no-repeat;
 }
 .phone .building-shop::before{display:none}
 .phone .building-shop .shop-head{position:absolute;inset:0 0 auto;height:18%;padding:0;z-index:6;pointer-events:none}
 .phone .building-shop .shop-head::before{
  content:'';position:absolute;left:35.82%;top:6.99%;width:28.36%;height:94.34%;
- background:url("img/svg/hiring/board-title.svg?v=1.0.158") center / 100% 100% no-repeat;
+ background:url("img/svg/hiring/board-title.svg?v=1.0.159") center / 100% 100% no-repeat;
 }
 .phone .building-shop h1{
  position:absolute;left:36.6%;top:11%;width:25.7%;height:82%;
@@ -1341,7 +1348,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 .recruit-price{
  position:absolute;inset:87.1% 0 3.45%;
  display:flex;align-items:center;justify-content:center;gap:.7cqw;padding:.1cqw .8cqw 0;
- background:url("img/svg/hiring/price.svg?v=1.0.158") center / 100% 100% no-repeat;
+ background:url("img/svg/hiring/price.svg?v=1.0.159") center / 100% 100% no-repeat;
  font:700 2.75cqw/1 Itim,sans-serif;color:#211a13;white-space:nowrap;pointer-events:none;
 }
 .recruit-price img{width:2.4cqw;height:2.4cqw}
@@ -1363,7 +1370,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 
 /* The first farm upgrade reveals the juice factory. */
 .phone.farm-level-two:not(.wardrobe-open){
- background-image:url("img/svg/level-two-scene.svg?v=1.0.158");
+ background-image:url("img/svg/level-two-scene.svg?v=1.0.159");
 }
 .farm-level-two .factory-art .operating-factory-art,
 .farm-level-two .factory-art .golden-art,
@@ -1387,7 +1394,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 
 /* Keep the Level 3 factory visible through later enhancements. */
 .phone.farm-level-three:not(.wardrobe-open){
- background-image:url("img/svg/level-three-scene.svg?v=1.0.158");
+ background-image:url("img/svg/level-three-scene.svg?v=1.0.159");
 }
 /* Match the resident's resting pose to the fishman at the right of the 402 × 874 design. */
 .phone.farm-level-three:not(.wardrobe-open) :is(.fish-character,.fish-character-shadow){

@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="238.311 16.8018 98.1232 48.0705" fill="none"><g filter="url(#filter3_iii_201_7522)">
-<rect x="238.311" y="16.8018" width="98.1232" height="48.0705" rx="24.0352" fill="#FDE17D" />
-<use xlink:href="#stroke132_201_7522" fill="#D45200" />
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="238.311 16.8018 98.1232 48.0705" fill="none"><g class="sale-cta-base"><g filter="url(#filter3_iii_201_7522)">
+<rect x="238.311" y="16.8018" width="98.1232" height="48.0705" rx="24.0352" fill="var(--sale-button-fill, #FDE17D)" /></g></g>
+<use xlink:href="#stroke132_201_7522" fill="var(--sale-button-lettering, #D45200)" />
 <mask id="stroke133_201_7522" maskUnits="userSpaceOnUse" x="261.873" y="27.337" width="50" height="26" fill="black">
 <rect fill="white" x="261.873" y="27.337" width="50" height="26" />
 <use xlink:href="#stroke132_201_7522" />
@@ -9,8 +9,8 @@
 <path d="M322.029 23.8691C317.285 21.6094 310.76 21.1922 308.091 21.2662C305.263 21.1964 305.575 22.826 308.338 22.925C315.787 23.1918 316.398 23.9328 318.073 24.4702C320.287 25.1801 320.267 25.8032 322.483 26.9459C324.256 27.8602 325.531 27.445 326.086 27.001C326.086 27.001 326.773 26.1288 322.029 23.8691Z" fill="white" />
 <path d="M321.815 58.6122C319.305 59.9628 315.927 59.9351 314.552 59.7524C313.09 59.6626 313.296 58.5361 314.725 58.6022C318.576 58.7806 318.911 58.2913 319.79 57.997C320.952 57.6082 320.959 57.1706 322.134 56.4786C323.074 55.925 323.72 56.2784 323.994 56.6167C323.994 56.6167 324.325 57.2615 321.815 58.6122Z" fill="white" />
 <ellipse cx="327.555" cy="29.8358" rx="1.23893" ry="1.7345" transform="rotate(-36.1523 327.555 29.8358)" fill="white" />
-</g>
-<rect x="238.586" y="17.0768" width="97.5732" height="47.5205" rx="23.7602" stroke="#D45200" stroke-width="0.55" />
+
+<rect x="238.586" y="17.0768" width="97.5732" height="47.5205" rx="23.7602" stroke="var(--sale-button-lettering, #D45200)" stroke-width="0.55" />
 <defs><filter id="filter3_iii_201_7522" x="238.311" y="14.8195" width="98.1232" height="50.0528" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix" />
 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />

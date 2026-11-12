@@ -587,13 +587,13 @@ function playHarvestSound(){
   note.onended=()=>{note.disconnect();gain.disconnect()};
  }catch{}
 }
-const recruitSound=new Audio('audio/yahoooo-mario.mp3?v=1.0.158');
+const recruitSound=new Audio('audio/yahoooo-mario.mp3?v=1.0.159');
 recruitSound.preload='auto';
 function playRecruitSound(){
  recruitSound.currentTime=0;
  recruitSound.play().catch(()=>{});
 }
-const cashRegisterSound=new Audio('audio/cha-ching-money.mp3?v=1.0.158');
+const cashRegisterSound=new Audio('audio/cha-ching-money.mp3?v=1.0.159');
 cashRegisterSound.preload='auto';
 function playCashRegisterSound(){
  cashRegisterSound.currentTime=0;
@@ -669,7 +669,7 @@ $('buildings').innerHTML=RECRUITABLE_BUILDING_IDS.map(i=>{
    ${i===3?'':'<span class="recruit-ability"></span>'}
    ${unlock?`<span class="recruit-condition">${unlock.label}</span>`:''}
   </div>
-  <span class="recruit-price" aria-hidden="true"><img src="img/svg/level-one-coin.svg?v=1.0.158" alt=""><span></span></span>
+  <span class="recruit-price" aria-hidden="true"><img src="img/svg/level-one-coin.svg?v=1.0.159" alt=""><span></span></span>
  </div>`;
 }).join('');
 const recruitCards=[...$('buildings').children];
@@ -1249,6 +1249,35 @@ function renderFactoryStartupPrompt(phone,stage){
  setText($('factoryStartupProgress'),taps+'/'+FACTORY_STARTUP_TAPS);
 }
 const recruitAffordability=BUILDINGS.map(()=>({wasAffordable:false,pulseUntil:0}));
+const sellActionArt=document.querySelectorAll('#sellCrate .sell-crate-visual,#sellCrate .sell-crate-cta');
+const actionArtCache=new Map();
+function setActionArt(container,source){
+ if(container.dataset.activeSrc===source)return;
+ container.dataset.activeSrc=source;
+
+ // Keep a visible image while the inline vector is loading or if it fails.
+ if(container.firstElementChild?.getAttribute('src')!==source){
+  const fallback=new Image();
+  fallback.src=source;
+  fallback.alt='';
+  fallback.draggable=false;
+  container.replaceChildren(fallback);
+ }
+ if(!actionArtCache.has(source)){
+  const loading=fetch(source).then(response=>{
+   if(!response.ok)throw Error('Unable to load action artwork');
+   return response.text();
+  }).then(markup=>{
+   const svg=new DOMParser().parseFromString(markup,'image/svg+xml').documentElement;
+   if(svg.localName!=='svg')throw Error('Invalid action artwork');
+   return svg;
+  });
+  actionArtCache.set(source,loading);
+ }
+ actionArtCache.get(source).then(svg=>{
+  if(container.dataset.activeSrc===source)container.replaceChildren(document.importNode(svg,true));
+ }).catch(()=>actionArtCache.delete(source));
+}
 function render(){
  renderConstruction();renderTutorial();
  const phone=document.querySelector('.phone');
@@ -1268,9 +1297,8 @@ function render(){
  if(sellCrate.getAttribute('aria-label')!==sellLabel)sellCrate.setAttribute('aria-label',sellLabel);
  sellCrate.classList.toggle('juice-sale',juice);
  sellCrate.classList.toggle('laptop-sale',laptop);
- for(const art of sellCrate.querySelectorAll('img')){
-  const source=art.dataset[laptop?'laptopSrc':juice?'juiceSrc':'appleSrc'];
-  if(art.getAttribute('src')!==source)art.setAttribute('src',source);
+ for(const art of sellActionArt){
+  setActionArt(art,art.dataset[laptop?'laptopSrc':juice?'juiceSrc':'appleSrc']);
  }
  $('basketCue').classList.toggle('is-ready',crateCount>0);
  const basketArtSource=basketFill===2?'fullSrc':basketFill===1?'oneBasketSrc':'emptySrc';
@@ -1304,7 +1332,7 @@ function render(){
   el.classList.toggle('unaffordable',show&&!affordable);
   el.classList.toggle('recruit-pulse',affordance.wasAffordable&&now<affordance.pulseUntil);
   const art=el.querySelector('.recruit-art');
-  const source=`img/svg/hiring/${RECRUIT_CARDS[i].art}${show?'':'-locked'}.svg?v=1.0.158`;
+  const source=`img/svg/hiring/${RECRUIT_CARDS[i].art}${show?'':'-locked'}.svg?v=1.0.159`;
   if(art.getAttribute('src')!==source)art.setAttribute('src',source);
   const ability=el.querySelector('.recruit-ability'),recruit=el.querySelector('.recruit-hit');
   const priceLabel=price<1e9?price.toLocaleString('en-US'):number(price);
@@ -2182,7 +2210,9 @@ function update(dt){
 function frame(now){const dt=last===null?0:Math.max(0,Math.min((now-last)/1000,.25));last=now;if(!document.hidden)update(dt);requestAnimationFrame(frame)}
 document.addEventListener('visibilitychange',()=>{last=null;save()});window.addEventListener('pagehide',save);
 window.advanceTime=ms=>{for(let left=ms;left>0;left-=50)update(Math.min(left,50)/1000)};
-window.render_game_to_text=()=>JSON.stringify({version:'1.0.158',language:GameI18n.language,phase:state.phase,construction:constructionProgress(),tutorial:state.tutorial,introRecruit:state.introRecruit,apples:state.apples,coins:state.coins,earnedCoins:state.earnedCoins,farmStage:farmStage(),juiceStartupTaps:state.juiceStartupTaps,computerStartupTaps:state.computerStartupTaps,factorySaleReady:factorySaleReady(),crateSize:currentCrateSize(),juiceBottles:sellingJuice()?Math.floor(state.apples):0,juiceCratePacked,firstCrateSize:FIRST_APPLE_CRATE_SIZE,total:state.total,soldApples:state.soldApples,playSeconds:state.playSeconds,milestoneTimes:state.milestoneTimes,operationSeconds:state.operationSeconds,guaranteedGold:state.guaranteedGold,factory:{...factoryProgress(),initialUpgradeCount:initialFarmCount(),firstUpgradeAcknowledged:state.firstUpgradeAcknowledged,enhancementLevel:Math.max(1,state.upgrades.length-2)},recruitGoal:{count:employeeCount(),choice:state.recruitGoalChoice,guide:state.recruitGoalGuide},events:state.events,globalMultiplier:upgradeEffects().global,roleEffects:{farmerApplesPerTap:state.owned[1]*farmerTapBonus(),chefCoinsPerCrate:state.owned[2]*chefCrateBonus(),autoSellInterval:state.owned[4]>0?autoSellInterval():null,kingCoinsPerUpgrade:state.owned[3]*kingUpgradeBonus()},cps:cps(),clickPower:clickPower(),bulk,buildings:RECRUITABLE_BUILDING_IDS.map(i=>{const b=BUILDINGS[i],unlock=RECRUIT_UNLOCKS[i];return {name:b.name,owned:state.owned[i],price:buildingCost(i),visible:visible(i),unlockConditionRevealed:!!unlock,unlockProgress:unlock?Math.min(unlock.value(),unlock.target):null,unlockTarget:unlock?.target??null}}),upgrades:state.upgrades,nextUpgrade:nextFactoryItem()?.id||null,wardrobeOpen,outfit:state.outfit,constructionGuide:$('purchaseSpeech').hidden?null:$('speechMeasure').textContent,constructionCompleteOpen:$('constructionCompleteDialog').open,factoryUpgradeOpen:$('factoryUpgradeDialog').open});
+window.render_game_to_text=()=>JSON.stringify({version:'1.0.159',language:GameI18n.language,phase:state.phase,construction:constructionProgress(),tutorial:state.tutorial,introRecruit:state.introRecruit,apples:state.apples,coins:state.coins,earnedCoins:state.earnedCoins,farmStage:farmStage(),juiceStartupTaps:state.juiceStartupTaps,computerStartupTaps:state.computerStartupTaps,factorySaleReady:factorySaleReady(),crateSize:currentCrateSize(),juiceBottles:sellingJuice()?Math.floor(state.apples):0,juiceCratePacked,firstCrateSize:FIRST_APPLE_CRATE_SIZE,total:state.total,soldApples:state.soldApples,playSeconds:state.playSeconds,milestoneTimes:state.milestoneTimes,operationSeconds:state.operationSeconds,guaranteedGold:state.guaranteedGold,factory:{...factoryProgress(),initialUpgradeCount:initialFarmCount(),firstUpgradeAcknowledged:state.firstUpgradeAcknowledged,enhancementLevel:Math.max(1,state.upgrades.length-2)},recruitGoal:{count:employeeCount(),choice:state.recruitGoalChoice,guide:state.recruitGoalGuide},events:state.events,globalMultiplier:upgradeEffects().global,roleEffects:{farmerApplesPerTap:state.owned[1]*farmerTapBonus(),chefCoinsPerCrate:state.owned[2]*chefCrateBonus(),autoSellInterval:state.owned[4]>0?autoSellInterval():null,kingCoinsPerUpgrade:state.owned[3]*kingUpgradeBonus()},cps:cps(),clickPower:clickPower(),bulk,buildings:RECRUITABLE_BUILDING_IDS.map(i=>{const b=BUILDINGS[i],unlock=RECRUIT_UNLOCKS[i];return {name:b.name,owned:state.owned[i],price:buildingCost(i),visible:visible(i),unlockConditionRevealed:!!unlock,unlockProgress:unlock?Math.min(unlock.value(),unlock.target):null,unlockTarget:unlock?.target??null}}),upgrades:state.upgrades,nextUpgrade:nextFactoryItem()?.id||null,wardrobeOpen,outfit:state.outfit,constructionGuide:$('purchaseSpeech').hidden?null:$('speechMeasure').textContent,constructionCompleteOpen:$('constructionCompleteDialog').open,factoryUpgradeOpen:$('factoryUpgradeDialog').open});
+const produceArt=document.querySelector('.produce-visual');
+setActionArt(produceArt,produceArt.firstElementChild.getAttribute('src'));
 setupConstructionArtwork();render();if(state.phase==='ready')showConstructionComplete();else resumeTutorial();if(FARM_UPGRADE_LINES[state.farmUpgradeGuide])speakTutorial(FARM_UPGRADE_LINES[state.farmUpgradeGuide]);if(!tutorialActive()&&FARM_GOAL_LINES[state.recruitGoalGuide])speakTutorial(FARM_GOAL_LINES[state.recruitGoalGuide]);requestAnimationFrame(frame);
 // Commit the initial normal/buffed state before enabling color transitions.
 requestAnimationFrame(()=>requestAnimationFrame(()=>document.documentElement.classList.remove('game-booting')));

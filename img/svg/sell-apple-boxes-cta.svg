@@ -1,7 +1,7 @@
 <svg viewBox="237.894 16.5813 98.1232 48.0705" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<g filter="url(#filter3_iii_198_4535)">
-<rect x="237.894" y="16.5813" width="98.1232" height="48.0705" rx="24.0352" fill="#FDE17D"/>
-<use xlink:href="#stroke47_198_4535" fill="#D45200"/>
+<g class="sale-cta-base"><g filter="url(#filter3_iii_198_4535)">
+<rect x="237.894" y="16.5813" width="98.1232" height="48.0705" rx="24.0352" fill="var(--sale-button-fill, #FDE17D)"/></g></g>
+<use xlink:href="#stroke47_198_4535" fill="var(--sale-button-lettering, #D45200)"/>
 <mask id="stroke48_198_4535" maskUnits="userSpaceOnUse" x="261.456" y="27.1165" width="50" height="26" fill="black">
 <rect fill="white" x="261.456" y="27.1165" width="50" height="26"/>
 <use xlink:href="#stroke47_198_4535"/>
@@ -10,8 +10,8 @@
 <path d="M321.612 23.6486C316.868 21.3889 310.343 20.9718 307.674 21.0457C304.846 20.9759 305.158 22.6055 307.922 22.7045C315.37 22.9713 315.981 23.7123 317.657 24.2497C319.871 24.9596 319.85 25.5827 322.067 26.7254C323.84 27.6397 325.114 27.2245 325.669 26.7805C325.669 26.7805 326.356 25.9084 321.612 23.6486Z" fill="white"/>
 <path d="M321.398 58.3917C318.889 59.7423 315.51 59.7146 314.135 59.5319C312.674 59.4421 312.879 58.3156 314.308 58.3817C318.159 58.5601 318.494 58.0708 319.374 57.7765C320.536 57.3877 320.542 56.9501 321.717 56.2581C322.657 55.7045 323.303 56.0579 323.577 56.3962C323.577 56.3962 323.908 57.041 321.398 58.3917Z" fill="white"/>
 <ellipse cx="327.139" cy="29.6153" rx="1.23893" ry="1.7345" transform="rotate(-36.1523 327.139 29.6153)" fill="white"/>
-</g>
-<rect x="238.169" y="16.8563" width="97.5732" height="47.5205" rx="23.7602" stroke="#D45200" stroke-width="0.55"/>
+
+<rect x="238.169" y="16.8563" width="97.5732" height="47.5205" rx="23.7602" stroke="var(--sale-button-lettering, #D45200)" stroke-width="0.55"/>
 <defs>
 <filter id="filter3_iii_198_4535" x="237.894" y="14.599" width="98.1232" height="50.0528" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
