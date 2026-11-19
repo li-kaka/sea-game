@@ -6,7 +6,7 @@ const BUILDINGS=[
   "name": "兼职鱼人",
   "original": "Cursor",
   "icon": "img/svg/fisher-parttime.svg",
-  "price": 30,
+  "price": 40,
   "cps": 0.02,
   "desc": "自动生产苹果。"
  },
@@ -14,7 +14,7 @@ const BUILDINGS=[
   "name": "农民鱼人",
   "original": "Grandma",
   "icon": "img/svg/fisher-staff.svg",
-  "price": 50,
+  "price": 100,
   "cps": 0,
   "desc": "每次点击多生产1个苹果。",
   "workerLook": "farmer"
@@ -23,7 +23,7 @@ const BUILDINGS=[
   "name": "料理鱼人",
   "original": "Farm",
   "icon": "img/svg/fisher-influencer.svg",
-  "price": 100,
+  "price": 1000,
   "cps": 0,
   "desc": "每卖出一箱苹果，额外获得5金币。"
  },
@@ -32,7 +32,7 @@ const BUILDINGS=[
   "workerLook": "ivory-king",
   "original": "Mine",
   "icon": "img/svg/fisher-mutant.svg",
-  "price": 1000,
+  "price": 10000,
   "cps": 0,
   "desc": "每次升级农场，额外获得10金币。"
  },
@@ -41,7 +41,7 @@ const BUILDINGS=[
   "workerLook": "navy-suit",
   "original": "Factory",
   "icon": "img/svg/fisher-sponge.svg",
-  "price": 500,
+  "price": 2000,
   "cps": 0,
   "desc": "每2分钟自动卖出苹果箱。"
  },
@@ -113,9 +113,9 @@ const GOLDEN_APPLES_PER_TAP=7;
 const GOLDEN_PLAY_MILESTONE=120;
 const GUARANTEED_GOLD_WINDOWS=[60,240];
 const TUTORIAL_SPEECH_DURATION=3500;
-const FARM_LEVEL_UP_PRICES={1:200,2:450};
+const FARM_LEVEL_UP_PRICES={1:400,2:800};
 const LEGACY_INITIAL_UPGRADE_PRICES=[25,50,100];
-const fresh=()=>({schema:105,juiceStartupTaps:0,juiceStartupAt:null,juiceFirstOutput:false,computerStartupTaps:0,computerStartupAt:null,computerFirstOutput:false,firstUpgradeAcknowledged:false,farmUpgradeGuide:'done',farmUpgradeGuideTime:0,recruitGoalChoice:null,recruitGoalGuide:'pending',recruitGoalGuideTime:0,newFarmPromptShown:false,phase:'construction',tutorial:'build',tutorialTime:0,introRecruit:false,buildClicks:0,apples:0,coins:0,earnedCoins:0,autoSellTime:0,total:0,soldApples:0,handmade:0,playSeconds:0,milestoneTimes:{construction:null,fiveEmployees:null,firstFarmUpgrade:null},operationSeconds:0,guaranteedGold:freshGuaranteedGold(),goldenClicks:0,owned:BUILDINGS.map(()=>0),upgrades:[],outfit:null,prizes:[0,0,0],draws:0,events:freshEvents()});
+const fresh=()=>({schema:105,juiceStartupTaps:0,juiceStartupAt:null,juiceFirstOutput:false,computerStartupTaps:0,computerStartupAt:null,computerFirstOutput:false,firstUpgradeAcknowledged:false,farmUpgradeGuide:'done',farmUpgradeGuideTime:0,recruitGoalChoice:null,recruitGoalGuide:'pending',recruitGoalGuideTime:0,newFarmPromptShown:false,missionRewardClaimed:false,missionCompletionAnnounced:false,missionUpgradeGuideComplete:false,phase:'construction',openingDialogueStep:0,tutorial:'build',tutorialTime:0,introRecruit:false,buildClicks:0,apples:0,coins:0,earnedCoins:0,autoSellTime:0,total:0,soldApples:0,handmade:0,playSeconds:0,milestoneTimes:{construction:null,fiveEmployees:null,firstFarmUpgrade:null},operationSeconds:0,guaranteedGold:freshGuaranteedGold(),goldenClicks:0,owned:BUILDINGS.map(()=>0),upgrades:[],outfit:null,prizes:[0,0,0],draws:0,events:freshEvents()});
 let state=fresh(),displayed=0,last=null,saveClock=0,toastTimer,returnFocus;
 try{
  const data=JSON.parse(localStorage.getItem(KEY)),v=data?.state;
@@ -135,6 +135,7 @@ try{
   if(!legacy)state.events.frenzy=Number.isFinite(data.frenzyExpiresAt)?Math.max(0,Math.min(GOLDEN_FRENZY_DURATION,(data.frenzyExpiresAt-Date.now())/1000)):0;
  }
 }catch{}
+if(![0,1,2].includes(state.openingDialogueStep))state.openingDialogueStep=0;
 for(const key of ['juiceStartupTaps','computerStartupTaps']){
  state[key]=Number.isInteger(state[key])?Math.max(0,Math.min(FACTORY_STARTUP_TAPS,state[key])):0;
 }
@@ -153,8 +154,11 @@ state.recruitGoalChoice=state.recruitGoalChoice==='continue'?'continue':null;
 if(!['pending','complete','workers','choice','upgrade','done'].includes(state.recruitGoalGuide))state.recruitGoalGuide='pending';
 state.recruitGoalGuideTime=Number.isFinite(state.recruitGoalGuideTime)?Math.max(0,state.recruitGoalGuideTime):0;
 state.newFarmPromptShown=state.newFarmPromptShown===true;
-if(state.tutorial==='newFactory')state.tutorial='factory';
-if(state.recruitGoalChoice!=='continue'&&['done','closing'].includes(state.tutorial))state.tutorial='waitRecruit';
+if(['factory','newFactory','waitRecruit'].includes(state.tutorial))state.tutorial='mission0';
+if(['mission14','mission15'].includes(state.tutorial))state.tutorial='mission12';
+state.missionRewardClaimed=state.missionRewardClaimed===true;
+state.missionCompletionAnnounced=state.missionCompletionAnnounced===true;
+state.missionUpgradeGuideComplete=state.missionUpgradeGuideComplete===true;
 state.recruitGoalGuide=state.recruitGoalChoice==='continue'?'done':'pending';
 state.goldenClicks=Number.isSafeInteger(state.goldenClicks)&&state.goldenClicks>=0?state.goldenClicks:0;
 state.events.frenzyDuration=GOLDEN_FRENZY_DURATION;
@@ -291,9 +295,9 @@ function unitsInCrates(crates){
 }
 function crateBasePrice(){return sellingJuice()?COINS_PER_JUICE_CRATE:COINS_PER_CRATE}
 const RECRUIT_UNLOCKS={
- 1:{target:150,value:()=>state.soldApples,label:'售出150个苹果'},
+ 1:{target:150,value:()=>state.soldApples,label:'累计售出150个苹果'},
  2:{target:2,value:()=>farmStage(),label:'农场达到Lv.2'},
- 4:{target:10000,value:()=>state.earnedCoins,label:'取得10,000金币'},
+ 4:{target:10000,value:()=>state.earnedCoins,label:'累计赚取10,000金币'},
  3:{target:3,value:()=>farmStage(),label:'农场达到Lv.3'}
 };
 const farmStage=()=>!state.firstUpgradeAcknowledged?1:state.upgrades.length>initialFarmItems.length?3:2;
@@ -363,13 +367,59 @@ function greetPurchase(){
  clearTimeout(purchaseSpeechTimer);purchaseSpeechTimer=setTimeout(()=>speech.hidden=true,Math.max(2700,2100+message.length*60));
 }
 function resetPurchaseSpeech(){talkPending=false;clearTimeout(purchaseSpeechTimer);cancelAnimationFrame(purchaseSpeechFrame);purchaseSpeechFrame=0;purchaseSpeechLast=-Infinity;lastPurchaseSpeech='';$('purchaseSpeech').hidden=true}
-const TUTORIAL_ORDER=['start','click','appleFlight','balance','sellGoal','sell','saleReward','shop','employee','rateFlying','rate','factory','newFactory','waitRecruit','closing','done'];
+const TUTORIAL_ORDER=['start','click','appleFlight','balance','sellGoal','growComplete','sellIntro','sell','saleReward','saleCoins','shop','hireCoins','hireConditions','hireUnlock','hireExplain','hireFirst','employee','rateFlying','rate','hireSkills','hireHelp','mission0','mission1','mission2','mission3','mission4','mission5','mission6','mission7','mission8','mission9','mission10','mission11','mission12','mission13','mission14','mission15','mission16','factory','newFactory','waitRecruit','closing','done'];
 const TUTORIAL_LINES={
- start:'农场建好了（10/10）！开始生产苹果吧！',click:'点击这个按钮，就能生产苹果。',
- balance:'这里会显示你当前拥有的苹果数量。',sellGoal:'继续点击按钮，生产30个苹果，就能卖出第一箱！',sell:'辛苦了！第一箱苹果可以卖出了，快去领取第一笔报酬吧！',saleReward:'辛勤劳动有回报了！继续努力，把农场经营得更大吧！',shop:'如果不想一直手动点击，可以在这里雇鱼人帮忙生产苹果！',
- employee:'雇满5名鱼人后，就能腾出手来经营新农场了！',rate:'左上角显示着农场当前的生产速度。',
  factory:'右上角可以查看招募进度，先雇满5名鱼人吧！',newFactory:'右上角可以查看招募进度，先雇满5名鱼人吧！',closing:'开始工作吧！'
 };
+const growGuideLines={
+ start:'好！接下来生产苹果吧！',
+ click:'点击上面的按钮吧！',
+ appleFlight:'点击上面的按钮吧！',
+ balance:'来生产30个苹果吧！',
+ sellGoal:'继续点击吧！',
+ growComplete:'哦！已经生产了30个苹果！'
+};
+const sellGuideLines={
+ sellIntro:'已经装好一箱苹果了！',
+ sell:'卖掉苹果，赚取金币吧！',
+ saleReward:'做得好！',
+ saleCoins:'这样就拿到金币了！'
+};
+const hireGuide={
+ shop:['哦！可以雇用第一位员工了！',76.416,640.192,271.609],
+ hireCoins:['用金币来雇用员工吧！',107.416,640.192,233.609],
+ hireConditions:['完成名牌上写着的条件，',80.416,640.192,285.609],
+ hireUnlock:['就能解锁新的员工！',83.416,640.192,259.609],
+ hireExplain:['各位鱼人都有自己的技能。',37.416,686.192,359.609],
+ hireFirst:['先雇用这位兼职鱼人吧！',59.416,638.192,321.609],
+ employee:['这位兼职鱼人会提高苹果的生产速度！',97.416,99.192,284.609],
+ rateFlying:['这位兼职鱼人会提高苹果的生产速度！',97.416,99.192,284.609],
+ rate:['这位兼职鱼人会提高苹果的生产速度！',97.416,99.192,284.609],
+ hireSkills:['每位鱼人都有独特的技能，',130.416,780.192,223.609],
+ hireHelp:['会帮助你提高工厂的产量！',130.416,780.192,247.609]
+};
+const HIRE_DELAYS={
+ shop:[3,'hireCoins'],hireCoins:[2.7,'hireConditions'],hireConditions:[2.7,'hireUnlock'],
+ hireUnlock:[2.7,'hireExplain'],hireExplain:[2.7,'hireFirst'],
+ rate:[3,'hireSkills'],hireSkills:[2.7,'hireHelp'],hireHelp:[2.7,'mission0']
+};
+const missionLines=[
+ 'あの上の工場は、まだレベル1じゃ！','工場をどんどん大きくするのじゃ！',
+ 'ミッションをクリアすると、工場のレベルを上げられるぞ！',
+ 'このボタンを押すと、ミッションを確認できるぞ！',
+ 'ミッションをクリアして、お金を稼ぐのじゃ！',
+ 'ワシから最初のミッションを出してやろう！',
+ 'スタッフを5人雇えば、このミッションは達成じゃ！',
+ 'さっそくスタッフを集めてくるのじゃ！',
+ 'おお！ミッション達成じゃ！報酬を受け取るのじゃ！',
+ 'よくやったのう！これでコインが増えたぞ！',
+ '＋ボタンを押すと、レベルアップに必要なお金が確認できるぞ！',
+ '必要なコインが貯まったら、ここからレベルアップできるぞ！',
+ 'ミッションをクリアしてコインを集め、','工場をどんどん大きくするのじゃ！',
+ '＋ボタンを押すと、レベルアップに必要なお金が確認できるぞ！',
+ 'おおっ！育てるのじゃ！','ミッションを達成したようじゃぞ！確認してみるのじゃ！'
+];
+function missionStep(){return /^mission\d+$/.test(state.tutorial)?Number(state.tutorial.slice(7)):-1}
 const tutorialAppleFlights=new Set();
 function tutorialActive(){return state.phase==='operation'&&state.tutorial!=='done'}
 function speakTutorial(message,alreadyTranslated=false){
@@ -390,35 +440,77 @@ function restingRect(element){
 }
 function setTutorialStep(step,messageOverride=null,messageIsTranslated=false){
  state.tutorial=step;state.tutorialTime=0;render();
- const reveal={appleFlight:'.balance',shop:'.building-shop',rateFlying:'.rate',factory:'.factory-hud'}[step];
- if(reveal&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const el=document.querySelector(reveal);const from=step==='shop'?'translateY(100%)':step==='factory'?'translateX(110%)':'translateX(-110%)';el.animate([{transform:from,opacity:0},{transform:'translate(0)',opacity:1}],{duration:520,easing:'cubic-bezier(.2,.8,.3,1)'})}
+ if(step==='shop')animateRecruitBoard();
+ const reveal={rateFlying:'.rate',factory:'.factory-hud'}[step];
+ if(reveal&&!matchMedia('(prefers-reduced-motion: reduce)').matches){const el=document.querySelector(reveal);const from=step==='factory'?'translateX(110%)':'translateX(-110%)';el.animate([{transform:from,opacity:0},{transform:'translate(0)',opacity:1}],{duration:520,easing:'cubic-bezier(.2,.8,.3,1)'})}
  if(Array.isArray(messageOverride))speakTutorialSequence(messageOverride);
  else if(messageOverride||TUTORIAL_LINES[step])speakTutorial(messageOverride||TUTORIAL_LINES[step],messageIsTranslated);
- if(step==='done')resetPurchaseSpeech();
+ if(step==='done'){state.recruitGoalChoice='continue';resetPurchaseSpeech()}
  save();
 }
 function renderTutorial(){
  const active=tutorialActive(),at=TUTORIAL_ORDER.indexOf(state.tutorial),phone=document.querySelector('.phone');
  phone.classList.toggle('operation-tutorial',active);
- const visibility={'.balance':at>=2,'.building-shop':at>=TUTORIAL_ORDER.indexOf('shop'),'.rate':at>=TUTORIAL_ORDER.indexOf('rateFlying'),'.factory-hud':at>=TUTORIAL_ORDER.indexOf('factory')};
+ const visibility={'.balance':at>=1,'.building-shop':at>=TUTORIAL_ORDER.indexOf('shop'),'.rate':at>=TUTORIAL_ORDER.indexOf('rateFlying'),'.factory-hud':at>=TUTORIAL_ORDER.indexOf('factory')};
  for(const [selector,shown]of Object.entries(visibility))document.querySelector(selector).classList.toggle('tutorial-hidden',active&&!shown);
- const start=active&&state.tutorial==='start';
- $('produce').classList.toggle('tutorial-hidden',start);
- $('produce').classList.toggle('tutorial-pulse',active&&state.tutorial==='click');
- document.querySelector('.balance strong').classList.toggle('tutorial-wallet-flash',active&&state.tutorial==='balance');
- document.querySelector('.coin-balance').classList.toggle('tutorial-wallet-flash',active&&state.tutorial==='saleReward');
+ const grow=active&&farmStage()===1&&growGuideLines[state.tutorial];
+ const step=grow?(state.tutorial==='appleFlight'?'click':state.tutorial):'';
+ if(phone.dataset.growStep!==step)phone.dataset.growStep=step;
+ const sell=active&&farmStage()===1&&sellGuideLines[state.tutorial];
+ const sellStep=sell?state.tutorial:'';
+ if(phone.dataset.sellStep!==sellStep)phone.dataset.sellStep=sellStep;
+ const mission=active?missionStep():-1;
+ phone.dataset.missionStep=mission<0?'':String(mission);
+ const hire=active&&farmStage()===1&&hireGuide[state.tutorial];
+ const hireStep=hire?state.tutorial:'';
+ if(phone.dataset.hireStep!==hireStep){
+  phone.dataset.hireStep=hireStep;
+  if(hire){
+   const [,x,y,width]=hire;
+   const guide=$('growGuide');
+   guide.style.setProperty('--hire-bubble-x',`${x/402*100}%`);
+   guide.style.setProperty('--hire-bubble-y',`${y/874*100}%`);
+   guide.style.setProperty('--hire-bubble-width',`${width/402*100}%`);
+  }
+ }
+ $('growGuide').hidden=!(grow||sell||hire||mission>=0);
+ $('growGuideShade').hidden=!(grow||sell||hire||mission>=0)||[1,12,13].includes(mission);
+ $('produce').disabled=step==='growComplete'||!!sell;
+ if(mission>=0){
+ setTypedGuide($('growGuideText'),missionLines[mission],true);
+ if(mission===11)setTypedGuide($('missionUpgradeHint'),missionLines[mission],true);
+}
+ else if(grow||sell||hire)setTypedGuide($('growGuideText'),grow||sell||hire[0]);
+ else guideTyping.delete($('growGuideText'));
 }
 function updateTutorial(dt){
+ if(state.phase==='operation'&&state.tutorial==='done'&&employeeCount()>=5&&!state.missionUpgradeGuideComplete){
+  state.missionCompletionAnnounced=true;setTutorialStep(state.missionRewardClaimed?'mission9':'mission16');return;
+ }
  if(!tutorialActive())return;state.tutorialTime+=dt;
- if(state.tutorial==='sellGoal'&&state.apples>=currentCrateSize()){setTutorialStep('sell');return}
- const next={start:[TUTORIAL_SPEECH_DURATION/1000,'click'],balance:[TUTORIAL_SPEECH_DURATION/1000,'sellGoal'],saleReward:[TUTORIAL_SPEECH_DURATION/1000,'shop'],rate:[4.5,'factory'],factory:[4,'waitRecruit'],newFactory:[4,'waitRecruit'],closing:[3,'done']}[state.tutorial];
- if(next&&state.tutorialTime>=next[0])setTutorialStep(next[1]);
+ const mission=missionStep();
+ if(mission>=0){
+  const typing=missionLines[mission].length*GUIDE_CHARACTER_SECONDS;
+  if(mission===7){
+   if(employeeCount()>=5){$('missionPanel').hidden=false;setTutorialStep('mission8')}
+  }else if(![3,8,10,11,16].includes(mission)&&state.tutorialTime>=typing+2.7){
+   if(mission===6)setTutorialStep('mission7');
+   else if(mission===13||mission===15)setTutorialStep('done');
+   else setTutorialStep('mission'+(mission+1));
+  }
+  return;
+ }
+ if(growGuideLines[state.tutorial]&&state.tutorial!=='growComplete'&&state.apples>=currentCrateSize()){
+  setTutorialStep('growComplete');return;
+ }
+ if(state.tutorial==='balance'&&state.apples>=10){setTutorialStep('sellGoal');return}
+ const next={start:[2.5,'click'],growComplete:[2.8,'sellIntro'],sellIntro:[2.1,'sell'],saleReward:[1.8,'saleCoins'],saleCoins:[2.8,'shop'],...HIRE_DELAYS,factory:[4,'waitRecruit'],newFactory:[4,'waitRecruit'],closing:[3,'done']}[state.tutorial];
+ const line=growGuideLines[state.tutorial]||sellGuideLines[state.tutorial]||hireGuide[state.tutorial]?.[0];
+ const typingTime=line&&!matchMedia('(prefers-reduced-motion: reduce)').matches?Array.from(t(line)).length*GUIDE_CHARACTER_SECONDS:0;
+ if(next&&state.tutorialTime>=next[0]+typingTime)setTutorialStep(next[1]);
  // Resume safely if a worker or flight was interrupted by a reload.
  if(state.tutorial==='employee'&&state.tutorialTime>18&&!workers.length&&!workerQueue.length)flyRateGain(unitCps(0),0);
  if(state.tutorial==='rateFlying'&&state.tutorialTime>3)setTutorialStep('rate');
- if(state.tutorial==='employee'){
-  const text=$('speechText');if(/5个|5人/.test(text.textContent))text.innerHTML=text.textContent.replace(/5个|5人/,value=>`<strong class="tutorial-five">${value}</strong>`);
- }
 }
 function clearTutorialFlights(){for(const flight of tutorialAppleFlights){flight.cancelled=true;flight.animation?.cancel();flight.image.remove()}tutorialAppleFlights.clear()}
 function flyTutorialApple(event){
@@ -441,68 +533,39 @@ function resumeTutorial(){
  if(state.tutorial==='appleFlight')state.tutorial='click';
  if(state.tutorial==='employee'){state.tutorialTime=0;queueWorkers(1,unitCps(0),0)}
  if(state.tutorial==='rateFlying')state.tutorial='rate';
- render();if(TUTORIAL_LINES[state.tutorial])speakTutorial(TUTORIAL_LINES[state.tutorial]);
+ render();if(state.tutorial==='shop')animateRecruitBoard();
+ if(TUTORIAL_LINES[state.tutorial])speakTutorial(TUTORIAL_LINES[state.tutorial]);
 }
-// Construction guidance tracks each one-click build step as it appears.
-let constructionGuideClicks=null,constructionGuideElapsed=0,constructionGuideIntroSecond=false;
-const CONSTRUCTION_TASKS=['建造输送带','在输送带末端安装苹果篮','安装月历','安装吊臂','种下第1棵苹果树','种下第2棵苹果树','种下第3棵苹果树','种下第4棵苹果树','种下第5棵苹果树','种下第6棵苹果树'];
 function constructionCopy(template,values={}){
  let message=t(template);
  for(const [key,value] of Object.entries(values))message=message.replaceAll(`{${key}}`,value);
  return message;
 }
-function constructionProgressCopy(clicks){
- if(clicks>=BUILD_CLICKS_REQUIRED)return t('农场已建成！');
- const next=t(CONSTRUCTION_TASKS[clicks]);
- return constructionCopy('已完成 {done}/10。下一步：{next}',{done:clicks,next});
-}
-function constructionMilestoneCopy(clicks){
- if(clicks<=0||clicks>=BUILD_CLICKS_REQUIRED)return constructionProgressCopy(clicks);
- if(clicks<=4){
-  const parts=['输送带','苹果篮','月历','吊臂'];
-  if(clicks===4)return constructionCopy('{part}已完成！最后一步：种下6棵苹果树，让农场热闹起来吧（{done}/10）',{part:t(parts[clicks-1]),done:clicks});
-  return constructionCopy('{part}已建成！下一步：{next}（{done}/10）',{part:t(parts[clicks-1]),next:t(CONSTRUCTION_TASKS[clicks]),done:clicks});
- }
- const tree=clicks-4;
- return constructionCopy('苹果树 {tree}/6！再种下一棵吧（{done}/10）',{tree,done:clicks});
-}
-function showConstructionProgress(message){
- clearTimeout(purchaseSpeechTimer);cancelAnimationFrame(purchaseSpeechFrame);purchaseSpeechFrame=0;
- const speech=$('purchaseSpeech');speech.hidden=false;
- $('speechMeasure').textContent=message;$('speechText').textContent=message;drawSpeechOutline(1);
-}
-function sayConstructionGuide(message){
- const speech=$('purchaseSpeech');clearTimeout(purchaseSpeechTimer);speech.hidden=false;animatePurchaseSpeech(message,false);talkOnce();
-}
-function resetConstructionGuide(){constructionGuideClicks=null;constructionGuideElapsed=0;constructionGuideIntroSecond=false}
-function updateConstructionGuide(dt){
- if(state.phase!=='construction')return;
- if(constructionGuideClicks===null){
-  constructionGuideClicks=state.buildClicks;constructionGuideElapsed=0;
-  if(state.buildClicks===0)sayConstructionGuide(t('让我们一起建造农场吧！'));
-  else showConstructionProgress(constructionProgressCopy(state.buildClicks));
-  return;
- }
- if(state.buildClicks!==constructionGuideClicks){
-  constructionGuideClicks=state.buildClicks;constructionGuideElapsed=0;
-  if(state.buildClicks>0&&state.buildClicks<BUILD_CLICKS_REQUIRED)sayConstructionGuide(constructionMilestoneCopy(state.buildClicks));
-  else showConstructionProgress(constructionProgressCopy(state.buildClicks));
-  return;
- }
- constructionGuideElapsed+=dt;
- if(state.buildClicks===0&&!constructionGuideIntroSecond&&constructionGuideElapsed>=2.4){
-  constructionGuideIntroSecond=true;constructionGuideElapsed=0;
-  showConstructionProgress(constructionCopy('建造进度 0/10。第一步：建造输送带'));
- }
-}
+
 function swingRecruitTag(i){
  const motion=document.querySelector(`[data-building="${i}"] .tag-motion`);
  if(!motion||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
  motion.getAnimations().forEach(a=>a.cancel());
  motion.animate([{transform:'rotate(0deg)'},{transform:'rotate(-12deg)',offset:.16},{transform:'rotate(9deg)',offset:.38},{transform:'rotate(-5deg)',offset:.6},{transform:'rotate(2deg)',offset:.8},{transform:'rotate(0deg)'}],{duration:700,easing:'ease-in-out'});
 }
+function animateRecruitBoard(){
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ const board=document.querySelector('.building-shop');
+ board.animate([{transform:'translateY(100%)'},{transform:'translateY(0)'}],
+  {duration:400,easing:'ease-out'});
+ recruitCards.forEach((card,index)=>{
+  card.animate([
+   {transform:'translateX(105cqw) rotate(-3deg)'},
+   {transform:'translateX(0) rotate(2.5deg)',offset:.78},
+   {transform:'translateX(0) rotate(0)'}
+  ],{duration:850,delay:400+index*105,easing:'cubic-bezier(.25,.65,.3,1)',fill:'backwards'});
+ });
+}
+function recruitAvailableInTutorial(){
+ return !tutorialActive()||TUTORIAL_ORDER.indexOf(state.tutorial)>=TUTORIAL_ORDER.indexOf('hireFirst');
+}
 function buyBuilding(i){
- if(state.phase!=='operation'||!visible(i)||(tutorialActive()&&TUTORIAL_ORDER.indexOf(state.tutorial)<TUTORIAL_ORDER.indexOf('shop'))||!spendCoins(buildingCost(i)))return false;
+ if(state.phase!=='operation'||!visible(i)||!recruitAvailableInTutorial()||!spendCoins(buildingCost(i)))return false;
  playRecruitSound();
  const intro=i===0&&state.introRecruit===false;
  const firstOfType=state.owned[i]===0;
@@ -510,7 +573,7 @@ function buyBuilding(i){
  if(state.milestoneTimes.fiveEmployees===null&&employeeCount()===5)state.milestoneTimes.fiveEmployees=state.playSeconds;
  if(intro)state.introRecruit=true;
  syncRecruitGains();
- if(intro&&tutorialActive())setTutorialStep('employee',[firstRecruitSpeech(i),t(TUTORIAL_LINES.employee)],true);
+ if(intro&&tutorialActive())setTutorialStep('employee');
  else if(firstOfType){
   const nextTutorialLine=tutorialActive()?TUTORIAL_LINES[state.tutorial]:null;
   if(nextTutorialLine)speakTutorialSequence([firstRecruitSpeech(i),t(nextTutorialLine)]);
@@ -589,13 +652,13 @@ function playHarvestSound(){
   note.onended=()=>{note.disconnect();gain.disconnect()};
  }catch{}
 }
-const recruitSound=new Audio('audio/yahoooo-mario.mp3?v=1.0.160');
+const recruitSound=new Audio('audio/yahoooo-mario.mp3?v=1.0.186');
 recruitSound.preload='auto';
 function playRecruitSound(){
  recruitSound.currentTime=0;
  recruitSound.play().catch(()=>{});
 }
-const cashRegisterSound=new Audio('audio/cha-ching-money.mp3?v=1.0.160');
+const cashRegisterSound=new Audio('audio/cha-ching-money.mp3?v=1.0.186');
 cashRegisterSound.preload='auto';
 function playCashRegisterSound(){
  cashRegisterSound.currentTime=0;
@@ -608,7 +671,11 @@ function animateProductionPress(){
 }
 function produce(event){
  if(state.phase!=='operation')return;
- if(tutorialActive()&&farmStage()===1){if(state.tutorial!=='start')flyTutorialApple(event);return;}
+ if(tutorialActive()&&farmStage()===1){
+  if(state.tutorial==='growComplete'||sellGuideLines[state.tutorial])return;
+  if(state.tutorial==='start')setTutorialStep('click');
+  flyTutorialApple(event);return;
+ }
  animateProductionPress();playHarvestSound();
  const n=clickPower();
  state.handmade=(state.handmade||0)+n;
@@ -634,6 +701,7 @@ function produce(event){
  render();
 }
 function sellAppleCrates(){
+ if(tutorialActive()&&growGuideLines[state.tutorial])return;
  const crates=readyCrateCount();if(crates<1)return;
  const juice=sellingJuice(),sold=unitsInCrates(crates);
  const saleBonus=crates*(state.owned[2]*chefCrateBonus());
@@ -647,8 +715,8 @@ function sellAppleCrates(){
  const saleNotice=farmStage()===3?'苹果电脑已售出':juice?'苹果汁箱已售出':'苹果箱已售出';
  const notice=[`${t(saleNotice)} +${number(earnedCoins)} ${t('金币')}`];
  if(saleBonus)notice.push(`${t('鱼人售货奖励')} +${number(saleBonus)} ${t('金币')}`);
- notify(notice.join(' · '));
- if(state.tutorial==='sell')setTutorialStep('saleReward');
+ if(state.tutorial==='sell'||state.tutorial==='sellIntro')setTutorialStep('saleReward');
+ else notify(notice.join(' · '));
 }
 
 const RECRUITABLE_BUILDING_IDS=[0,1,2,4,3];
@@ -671,7 +739,7 @@ $('buildings').innerHTML=RECRUITABLE_BUILDING_IDS.map(i=>{
    ${i===3?'':'<span class="recruit-ability"></span>'}
    ${unlock?`<span class="recruit-condition">${unlock.label}</span>`:''}
   </div>
-  <span class="recruit-price" aria-hidden="true"><img src="img/svg/level-one-coin.svg?v=1.0.160" alt=""><span></span></span>
+  <span class="recruit-price" aria-hidden="true"><img src="img/svg/level-one-coin.svg?v=1.0.186" alt=""><span></span></span>
  </div>`;
 }).join('');
 const recruitCards=[...$('buildings').children];
@@ -1006,13 +1074,25 @@ function fastForwardBuild(){
  if(state.phase==='operation')return;
  clearConstructionFlights();clearTutorialFlights();state.buildClicks=BUILD_CLICKS_REQUIRED;state.phase='ready';startOperation();
 }
-function fastForwardFive(){
+function fastForwardFive(tutorial=false){
  fastForwardBuild();
- if(employeeCount()>=5)return;
+ if(employeeCount()>=5&&!tutorial)return;
  clearTutorialFlights();resetPurchaseSpeech();
  state.owned[0]+=Math.max(0,5-employeeCount());state.introRecruit=true;
  if(state.milestoneTimes.fiveEmployees===null)state.milestoneTimes.fiveEmployees=state.playSeconds;
- state.tutorial='waitRecruit';state.tutorialTime=0;save();render();
+ if(tutorial){
+  state.missionRewardClaimed=false;
+  state.missionCompletionAnnounced=true;
+  state.missionUpgradeGuideComplete=false;
+  state.recruitGoalChoice='continue';
+  state.recruitGoalGuide='done';
+  state.farmUpgradeGuide='done';
+  $('missionPanel').hidden=true;
+  document.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());
+  setTutorialStep('mission16');
+ }else{
+  state.tutorial='waitRecruit';state.tutorialTime=0;save();render();
+ }
 }
 function fastForwardFarmLevel(level){
  fastForwardFive();
@@ -1033,7 +1113,7 @@ function fastForwardAllRecruits(){
  save();render();
 }
 $('testBuildComplete').onclick=fastForwardBuild;
-$('testFiveEmployees').onclick=fastForwardFive;
+$('testFiveEmployees').onclick=()=>fastForwardFive(true);
 $('testFarmLevelTwo').onclick=()=>fastForwardFarmLevel(2);
 $('testFarmLevelThree').onclick=()=>fastForwardFarmLevel(3);
 $('testUnlockAllRecruits').onclick=fastForwardAllRecruits;
@@ -1066,6 +1146,22 @@ function drawRateTicket(){
  fills[1].setAttribute('d',`M0 0H${split}V${h}H0Z`);
 }
 new ResizeObserver(drawRateTicket).observe(document.querySelector('.rate'));
+const GUIDE_CHARACTER_SECONDS=.045;
+const guideTyping=new WeakMap();
+function setTypedGuide(element,message,translated=false){
+ const text=translated?message:t(message),now=performance.now();
+ let typing=guideTyping.get(element);
+ if(!typing||typing.text!==text){
+  typing={text,characters:Array.from(text),started:now};
+  guideTyping.set(element,typing);
+  element.setAttribute('data-translated','');
+  element.setAttribute('aria-label',text);
+ }
+ const count=matchMedia('(prefers-reduced-motion: reduce)').matches?typing.characters.length:
+  Math.min(typing.characters.length,Math.floor((now-typing.started)/(GUIDE_CHARACTER_SECONDS*1000))+1);
+ const visible=typing.characters.slice(0,count).join('');
+ if(element.textContent!==visible)element.textContent=visible;
+}
 function setText(el,value){value=t(value);if(el.textContent!==value)el.textContent=value}
 function setSellLabel(el,value){
  if(el.textContent===value)return;
@@ -1280,6 +1376,53 @@ function setActionArt(container,source){
   if(container.dataset.activeSrc===source)container.replaceChildren(document.importNode(svg,true));
  }).catch(()=>actionArtCache.delete(source));
 }
+const appleFactoryArt=[$('operatingFactoryArt'),$('goldenFactoryArt')];
+const BASKET_APPLE_SLOTS=15;
+const BASKET_APPLE_INTERVAL=.12;
+let basketAppleCount=null,basketAppleClock=0,basketSession=null;
+const appleBasketScenes=new WeakMap();
+
+function appleBasketTarget(){
+ if(state.phase!=='operation'||farmStage()!==1)return 0;
+ // The Sell reward artboards keep the harvested box on screen until Hire begins.
+ if(tutorialActive()&&['saleReward','saleCoins'].includes(state.tutorial))return BASKET_APPLE_SLOTS;
+ return Math.min(BASKET_APPLE_SLOTS,Math.floor(state.apples*BASKET_APPLE_SLOTS/currentCrateSize()));
+}
+function updateAppleBasket(dt){
+ const target=appleBasketTarget();
+ if(basketSession!==state||basketAppleCount===null||target<basketAppleCount||reduceJuiceMotion.matches){
+  basketSession=state;basketAppleCount=target;basketAppleClock=0;return;
+ }
+ if(basketAppleCount===target){basketAppleClock=0;return}
+ basketAppleClock+=dt;
+ while(basketAppleClock>=BASKET_APPLE_INTERVAL&&basketAppleCount<target){
+  basketAppleCount++;basketAppleClock-=BASKET_APPLE_INTERVAL;
+ }
+}
+function renderAppleBasket(tutorialFocus){
+ const count=basketSession===state?basketAppleCount:appleBasketTarget();
+ for(const art of appleFactoryArt){
+  const root=art.contentDocument?.documentElement;
+  if(root?.localName!=='svg')continue;
+  let scene=appleBasketScenes.get(root);
+  if(!scene){
+   scene={apples:[...root.querySelectorAll('[data-basket-apple]')],count:null};
+   appleBasketScenes.set(root,scene);
+  }
+  root.classList.toggle('tutorial-focus',tutorialFocus);
+  if(scene.count===count)continue;
+  for(const apple of scene.apples){
+   const slot=Number(apple.dataset.basketApple);
+   const visible=slot<=count;
+   apple.setAttribute('visibility',visible?'visible':'hidden');
+   if(visible&&scene.count!==null&&slot>scene.count&&!reduceJuiceMotion.matches){
+    apple.animate([{transform:'translate(-1px,-2px)',opacity:.7},{transform:'translate(0,0)',opacity:1}],
+     {duration:120,easing:'ease-out'});
+   }
+  }
+  scene.count=count;
+ }
+}
 function render(){
  renderConstruction();renderTutorial();
  const phone=document.querySelector('.phone');
@@ -1291,10 +1434,9 @@ function render(){
  const recruitShop=document.querySelector('.building-shop'),recruitShopVisible=state.phase==='operation'&&!recruitShop.classList.contains('tutorial-hidden'),now=performance.now();
  setText($('coinBalance'),number(state.coins));
  const crateSize=currentCrateSize(),crateCount=readyCrateCount(),juice=sellingJuice();
- const basketFill=state.soldApples===0?Math.min(2,crateCount):crateCount>0?2:state.apples>=Math.ceil(crateSize/2)?1:0;
  const laptop=stage===3;
  const sellCrate=$('sellCrate'),sellLabel=t(laptop?'卖出苹果电脑':juice?'卖出苹果汁箱':'卖出苹果箱');
- sellCrate.disabled=crateCount===0;
+ sellCrate.disabled=crateCount===0||(tutorialActive()&&!!growGuideLines[state.tutorial]);
  sellCrate.classList.toggle('crate-ready',crateCount>0);
  if(sellCrate.getAttribute('aria-label')!==sellLabel)sellCrate.setAttribute('aria-label',sellLabel);
  sellCrate.classList.toggle('juice-sale',juice);
@@ -1303,11 +1445,8 @@ function render(){
   setActionArt(art,art.dataset[laptop?'laptopSrc':juice?'juiceSrc':'appleSrc']);
  }
  $('basketCue').classList.toggle('is-ready',crateCount>0);
- const basketArtSource=basketFill===2?'fullSrc':basketFill===1?'oneBasketSrc':'emptySrc';
- for(const art of [$('operatingFactoryArt'),$('goldenFactoryArt')]){
-  const source=art.dataset[basketArtSource];
-  if(art.getAttribute('src')!==source)art.setAttribute('src',source);
- }
+ const tutorialFocus=!!(phone.dataset.sellStep||phone.dataset.growStep&&phone.dataset.growStep!=='start');
+ renderAppleBasket(tutorialFocus);
  const saleUnits=unitsInCrates(crateCount),sellableTarget=saleUnits||crateSize;
  const shownUnits=crateCount>0?saleUnits:Math.min(crateSize,Math.floor(state.apples));
  const unit=juice?t('瓶'):'';
@@ -1333,14 +1472,14 @@ function render(){
   el.classList.toggle('unaffordable',show&&!affordable);
   el.classList.toggle('recruit-pulse',affordance.wasAffordable&&now<affordance.pulseUntil);
   const art=el.querySelector('.recruit-art');
-  const source=`img/svg/hiring/${RECRUIT_CARDS[i].art}${show?'':'-locked'}.svg?v=1.0.160`;
+  const source=`img/svg/hiring/${RECRUIT_CARDS[i].art}${show?'':'-locked'}.svg?v=1.0.186`;
   if(art.getAttribute('src')!==source)art.setAttribute('src',source);
   const ability=el.querySelector('.recruit-ability'),recruit=el.querySelector('.recruit-hit');
   const priceLabel=price<1e9?price.toLocaleString('en-US'):number(price);
   const name=i===3?t('鱼人王'):t(b.name);
   const label=show?`招募 1 个${name}，${priceLabel} 金币${affordable?'':'，金币不够'}${i===3?'':`；${t(b.desc)}`}`:`？？？ · ${t(RECRUIT_UNLOCKS[i].label)}`;
   const localizedLabel=t(label);
-  recruit.disabled=!affordable;
+  recruit.disabled=!affordable||!recruitAvailableInTutorial();
   if(recruit.getAttribute('aria-label')!==localizedLabel)recruit.setAttribute('aria-label',localizedLabel);
   if(el.getAttribute('aria-label')!==localizedLabel)el.setAttribute('aria-label',localizedLabel);
   setText(el.querySelector('.recruit-count'),show&&state.owned[i]>0?number(state.owned[i]):'');
@@ -1746,11 +1885,13 @@ $('buildings').addEventListener('click',e=>{const button=e.target.closest('.recr
 function sizeUpgradeDialogs(){
  const box=document.querySelector('.phone').getBoundingClientRect();
  document.documentElement.style.setProperty('--upgrade-game-width',box.width+'px');
+ document.documentElement.style.setProperty('--upgrade-panel-top',(box.top+box.height*224/874)+'px');
 }
 window.addEventListener('resize',sizeUpgradeDialogs);
 function sizeUpgradeDialogs(){
  const box=document.querySelector('.phone').getBoundingClientRect();
  document.documentElement.style.setProperty('--upgrade-game-width',box.width+'px');
+ document.documentElement.style.setProperty('--upgrade-panel-top',(box.top+box.height*224/874)+'px');
 }
 window.addEventListener('resize',sizeUpgradeDialogs);
 const FARM_GOAL_LINES={};
@@ -1787,21 +1928,41 @@ function openNewFarmDialog(fromRecruitGoal=false){
 }
 $('closeNewFarm').onclick=()=> $('newFarmDialog').close();
 $('confirmNewFarm').onclick=()=>{$('goalUnavailable').hidden=false};
-let recruitGoalWasComplete=false,recruitGoalPulseUntil=0;
 function renderRecruitGoal(){
- const continuing=state.recruitGoalChoice==='continue',count=Math.min(5,employeeCount());
- const complete=count>=5,now=performance.now();
- if(complete&&!recruitGoalWasComplete){
-  recruitGoalPulseUntil=now+3000;
-  if(!continuing&&!state.newFarmPromptShown){state.newFarmPromptShown=true;save();speakTutorial('5名鱼人已到岗！点击「达成目标了！」选择接下来要做的事。')}
- }
- recruitGoalWasComplete=complete;
- $('recruitGoal').hidden=continuing;$('factoryEntry').disabled=!continuing;
- $('recruitGoalActions').hidden=count<5;
- $('goalNewFarm').classList.toggle('goal-next-pulse',complete&&!continuing&&now<recruitGoalPulseUntil);
- $('recruitGoalFill').style.width=count/5*100+'%';setText($('recruitGoalLabel'),`${count}/5`);
- $('recruitGoalTrack').setAttribute('aria-valuenow',String(count));
+ $('recruitGoal').hidden=true;
+ $('factoryEntry').disabled=state.phase!=='operation'||farmStage()>=3;
+ const step=missionStep();
+ const closeReady=step===7&&state.tutorialTime>=missionLines[7].length*GUIDE_CHARACTER_SECONDS+.6;
+ $('missionCloseTap').hidden=!closeReady||$('missionPanel').hidden;
+ $('missionEntry').hidden=state.phase!=='operation'||tutorialActive()&&TUTORIAL_ORDER.indexOf(state.tutorial)<TUTORIAL_ORDER.indexOf('mission1');
+ const count=Math.min(5,employeeCount()),complete=count>=5;
+ $('missionDot').hidden=!complete||state.missionRewardClaimed;
+ $('missionProgress').value=count;
+ setText($('missionCount'),count+'/5');
+ $('claimMission').disabled=!complete||state.missionRewardClaimed;
+ $('claimMission').classList.toggle('mission-claim-ready',complete&&!state.missionRewardClaimed);
+ setText($('claimMission').querySelector('span'),state.missionRewardClaimed?'已领取':'+100');
+ $('missionTask').hidden=step===4;
 }
+$('missionEntry').onclick=()=>{
+ $('missionPanel').hidden=false;
+ if(['mission3','mission16'].includes(state.tutorial))setTutorialStep(state.missionRewardClaimed?'done':employeeCount()>=5?'mission8':'mission4');
+};
+$('closeMission').onclick=()=>{
+ $('missionPanel').hidden=true;
+ if(missionStep()===7)setTutorialStep('done');
+ else if(missionStep()===8)setTutorialStep('done');
+ else if(missionStep()>=4&&missionStep()<=6)setTutorialStep('mission7');
+ render();
+};
+$('claimMission').onclick=()=>{
+ if(employeeCount()<5||state.missionRewardClaimed)return;
+ state.missionRewardClaimed=true;state.coins+=100;state.earnedCoins+=100;
+ state.recruitGoalChoice='continue';playCashRegisterSound();
+ $('missionPanel').hidden=true;
+ state.missionCompletionAnnounced=true;setTutorialStep('mission9');
+ save();render();
+};
 $('goalNewFarm').onclick=()=>openNewFarmDialog(true);
 $('goalContinue').onclick=()=>{
  if(employeeCount()<5)return;
@@ -1843,35 +2004,38 @@ function renderFactoryUpgrade(){
  entry.setAttribute('aria-label',t(title));
  setText($('factoryProgressLabel'),`Lv.${stage}`);
  entry.querySelector('.level-plus').hidden=!levelingUp;
- entry.style.setProperty('--level-progress','0%');
+ entry.style.setProperty('--level-progress',`${stage/3*100}%`);
  const canAfford=!!next&&state.coins+1e-9>=next.price;
- quick.hidden=!next||employeeCount()<5;
+ quick.hidden=true;
  quick.disabled=entry.disabled||quick.hidden||!canAfford;
- entry.classList.toggle('level-up-ready',levelingUp&&!quick.disabled);
+ entry.classList.toggle('level-up-ready',levelingUp&&!entry.disabled&&canAfford);
  setText($('quickFactoryPrice'),next?number(next.price):'已完成');quick.querySelector('img').hidden=!next;
  quick.setAttribute('aria-label',next?t(`${title}，${number(next.price)}金币`):t('全部升级已完成'));
  if(!$('factoryUpgradeDialog').open)return;
- $('openNewFactory').hidden=false;
+ $('openNewFactory').hidden=true;
  setText($('factoryStageTitle'),title);
  setText($('factoryStageProgress'),next?`Lv.${stage} → Lv.${next.level}`:`Lv.${stage}`);
  $('factoryNext').hidden=!next;$('factoryComplete').hidden=!!next;
  if(!next)return;
  renderFactoryLevelEffect(next,$('factoryNextEffect'));
  setText($('factoryNextPrice'),number(next.price));
- $('confirmFactoryUpgrade').disabled=!canAfford;setText($('confirmFactoryUpgrade'),canAfford?'升级':'金币不足');
+ $('confirmFactoryUpgrade').disabled=!canAfford;
+ $('factoryUpgradeDialog').classList.toggle('can-upgrade',canAfford);
+ setText($('confirmFactoryUpgrade'),canAfford?'升级':'金币不足');
 }
 function openFactoryUpgradeDialog(){
  if(state.phase!=='operation')return;
  sizeUpgradeDialogs();
  $('newFactoryNotice').hidden=true;
  $('factoryUpgradeDialog').showModal();
+ if(state.tutorial==='mission10'||state.tutorial==='mission14')setTutorialStep('mission11');
  renderFactoryUpgrade();
 }
 $('factoryEntry').onclick=openFactoryUpgradeDialog;
 $('openNewFactory').onclick=()=>openNewFarmDialog();
-$('closeFactoryUpgrade').onclick=()=> $('factoryUpgradeDialog').close();
+$('closeFactoryUpgrade').onclick=()=>{ $('factoryUpgradeDialog').close();if(state.tutorial==='mission11'){state.missionUpgradeGuideComplete=true;setTutorialStep('mission12')}};
 function performFactoryUpgrade(){
- if(state.phase!=='operation'||state.recruitGoalChoice!=='continue')return false;
+ if(state.phase!=='operation')return false;
  const next=nextFarmPurchase();
  if(!next||!spendCoins(next.price))return false;
  state.upgrades.push(...next.items.map(item=>item.id));
@@ -1883,6 +2047,7 @@ function performFactoryUpgrade(){
   state.farmUpgradeGuide='done';
  }
  $('factoryUpgradeDialog').close();
+ if(state.tutorial==='mission11'){state.missionUpgradeGuideComplete=true;setTutorialStep('mission12')};
  if($('shopDialog').open)closeShop();
  const kingBonus=state.owned[3]*kingUpgradeBonus();
  if(kingBonus){state.coins+=kingBonus;state.earnedCoins+=kingBonus;playCashRegisterSound()}
@@ -1969,7 +2134,7 @@ $('wardrobeOutdoor').onclick=()=>notify('未开放');
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&wardrobeOpen&&!document.querySelector('dialog[open]'))showWardrobe(false)});
 document.querySelectorAll('.placeholder').forEach(b=>b.onclick=()=>notify('这个功能稍后开放'));
 
-$('restart').onclick=()=>{if(!confirm(t('确定重新开始？当前苹果、金币、鱼人和升级进度将被清空。')))return;clearConstructionFlights();clearTutorialFlights();state=fresh();if(wardrobeOpen)showWardrobe(false);document.querySelectorAll('dialog[open]').forEach(d=>d.close());initializeCharacterWardrobe();displayed=0;workerQueue=[];rateDeferred=0;rateRoll=0;rateFlights=0;resetPurchaseSpeech();resetConstructionGuide();save();$('fx').replaceChildren();$('frenzyGlowLayer').replaceChildren();selectedItem=null;render();notify('新农场已开工')};
+$('restart').onclick=()=>{if(!confirm(t('确定重新开始？当前苹果、金币、鱼人和升级进度将被清空。')))return;clearConstructionFlights();clearTutorialFlights();finishBuildEntrance();state=fresh();if(wardrobeOpen)showWardrobe(false);document.querySelectorAll('dialog[open]').forEach(d=>d.close());initializeCharacterWardrobe();displayed=0;workerQueue=[];rateDeferred=0;rateRoll=0;rateFlights=0;resetPurchaseSpeech();save();$('fx').replaceChildren();$('frenzyGlowLayer').replaceChildren();selectedItem=null;render();notify('新农场已开工')};
 // Reuse each exported Figma asset for both the scene and its stage bubble.
 const constructionBaseMarkup=$('constructionScene').querySelector('[data-build-step="0"]')?.innerHTML;
 function constructionImages(part){
@@ -1981,15 +2146,119 @@ function setupConstructionArtwork(){
  scene.setAttribute('width',art.width);scene.setAttribute('height',art.height);scene.setAttribute('viewBox',`0 0 ${art.width} ${art.height}`);
  scene.innerHTML=art.paintOrder.map(step=>{const part=art.parts.find(p=>p.step===step);return `<g data-build-step="${step}" data-figma-node="${part.node}" class="${step?'build-part':'build-base'}">${constructionImages(part)}</g>`}).join('');
 }
+const openingDialogue=$('openingDialogue');
+const openingFrames=openingDialogue.querySelectorAll('img');
+const openingLines=['好嘞！','在这里建一座属于你的工厂吧！'];
+function openingDialogueActive(){
+ return state.phase==='construction'&&state.buildClicks===0&&state.openingDialogueStep<openingLines.length;
+}
+function renderOpeningDialogue(){
+ const active=openingDialogueActive();
+ const wasActive=!openingDialogue.hidden;
+ if(active!==wasActive){
+  openingDialogue.hidden=!active;
+  for(const element of openingDialogue.parentElement.children){
+   if(element!==openingDialogue)element.inert=active;
+  }
+ }
+ if(!active)return;
+ const step=state.openingDialogueStep;
+ if(openingDialogue.dataset.step!==String(step)){
+  openingDialogue.dataset.step=String(step);
+  openingFrames.forEach((frame,index)=>frame.hidden=index!==step);
+  const action=step===0?'继续对话':'开始建造';
+  openingDialogue.setAttribute('aria-label',`${t(openingLines[step])} ${t(action)}`);
+ }
+ setTypedGuide($('openingDialogueText'),openingLines[step]);
+}
+openingDialogue.onclick=()=>{
+ if(!openingDialogueActive())return;
+ const text=$('openingDialogueText'),typing=guideTyping.get(text);
+ if(typing&&text.textContent!==typing.text){
+  typing.started=performance.now()-typing.characters.length*GUIDE_CHARACTER_SECONDS*1000;
+  setTypedGuide(text,openingLines[state.openingDialogueStep]);
+  return;
+ }
+ state.openingDialogueStep++;
+ save();
+ render();
+ if(openingDialogue.hidden){
+  $('buildFactory').focus({preventScroll:true});
+ }
+};
+const BUILD_ENTRANCE_DURATION=2.6;
+let buildEntranceElapsed=null;
+function beginBuildEntrance(){
+ if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ const phone=document.querySelector('.phone');
+ buildEntranceElapsed=0;
+ phone.style.setProperty('--build-entrance-x','100cqw');
+ phone.classList.add('build-entrance');
+}
+function finishBuildEntrance(){
+ if(buildEntranceElapsed===null)return;
+ buildEntranceElapsed=null;
+ const phone=document.querySelector('.phone');
+ phone.classList.remove('build-entrance');
+ phone.style.removeProperty('--build-entrance-x');
+ const fish=phone.querySelector('.fish-character').contentWindow;
+ fish?.advanceWorkerMotion?.(0,'idle');
+ fish?.clearPose?.();
+}
+function driveBuildEntrance(dt){
+ if(buildEntranceElapsed===null)return;
+ buildEntranceElapsed+=dt;
+ const phone=document.querySelector('.phone');
+ const fish=phone.querySelector('.fish-character').contentWindow;
+ const waveElapsed=buildEntranceElapsed-BUILD_ENTRANCE_DURATION;
+ if(waveElapsed>=0){
+  phone.classList.remove('build-entrance');
+  phone.style.removeProperty('--build-entrance-x');
+  if(waveElapsed>=(fish?.workerWaveDuration??1.5))finishBuildEntrance();
+  else fish?.advanceWorkerMotion?.(Math.min(dt,waveElapsed),'wave');
+  return;
+ }
+ const remaining=1-buildEntranceElapsed/BUILD_ENTRANCE_DURATION;
+ phone.style.setProperty('--build-entrance-x',`${remaining*100}cqw`);
+ fish?.advanceWorkerMotion?.(dt,'walk');
+}
+const buildGuideLines=[
+ [9,'还差1次！坚持到最后吧！'],
+ [7,'感觉不错！再坚持一下！'],
+ [5,'哦哦！已经完成一半了！再加把劲！'],
+ [3,'就是这样！继续点下去吧！'],
+ [0,'点击我下面的按钮10次吧！']
+];
 function renderConstruction(){
+ renderOpeningDialogue();
  const construction=state.phase!=='operation';
- document.querySelector('.phone').classList.toggle('construction-phase',construction);
- $('constructionPanel').hidden=!construction;
+ const phone=document.querySelector('.phone');
+ const guide=construction&&!openingDialogueActive()&&!wardrobeOpen;
+ const complete=state.phase==='ready';
+ phone.classList.toggle('construction-phase',construction);
+ phone.classList.toggle('build-tutorial',guide);
+ phone.classList.toggle('build-completed',complete);
+ $('constructionPanel').hidden=!guide;
  document.querySelectorAll('#testLucky,#testGolden,#testApples,#spawnGrid button').forEach(button=>button.disabled=construction);
  if(!construction)return;
- FACTORY_BUILD_ART.parts.forEach(part=>{if(part.step)$('constructionScene').querySelector(`[data-build-step="${part.step}"]`).classList.toggle('is-built',state.buildClicks>=part.threshold)});
- setText($('buildFactoryLabel'),state.buildClicks===0?'开始建造农场！':'建造农场');
- $('buildFactory').disabled=state.phase==='ready'||state.buildClicks+constructionFlights.size>=BUILD_CLICKS_REQUIRED;
+ const clicks=state.buildClicks;
+ for(const part of FACTORY_BUILD_ART.parts){
+  const layer=$('constructionScene').querySelector(`[data-build-step="${part.step}"]`);
+  layer.classList.toggle('is-built',part.step>0&&clicks>=part.threshold);
+  layer.classList.toggle('build-highlight',complete||part.threshold===clicks);
+ }
+ const label=complete?'工厂完成！':clicks===0?'来建造工厂吧！':'建造中！';
+ const remaining=BUILD_CLICKS_REQUIRED-clicks;
+ const line=complete?'完成啦！做得好！':buildGuideLines.find(([step])=>clicks>=step)[1];
+ setTypedGuide($('buildGuideText'),line);
+ setText($('buildFactoryLabel'),label);
+ const badge=$('buildGuideRemaining'),button=$('buildFactory');
+ button.classList.toggle('build-not-started',clicks===0);
+ badge.hidden=complete;
+ setText(badge,remaining);
+ const accessibleLabel=complete?t(label):`${t(label)} ${constructionCopy('还需点击{count}次',{count:remaining})}`;
+ if(button.getAttribute('aria-label')!==accessibleLabel)button.setAttribute('aria-label',accessibleLabel);
+ button.disabled=complete?buildEntranceElapsed!==null:clicks+constructionFlights.size>=BUILD_CLICKS_REQUIRED;
 }
 const constructionFlights=new Set();
 const constructionDust=new Set();
@@ -2039,7 +2308,8 @@ function showFarmRebuildDust(stage=2){
 }
 function clearConstructionFlights(){for(const effect of constructionDust){clearTimeout(effect.timer);effect.element.remove()}constructionDust.clear();for(const flight of constructionFlights){flight.cancelled=true;flight.animation?.cancel();flight.image.remove()}constructionFlights.clear()}
 function buildFactory(){
- if(state.phase!=='construction')return;
+ if(state.phase==='ready'){if(buildEntranceElapsed===null)startOperation();return}
+ if(state.phase!=='construction'||openingDialogueActive())return;
  if(state.buildClicks+constructionFlights.size>=BUILD_CLICKS_REQUIRED)return;
  const session=state,button=$('buildFactory'),source=button.querySelector('img').getBoundingClientRect();
  const targetClick=state.buildClicks+constructionFlights.size+1;
@@ -2059,14 +2329,16 @@ function buildFactory(){
   for(const [x,y,w,h] of bounds)showConstructionDust(scene.left+(x+w/2)*scale,scene.top+(y+h/2)*scale,'part');
   playPopSound();
   if(state.buildClicks>=BUILD_CLICKS_REQUIRED){
-   showConstructionDust(scene.left+112*scale,scene.top+80*scale,'final');state.phase='ready';
+   showConstructionDust(scene.left+112*scale,scene.top+80*scale,'final');
+   if(state.milestoneTimes.construction===null)state.milestoneTimes.construction=state.playSeconds;
+   state.phase='ready';
+   beginBuildEntrance();
   }
-  save();render();updateConstructionGuide(0);
+  save();render();
   if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
    for(const part of parts)$('constructionScene').querySelector(`[data-build-step="${part.step}"]`).animate([{transform:'scale(1)'},{transform:'scale(1.025)'},{transform:'scale(1)'}],{duration:180});
   }
-  if(state.phase==='ready')showConstructionComplete();
- };
+  };
  if(matchMedia('(prefers-reduced-motion: reduce)').matches){arrive();return}
  button.animate([{transform:'scale(.97)'},{transform:'scale(1)'}],{duration:130});
  flight.animation=image.animate([
@@ -2079,6 +2351,7 @@ function buildFactory(){
 }
 function startOperation(){
  if(state.phase!=='ready')return;
+ finishBuildEntrance();
  const artwork=$('factoryArt'),previous=artwork.getBoundingClientRect();
  clearTimeout(toastTimer);$('toast').classList.remove('show');
  if(state.milestoneTimes.construction===null)state.milestoneTimes.construction=state.playSeconds;
@@ -2088,9 +2361,7 @@ function startOperation(){
   const current=artwork.getBoundingClientRect();artwork.getAnimations().forEach(a=>a.cancel());
   const move=artwork.animate([{transform:`translate(${previous.left-current.left}px,${previous.top-current.top}px)`},{transform:'translate(0,0)'}],{duration:650,easing:'cubic-bezier(.2,.8,.3,1)'});move.id='factory-phase-transition';
  }
- speakTutorial(TUTORIAL_LINES.start);
 }
-function showConstructionComplete(){startOperation()}
 $('constructionCompleteDialog').addEventListener('cancel',e=>e.preventDefault());
 $('beginOperation').onclick=()=>{$('constructionCompleteDialog').close();startOperation()};
 $('buildFactory').onclick=buildFactory;
@@ -2120,7 +2391,7 @@ function syncFeverAnimationSpeed(dt){
  }
 
  // The juice pipe and rebuild smoke use native SVG animation timelines.
- const roots=[juiceDocument?.documentElement,
+ const roots=[juiceDocument?.documentElement,...appleFactoryArt.map(art=>art.contentDocument?.documentElement),
   ...Array.from(constructionDust,({element})=>element.firstElementChild)];
  for(const root of roots){
   if(typeof root?.pauseAnimations!=='function')continue;
@@ -2136,7 +2407,7 @@ function update(dt){
  const feverTime=Math.min(dt,state.events.frenzy);
  const animationDt=dt+(FEVER_ANIMATION_RATE-1)*feverTime;
  state.playSeconds+=dt;
- updateConstructionGuide(dt);updateTutorial(dt);updateFarmGoalGuide(dt);driveTalk(animationDt);
+ updateTutorial(dt);updateAppleBasket(dt);updateFarmGoalGuide(dt);driveTalk(animationDt);driveBuildEntrance(dt);
  if(state.phase==='operation'){
   if(state.owned[4]>0){
    state.autoSellTime+=dt;
@@ -2154,10 +2425,10 @@ function update(dt){
 function frame(now){const dt=last===null?0:Math.max(0,Math.min((now-last)/1000,.25));last=now;if(!document.hidden)update(dt);requestAnimationFrame(frame)}
 document.addEventListener('visibilitychange',()=>{last=null;save()});window.addEventListener('pagehide',save);
 window.advanceTime=ms=>{for(let left=ms;left>0;left-=50)update(Math.min(left,50)/1000)};
-window.render_game_to_text=()=>JSON.stringify({version:'1.0.160',language:GameI18n.language,phase:state.phase,construction:constructionProgress(),tutorial:state.tutorial,introRecruit:state.introRecruit,apples:state.apples,coins:state.coins,earnedCoins:state.earnedCoins,farmStage:farmStage(),juiceStartupTaps:state.juiceStartupTaps,computerStartupTaps:state.computerStartupTaps,factorySaleReady:factorySaleReady(),crateSize:currentCrateSize(),juiceBottles:sellingJuice()?Math.floor(state.apples):0,juiceCratePacked,firstCrateSize:FIRST_APPLE_CRATE_SIZE,total:state.total,soldApples:state.soldApples,playSeconds:state.playSeconds,milestoneTimes:state.milestoneTimes,operationSeconds:state.operationSeconds,guaranteedGold:state.guaranteedGold,factory:{...factoryProgress(),initialUpgradeCount:initialFarmCount(),firstUpgradeAcknowledged:state.firstUpgradeAcknowledged,enhancementLevel:Math.max(1,state.upgrades.length-2)},recruitGoal:{count:employeeCount(),choice:state.recruitGoalChoice,guide:state.recruitGoalGuide},events:state.events,globalMultiplier:upgradeEffects().global,roleEffects:{farmerApplesPerTap:state.owned[1]*farmerTapBonus(),chefCoinsPerCrate:state.owned[2]*chefCrateBonus(),autoSellInterval:state.owned[4]>0?autoSellInterval():null,kingCoinsPerUpgrade:state.owned[3]*kingUpgradeBonus()},cps:cps(),clickPower:clickPower(),buildings:RECRUITABLE_BUILDING_IDS.map(i=>{const b=BUILDINGS[i],unlock=RECRUIT_UNLOCKS[i];return {name:b.name,owned:state.owned[i],price:buildingCost(i),visible:visible(i),unlockConditionRevealed:!!unlock,unlockProgress:unlock?Math.min(unlock.value(),unlock.target):null,unlockTarget:unlock?.target??null}}),upgrades:state.upgrades,nextUpgrade:nextFarmPurchase()?.items[0]?.id||null,wardrobeOpen,outfit:state.outfit,constructionGuide:$('purchaseSpeech').hidden?null:$('speechMeasure').textContent,constructionCompleteOpen:$('constructionCompleteDialog').open,factoryUpgradeOpen:$('factoryUpgradeDialog').open});
+window.render_game_to_text=()=>JSON.stringify({version:'1.0.186',language:GameI18n.language,phase:state.phase,construction:constructionProgress(),tutorial:state.tutorial,introRecruit:state.introRecruit,apples:state.apples,coins:state.coins,earnedCoins:state.earnedCoins,farmStage:farmStage(),juiceStartupTaps:state.juiceStartupTaps,computerStartupTaps:state.computerStartupTaps,factorySaleReady:factorySaleReady(),crateSize:currentCrateSize(),juiceBottles:sellingJuice()?Math.floor(state.apples):0,juiceCratePacked,firstCrateSize:FIRST_APPLE_CRATE_SIZE,total:state.total,soldApples:state.soldApples,playSeconds:state.playSeconds,milestoneTimes:state.milestoneTimes,operationSeconds:state.operationSeconds,guaranteedGold:state.guaranteedGold,factory:{...factoryProgress(),initialUpgradeCount:initialFarmCount(),firstUpgradeAcknowledged:state.firstUpgradeAcknowledged,enhancementLevel:Math.max(1,state.upgrades.length-2)},recruitGoal:{count:employeeCount(),choice:state.recruitGoalChoice,guide:state.recruitGoalGuide},events:state.events,globalMultiplier:upgradeEffects().global,roleEffects:{farmerApplesPerTap:state.owned[1]*farmerTapBonus(),chefCoinsPerCrate:state.owned[2]*chefCrateBonus(),autoSellInterval:state.owned[4]>0?autoSellInterval():null,kingCoinsPerUpgrade:state.owned[3]*kingUpgradeBonus()},cps:cps(),clickPower:clickPower(),buildings:RECRUITABLE_BUILDING_IDS.map(i=>{const b=BUILDINGS[i],unlock=RECRUIT_UNLOCKS[i];return {name:b.name,owned:state.owned[i],price:buildingCost(i),visible:visible(i),unlockConditionRevealed:!!unlock,unlockProgress:unlock?Math.min(unlock.value(),unlock.target):null,unlockTarget:unlock?.target??null}}),upgrades:state.upgrades,nextUpgrade:nextFarmPurchase()?.items[0]?.id||null,wardrobeOpen,outfit:state.outfit,constructionGuide:document.querySelector('.phone').classList.contains('build-tutorial')?$('buildGuideText').textContent:($('purchaseSpeech').hidden?null:$('speechMeasure').textContent),constructionCompleteOpen:$('constructionCompleteDialog').open,factoryUpgradeOpen:$('factoryUpgradeDialog').open});
 const produceArt=document.querySelector('.produce-visual');
 setActionArt(produceArt,produceArt.firstElementChild.getAttribute('src'));
-setupConstructionArtwork();render();if(state.phase==='ready')showConstructionComplete();else resumeTutorial();if(FARM_UPGRADE_LINES[state.farmUpgradeGuide])speakTutorial(FARM_UPGRADE_LINES[state.farmUpgradeGuide]);if(!tutorialActive()&&FARM_GOAL_LINES[state.recruitGoalGuide])speakTutorial(FARM_GOAL_LINES[state.recruitGoalGuide]);requestAnimationFrame(frame);
+setupConstructionArtwork();render();resumeTutorial();if(FARM_UPGRADE_LINES[state.farmUpgradeGuide])speakTutorial(FARM_UPGRADE_LINES[state.farmUpgradeGuide]);if(!tutorialActive()&&FARM_GOAL_LINES[state.recruitGoalGuide])speakTutorial(FARM_GOAL_LINES[state.recruitGoalGuide]);requestAnimationFrame(frame);
 // Commit the initial normal/buffed state before enabling color transitions.
 requestAnimationFrame(()=>requestAnimationFrame(()=>document.documentElement.classList.remove('game-booting')));
 

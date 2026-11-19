@@ -4,6 +4,43 @@
  try{localStorage.setItem(key,language)}catch{}
  document.documentElement.lang=language==='ja'?'ja':'zh-CN';
  const dictionary={
+  "查看任务": "ミッションを確認",
+  "任务板": "ミッションボード",
+  "关闭任务板": "ミッションボードを閉じる",
+  "雇用5名员工！": "スタッフを5人雇おう！",
+  "已领取": "受取済み",
+  "哦！可以雇用第一位员工了！": "おっ！最初のスタッフを雇えるぞ！",
+  "用金币来雇用员工吧！": "コインを使って雇うのじゃ！",
+  "完成名牌上写着的条件，": "名札に書かれた条件をクリアすれば、",
+  "就能解锁新的员工！": "新しいスタッフも解放できるぞ！",
+  "各位鱼人都有自己的技能。": "魚人にはそれぞれ得意なことがあるのじゃ！",
+  "先雇用这位兼职鱼人吧！": "まずはこのバイト魚人を雇ってみるのじゃ！",
+  "这位兼职鱼人会提高苹果的生产速度！": "このバイト魚人は、リンゴの生産速度を上げてくれるぞ！",
+  "每位鱼人都有独特的技能，": "それぞれ特別なスキルで、",
+  "会帮助你提高工厂的产量！": "工場の生産を助けてくれるぞ！",
+  "已经装好一箱苹果了！": "リンゴが1箱できたぞ！",
+  "卖掉苹果，赚取金币吧！": "売ってコインをゲットするのじゃ！",
+  "做得好！": "よくやったのう！",
+  "这样就拿到金币了！": "これでコインが手に入ったぞ！",
+  "好！接下来生产苹果吧！": "よし！次はリンゴを生産するのじゃ！",
+  "点击上面的按钮吧！": "上のボタンをタップするのじゃ！",
+  "来生产30个苹果吧！": "リンゴを30個作るのじゃ！",
+  "继续点击吧！": "どんどんタップするのじゃ！",
+  "哦！已经生产了30个苹果！": "おお！リンゴが30個もできたぞ！",
+  "来建造工厂吧！": "工場を建てよう！",
+  "建造中！": "建設中！",
+  "工厂完成！": "工場完成！",
+  "点击我下面的按钮10次吧！": "ワシの下のボタンを10回タップするのじゃ！",
+  "就是这样！继续点下去吧！": "その調子じゃ！どんどんタップするのじゃ！",
+  "哦哦！已经完成一半了！再加把劲！": "おお！半分まで来たぞ！あと少しじゃ！",
+  "感觉不错！再坚持一下！": "いい感じじゃ！もうひと踏ん張りじゃ！",
+  "还差1次！坚持到最后吧！": "あと1回じゃ！最後まで頑張るのじゃ！",
+  "完成啦！做得好！": "完成じゃー！！よくやったのう！",
+  "还需点击{count}次": "あと{count}回タップ",
+  "好嘞！": "よーし！",
+  "在这里建一座属于你的工厂吧！": "ここにキミだけの工場を作ろう！",
+  "继续对话": "会話を進める",
+  "开始建造": "建設を始める",
   "快进：农场建造完成": "早送り：農場建設完了",
   "快进：首次雇满5人": "早送り：初めて5人雇用",
   "快進：升級到lv.2": "早送り：Lv.2にする",
@@ -222,10 +259,10 @@
   "谁是世界上第一个吃苹果的鱼？": "初めてリンゴを食べた魚って、誰だろう？",
   "料理鱼人": "料理魚人",
   "鱼人王": "魚人王",
-  "售出150个苹果": "リンゴを\n150個販売する",
+  "累计售出150个苹果": "リンゴを累計\n150個販売する",
   "农场达到Lv.2": "レベル2にする",
   "农场达到Lv.3": "レベル3にする",
-  "取得10,000金币": "10,000コイン\nを獲得する",
+  "累计赚取10,000金币": "累計10,000コイン\nを獲得する",
   "每次点击多生产1个苹果。": "タップごとにリンゴを追加で1個生産する。",
   "每2分钟自动卖出苹果箱。": "2分ごとにリンゴ箱を自動販売する。",
   "每2分钟自动售卖": "2分ごとに自動販売",
@@ -412,7 +449,7 @@
  window.GameI18n={language,translate,switchLanguage(){try{localStorage.setItem(key,language==='zh'?'ja':'zh')}catch{}location.reload()}};
  const attributes=['aria-label','title','alt'];
  function localize(node){
-  if(node.nodeType===Node.TEXT_NODE){if(node.parentElement?.closest('script,style'))return;const next=translate(node.data);if(next!==node.data)node.data=next;return}
+  if(node.nodeType===Node.TEXT_NODE){if(node.parentElement?.closest('script,style,[data-translated]'))return;const next=translate(node.data);if(next!==node.data)node.data=next;return}
   if(node.nodeType!==Node.ELEMENT_NODE||node.matches('script,style'))return;
   for(const name of attributes)if(node.hasAttribute(name)){const old=node.getAttribute(name),next=translate(old);if(next!==old)node.setAttribute(name,next)}
   for(const child of node.childNodes)localize(child);
