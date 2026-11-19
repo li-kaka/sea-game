@@ -1,9 +1,15 @@
 // Chinese remains the source language. Language preference is separate from game progress.
 (()=>{
- const key='sea-game-language';let language='zh';try{language=localStorage.getItem(key)==='ja'?'ja':'zh'}catch{}
+ const key='sea-game-language';let language='ja';try{const saved=localStorage.getItem(key);if(['ja','en','zh'].includes(saved))language=saved}catch{}
  try{localStorage.setItem(key,language)}catch{}
- document.documentElement.lang=language==='ja'?'ja':'zh-CN';
+ document.documentElement.lang={ja:'ja',en:'en',zh:'zh-CN'}[language];
  const dictionary={
+  "完成农场建造！": "農場を完成させよう！",
+  "雇用5名鱼人！": "魚人を5人雇おう！",
+  "累计售出150个苹果！": "リンゴを累計150個売ろう！",
+  "累计售出120瓶苹果汁！": "リンゴジュースを累計120本売ろう！",
+  "累计售出10台苹果电脑！": "リンゴパソコンを累計10台売ろう！",
+  "解锁全部种类的鱼人！": "すべての種類の魚人を解放しよう！",
   "查看任务": "ミッションを確認",
   "任务板": "ミッションボード",
   "关闭任务板": "ミッションボードを閉じる",
@@ -438,26 +444,51 @@
   "进场 ": "登場 ",
   "建造苹果农场": "リンゴ農場を建設"
 };
+ Object.assign(dictionary,{'黄金狂热！ 产量 ×7':'ゴールドフィーバー！ 生産量 ×7','每箱售货奖励 ×2':'箱ごとの売上ボーナス ×2','农场升级奖励 ×2':'農場レベルアップ報酬 ×2','秒':'秒','，查看介绍':'、紹介を見る',设置:'設定',关闭设置:'設定を閉じる',效果音:'効果音','背景音乐，暂未开放':'BGM（準備中）',上一种语言:'前の言語',下一种语言:'次の言語','教学，暂未开放':'チュートリアル（準備中）'});
+ if(language==='en'){
+  for(const key of Object.keys(dictionary))delete dictionary[key];
+  Object.assign(dictionary,window.GameEnglish,{设置:'Settings',关闭设置:'Close settings',效果音:'Sound effects','背景音乐，暂未开放':'Background music (coming soon)',上一种语言:'Previous language',下一种语言:'Next language','教学，暂未开放':'Tutorial (coming soon)'});
+ }
+ Object.assign(dictionary,language==='en'?{'快进：完成教学':'Skip to: tutorial complete','已达雇用上限':'Hiring limit reached'}:{'快进：完成教学':'早送り：チュートリアル完了','已达雇用上限':'雇用上限に達しました'});
  const sourcePattern=new RegExp(Object.keys(dictionary).sort((a,b)=>b.length-a.length).map(term=>term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|'),'g');
  function translate(value){
-  const text=String(value);if(language!=='ja'||!/[\u3400-\u9fff]/.test(text))return text;
+  const text=String(value);if(language==='zh'||!/[\u3400-\u9fff]/.test(text))return text;
   if(dictionary[text])return dictionary[text];
+  if(language==='en')return text.replace(sourcePattern,match=>dictionary[match]);
   let result=text.replace(/(鱼人社员|(?:兼职|农民|国王|鲨鱼|小丑|变异|外星|海绵)?鱼人|鱼神)产量/g,'$1の生産量').replace(/招募 (\d+) 个(.+?)，([\d., A-Za-z]+) 苹果/g,'$2を$1人雇う（$3リンゴ）').replace(/招募 (\d+) 个(.+?)，([\d., A-Za-z]+) 金币/g,'$2を$1人雇う（$3コイン）').replace(/卖出 (\d+) 箱/g,'リンゴ箱を$1箱売る').replace(/每 (\d+) 名农民鱼人[，,]?使/g,'農家魚人$1人につき').replace(/每名(.+?)的秒产/g,'$1の1人あたりの毎秒生産量');
   // One pass prevents Japanese output from being re-translated by shorter source terms.
   return result.replace(sourcePattern,match=>dictionary[match]);
  }
- window.GameI18n={language,translate,switchLanguage(){try{localStorage.setItem(key,language==='zh'?'ja':'zh')}catch{}location.reload()}};
+ const dialogueTranslations={
+ 'あの上の工場は、まだレベル1じゃ！':['上面的工厂现在还是1级！','That factory up there is still at Level 1!'],
+ '工場をどんどん大きくするのじゃ！':['让工厂不断发展壮大吧！',"Let's keep growing your factory!"],
+ 'ミッションをクリアすると、工場のレベルを上げられるぞ！':['完成任务，就能提升工厂等级！','Complete missions to help level up your factory!'],
+ 'このボタンを押すと、ミッションを確認できるぞ！':['点击这个按钮，就能查看任务！','Tap this button to view your missions!'],
+ 'ミッションをクリアして、お金を稼ぐのじゃ！':['完成任务来赚取金币吧！','Complete missions to earn coins!'],
+ 'ワシから最初のミッションを出してやろう！':['让我来给你第一个任务！',"Here's your first mission!"],
+ 'スタッフを5人雇えば、このミッションは達成じゃ！':['雇用5名员工，就能完成这项任务！','Hire 5 staff members to complete this mission!'],
+ 'さっそくスタッフを集めてくるのじゃ！':['现在就去招募员工吧！',"Let's hire some staff!"],
+ 'おお！ミッション達成じゃ！報酬を受け取るのじゃ！':['哦！任务完成了！领取奖励吧！','Mission complete! Collect your reward!'],
+ 'よくやったのう！これでコインが増えたぞ！':['干得好！又赚到金币了！',"Well done! You've earned more coins!"],
+ '＋ボタンを押すと、レベルアップに必要なお金が確認できるぞ！':['点击＋按钮，就能查看升级所需的金币！','Tap + to check how many coins you need to level up!'],
+ '必要なコインが貯まったら、ここからレベルアップできるぞ！':['攒够金币后，就能在这里升级！','Once you have enough coins, you can level up here!'],
+ 'ミッションをクリアしてコインを集め、':['完成任务，收集金币，','Complete missions, collect coins,'],
+ 'おおっ！育てるのじゃ！':['哦！继续发展吧！','Keep growing!'],
+ 'ミッションを達成したようじゃぞ！確認してみるのじゃ！':['好像完成任务了！去查看一下吧！',"Looks like you've completed a mission! Take a look!"]
+ };
+ function setLanguage(next){if(!['ja','en','zh'].includes(next))return;try{localStorage.setItem(key,next)}catch{}location.reload()}
+ window.GameI18n={language,translate,translateDialogue(message){const pair=dialogueTranslations[message];return pair&&language!=='ja'?pair[language==='en'?1:0]:message},setLanguage,switchLanguage(){setLanguage(language==='ja'?'en':language==='en'?'zh':'ja')}};
  const attributes=['aria-label','title','alt'];
  function localize(node){
-  if(node.nodeType===Node.TEXT_NODE){if(node.parentElement?.closest('script,style,[data-translated]'))return;const next=translate(node.data);if(next!==node.data)node.data=next;return}
+  if(node.nodeType===Node.TEXT_NODE){if(node.parentElement?.closest('script,style,[data-translated],#settingsLanguage,#languageSwitch'))return;const next=translate(node.data);if(next!==node.data)node.data=next;return}
   if(node.nodeType!==Node.ELEMENT_NODE||node.matches('script,style'))return;
   for(const name of attributes)if(node.hasAttribute(name)){const old=node.getAttribute(name),next=translate(old);if(next!==old)node.setAttribute(name,next)}
   for(const child of node.childNodes)localize(child);
  }
- if(language==='ja'){
+ if(language!=='zh'){
   localize(document.body);document.title=translate(document.title);
   new MutationObserver(records=>{for(const record of records){if(record.type==='characterData')localize(record.target);else if(record.type==='attributes')localizeAttributes(record.target);else for(const node of record.addedNodes)localize(node)}}).observe(document.body,{childList:true,subtree:true,characterData:true,attributes:true,attributeFilter:attributes});
  }
  function localizeAttributes(node){for(const name of attributes)if(node.hasAttribute(name)){const old=node.getAttribute(name),next=translate(old);if(next!==old)node.setAttribute(name,next)}}
- document.querySelector('#languageSwitch').textContent=language==='ja'?'日本語 → 中文':'中文 → 日本語';
+ document.querySelector('#languageSwitch').textContent={ja:'日本語 → English',en:'English → 简体中文',zh:'简体中文 → 日本語'}[language];
 })();

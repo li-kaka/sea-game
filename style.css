@@ -1091,7 +1091,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 
 /* Apple Factory Level 1: SVG scenery with live game controls above it. */
 .phone:not(.wardrobe-open){
- background:#4eb5ff url("img/svg/level-one-scene.svg?v=1.0.186") center / 100% 100% no-repeat;
+ background:#4eb5ff url("img/svg/level-one-scene.svg?v=1.0.193") center / 100% 100% no-repeat;
 }
 .phone>header{top:2.5%;left:4%;right:3%;height:9cqw;justify-content:space-between}
 .phone .nameplate{
@@ -1284,13 +1284,13 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 /* Hiring Section artwork uses a 402 × 159 design grid. */
 .phone .building-shop{
  top:82.61%;border:0;border-radius:0;padding:0;overflow:visible;
- background:#edba69 url("img/svg/hiring/board.svg?v=1.0.186") center / 100% 100% no-repeat;
+ background:#edba69 url("img/svg/hiring/board.svg?v=1.0.193") center / 100% 100% no-repeat;
 }
 .phone .building-shop::before{display:none}
 .phone .building-shop .shop-head{position:absolute;inset:0 0 auto;height:18%;padding:0;z-index:6;pointer-events:none}
 .phone .building-shop .shop-head::before{
  content:'';position:absolute;left:35.82%;top:6.99%;width:28.36%;height:94.34%;
- background:url("img/svg/hiring/board-title.svg?v=1.0.186") center / 100% 100% no-repeat;
+ background:url("img/svg/hiring/board-title.svg?v=1.0.193") center / 100% 100% no-repeat;
 }
 .phone .building-shop h1{
  position:absolute;left:36.6%;top:11%;width:25.7%;height:82%;
@@ -1346,7 +1346,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 .recruit-price{
  position:absolute;inset:87.1% 0 3.45%;
  display:flex;align-items:center;justify-content:center;gap:.7cqw;padding:.1cqw .8cqw 0;
- background:url("img/svg/hiring/price.svg?v=1.0.186") center / 100% 100% no-repeat;
+ background:url("img/svg/hiring/price.svg?v=1.0.193") center / 100% 100% no-repeat;
  font:700 2.75cqw/1 Itim,sans-serif;color:#211a13;white-space:nowrap;pointer-events:none;
 }
 .recruit-price img{width:2.4cqw;height:2.4cqw}
@@ -1368,7 +1368,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 
 /* The first farm upgrade reveals the juice factory. */
 .phone.farm-level-two:not(.wardrobe-open){
- background-image:url("img/svg/level-two-scene.svg?v=1.0.186");
+ background-image:url("img/svg/level-two-scene.svg?v=1.0.193");
 }
 .farm-level-two .factory-art .operating-factory-art,
 .farm-level-two .factory-art .golden-art,
@@ -1392,7 +1392,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 
 /* Keep the Level 3 factory visible through later enhancements. */
 .phone.farm-level-three:not(.wardrobe-open){
- background-image:url("img/svg/level-three-scene.svg?v=1.0.186");
+ background-image:url("img/svg/level-three-scene.svg?v=1.0.193");
 }
 /* Match the resident's resting pose to the fishman at the right of the 402 × 874 design. */
 .phone.farm-level-three:not(.wardrobe-open) :is(.fish-character,.fish-character-shadow){
@@ -1469,7 +1469,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
  inset:50% auto auto 50%;width:96.52cqw;height:26.12cqw;
  transform:translate(-50%,-50%);
  border:0;border-radius:0;
- background:url('img/svg/build-guide-button.svg?v=1.0.186') center / 100% 100% no-repeat;
+ background:url('img/svg/build-guide-button.svg?v=1.0.193') center / 100% 100% no-repeat;
 }
 .phone.build-tutorial .build-factory > img{opacity:0;position:absolute;left:9%}
 .phone.build-tutorial .build-factory > span{
@@ -1480,19 +1480,19 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 html:lang(ja) .phone.build-tutorial .build-factory > span{
  position:absolute;inset:0;color:transparent;-webkit-text-stroke:0;
  background:var(--build-label-art) center / 100% 100% no-repeat;
- --build-label-art:url('img/svg/build-label-progress.svg?v=1.0.186');
+ --build-label-art:url('img/svg/build-label-progress.svg?v=1.0.193');
 }
 html:lang(ja) .phone.build-tutorial .build-factory.build-not-started > span{
- --build-label-art:url('img/svg/build-label-start.svg?v=1.0.186');
+ --build-label-art:url('img/svg/build-label-start.svg?v=1.0.193');
 }
 html:lang(ja) .phone.build-tutorial.build-completed .build-factory > span{
  color:transparent;
- --build-label-art:url('img/svg/build-label-complete.svg?v=1.0.186');
+ --build-label-art:url('img/svg/build-label-complete.svg?v=1.0.193');
 }
 .build-guide-remaining{
  position:absolute;z-index:2;left:44.03%;top:78.72%;
  width:12.44cqw;height:6.97cqw;display:grid;place-items:center;
- background:url('img/svg/build-guide-count.svg?v=1.0.186') center / contain no-repeat;
+ background:url('img/svg/build-guide-count.svg?v=1.0.193') center / contain no-repeat;
  color:#000;font-size:3.5cqw;font-weight:900;
 }
 .build-guide-tap{
@@ -1500,7 +1500,7 @@ html:lang(ja) .phone.build-tutorial.build-completed .build-factory > span{
  width:25.5cqw;height:auto;
 }
 .phone.build-tutorial.build-completed .build-factory::before{
- background-image:url('img/svg/build-guide-button-complete.svg?v=1.0.186');
+ background-image:url('img/svg/build-guide-button-complete.svg?v=1.0.193');
 }
 .phone.build-tutorial.build-completed .build-factory > span{color:#a7470d}
 .build-completed .build-guide-tap{display:none}
@@ -1667,7 +1667,7 @@ html:lang(ja) .phone.build-tutorial.build-completed .build-factory > span{
  display:block;position:absolute;left:8.5%;top:89.3%;width:12.5cqw;height:auto;
 }
 .phone:is([data-hire-step="hireFirst"],[data-hire-step="employee"],[data-hire-step="rateFlying"],[data-hire-step="rate"],[data-hire-step="hireSkills"],[data-hire-step="hireHelp"]) .building-shop{
- background-image:linear-gradient(rgb(70 70 70 / 48%),rgb(70 70 70 / 48%)),url("img/svg/hiring/board.svg?v=1.0.186");
+ background-image:linear-gradient(rgb(70 70 70 / 48%),rgb(70 70 70 / 48%)),url("img/svg/hiring/board.svg?v=1.0.193");
 }
 .phone:is([data-hire-step="hireFirst"],[data-hire-step="employee"],[data-hire-step="rateFlying"],[data-hire-step="rate"],[data-hire-step="hireSkills"],[data-hire-step="hireHelp"]) :is(.shop-head,.recruit-card:not([data-building="0"])){
  filter:brightness(.69) contrast(.725);
@@ -1758,7 +1758,7 @@ body:has(.phone[data-mission-step="11"]) .mission-upgrade-hint{display:block;fon
 /* Apple Rate.svg supplies the frame and apple, with the live production value overlaid. */
 .phone .rate{
  width:19.403cqw;height:6.965cqw;padding:0;border:0;border-radius:0;
- background:url('img/svg/apple-rate.svg?v=1.0.186') center / 100% 100% no-repeat;
+ background:url('img/svg/apple-rate.svg?v=1.0.193') center / 100% 100% no-repeat;
  box-shadow:none;gap:0;
 }
 .phone .rate .rate-unit{display:none}
@@ -1797,7 +1797,7 @@ body:has(.phone[data-mission-step="11"]) .mission-upgrade-hint{
 }
 body:has(.phone[data-mission-step="11"]) .mission-upgrade-hint::before{
  content:'';position:absolute;left:-44px;top:-12px;width:70px;height:70px;
- background:url('img/svg/build-guide-fish.svg?v=1.0.186') center / contain no-repeat;
+ background:url('img/svg/build-guide-fish.svg?v=1.0.193') center / contain no-repeat;
 }
 
 /* Mission 9–11 returns to a guided overlay after normal play. */
@@ -1818,7 +1818,7 @@ body:has(.phone[data-mission-step="11"]) #factoryUpgradeDialog::backdrop{backgro
  position:fixed;left:50%;top:var(--upgrade-panel-top,27vh);transform:translateX(-50%);
  margin:0;width:calc(var(--upgrade-game-width,402px) * 265 / 402);
  height:auto;aspect-ratio:265/188;max-height:none;padding:0;border:0;border-radius:0;
- overflow:visible;box-shadow:none;background:url('img/svg/next-level-panel.svg?v=1.0.186') center / 100% 100% no-repeat;
+ overflow:visible;box-shadow:none;background:url('img/svg/next-level-panel.svg?v=1.0.193') center / 100% 100% no-repeat;
 }
 #factoryUpgradeDialog :is(h2,#factoryStageCount,.farm-dialog-level,.upgrade-caption,#factoryNextEffect,#factoryNextHint,#openNewFactory){display:none}
 #factoryUpgradeDialog #factoryNext{position:absolute;inset:0}
@@ -1834,7 +1834,7 @@ body:has(.phone[data-mission-step="11"]) #factoryUpgradeDialog::backdrop{backgro
  padding:0;border:0;border-radius:30px;box-shadow:none;background:none;color:transparent;font-size:0;
 }
 #factoryUpgradeDialog.can-upgrade #confirmFactoryUpgrade{
- background:url('img/svg/level-up-ready.svg?v=1.0.186') center / 100% 100% no-repeat;
+ background:url('img/svg/level-up-ready.svg?v=1.0.193') center / 100% 100% no-repeat;
 }
 #factoryUpgradeDialog.can-upgrade #confirmFactoryUpgrade::after{content:none}
 #factoryUpgradeDialog #closeFactoryUpgrade{
@@ -1875,3 +1875,78 @@ body:has(.phone[data-mission-step="11"]) #factoryUpgradeDialog .mission-upgrade-
  paint-order:stroke fill;
 }
 .opening-dialogue span{font-family:'Futehodo Maru Gothic',sans-serif}
+
+.guide-touch-surface{
+ position:absolute;inset:0;z-index:102;width:100%;height:100%;
+ border:0;padding:0;background:transparent;cursor:pointer;
+}
+
+.full-mission-board{inset:16.7% 6.95% auto 8.95%;aspect-ratio:338/572}
+.full-mission-board #closeMission{width:11%;height:6.5%}
+.mission-list{position:absolute;left:9.02%;top:26.14%;width:78.65%;height:65.24%;display:grid;grid-template-rows:repeat(6,1fr);gap:.25cqw}
+.mission-list-row{
+ position:relative;min-height:0;border:1px solid #333;border-radius:1.78cqw;background:#fffced;
+}
+.mission-row-fish{position:absolute;left:3.6%;top:15%;width:14%;height:64%;object-fit:contain}
+.mission-row-copy{position:absolute;left:19.63%;top:0;width:41.44%;height:100%}
+.mission-row-copy b{
+ position:absolute;left:-2%;right:-2%;top:13%;height:31%;display:grid;place-items:center;
+ font-family:'Futehodo Maru Gothic','Zen Maru Gothic',Xiaolai,sans-serif;
+ font-size:2.25cqw;font-weight:900;line-height:1.15;text-align:center;
+}
+.mission-row-track{position:absolute;left:0;top:53%;width:100%;height:25%;background:#848484;border:1px solid #222;border-radius:.96cqw;overflow:hidden}
+.mission-row-track i{display:block;height:100%;background:#fff19a}
+.mission-row-track span{position:absolute;inset:0;display:grid;place-items:center;color:white;font:900 1.85cqw/1 'Futehodo Maru Gothic',sans-serif}
+.mission-row-reward{
+ position:absolute;left:63.96%;top:17.16%;width:32.09%;height:60.78%;display:flex;align-items:center;justify-content:center;gap:.65cqw;
+ margin:0;padding:0;border:1px solid #333;border-radius:1.92cqw;background:#fff19a;
+ font:900 2.6cqw/1 'Futehodo Maru Gothic',sans-serif;color:#333;
+}
+.mission-row-reward img{width:5.6cqw;height:5.6cqw;object-fit:contain}
+.mission-list-row:not(.task-ready) .mission-row-reward{filter:grayscale(1);opacity:1}
+.task-ready .mission-row-track i{background:#b8ed57}
+.task-claimed{background:#c8c8c8}
+.task-claimed .mission-row-track i{background:#848484}
+.task-claimed .mission-row-reward{background:#737373;color:#eee}
+.task-claimed .mission-row-fish{filter:grayscale(1);opacity:.75}
+
+/* Settings coordinates follow the original 402 × 874 artboard. */
+.settings-dialog{position:fixed;inset:0;width:min(100vw,calc(100dvh * 402 / 874));height:auto;aspect-ratio:402/874;max-width:none;max-height:100dvh;margin:auto;padding:0;border:0;overflow:visible;background:transparent;box-shadow:none;container-type:inline-size}
+.settings-dialog::backdrop{background:rgba(70,70,70,.5);backdrop-filter:none}
+.settings-artboard{position:relative;width:100%;height:100%}
+.settings-art{display:block;width:100%;height:100%;pointer-events:none}
+.settings-hit{position:absolute;margin:0;padding:0;border:0;border-radius:0;background:transparent;box-shadow:none;cursor:pointer}
+.settings-hit:hover,.settings-hit:active{background:transparent;box-shadow:none}
+.settings-hit:focus-visible{outline:3px solid #004a86;outline-offset:3px}
+.settings-hit[aria-disabled=true]{cursor:default}
+.settings-close{left:82.2%;top:20.8%;width:10.5%;height:5%}
+.settings-sfx{left:24.63%;top:30.43%;width:23.38%;height:9.95%}
+.settings-sfx img{display:block;width:100%;height:100%}
+.settings-music{left:52%;top:30.5%;width:22%;height:10%}
+.settings-language-prev{left:14.5%;top:44.8%;width:8.5%;height:5%}
+.settings-language-next{left:77%;top:44.8%;width:8.5%;height:5%}
+.settings-language{position:absolute;left:25%;top:44%;width:50%;height:6.3%;display:flex;align-items:center;justify-content:center;font-family:'Futehodo Maru Gothic',sans-serif;font-weight:900;font-size:6cqw;color:#111;-webkit-text-stroke:1.2cqw white;paint-order:stroke fill}
+.settings-tutorial{left:25%;top:52.7%;width:50%;height:6.2%;font:900 6cqw 'Futehodo Maru Gothic',sans-serif;color:#111;-webkit-text-stroke:1.2cqw white;paint-order:stroke fill}
+
+html:lang(en) .recruit-name{font-size:2.05cqw;letter-spacing:0;white-space:normal;line-height:1.05}
+html:lang(en) .recruit-condition{font-size:1.85cqw;line-height:1.1}
+html:lang(en) .recruit-ability{font-size:1.8cqw}
+html:lang(en) .recruit-card.locked .recruit-name{font-size:4.25cqw}
+html:lang(en) .action-caption{font-size:1.9cqw}
+html:lang(en) .grow-guide-dialogue{font-size:2.8cqw}
+html:lang(en) .build-guide-dialogue{font-size:2.7cqw}
+
+html:lang(en) #factoryUpgradeDialog{background-image:url('img/svg/next-level-panel-en.svg?v=1.0.193')}
+html:lang(zh-CN) #factoryUpgradeDialog{background-image:url('img/svg/next-level-panel-zh.svg?v=1.0.193')}
+html:lang(en) .recruit-english{display:none}
+html:lang(en) .recruit-card:not(.locked) .recruit-name{inset:82% 1% 0;display:flex;align-items:center;justify-content:center;font-size:1.9cqw}
+html:lang(en) .mission-entry::after,html:lang(zh-CN) .mission-entry::after{content:'Missions';position:absolute;left:1%;right:1%;bottom:1%;height:18%;display:grid;place-items:center;background:#fff8db;border-radius:2cqw;color:#111;font:900 1.8cqw 'Futehodo Maru Gothic',sans-serif}
+html:lang(zh-CN) .mission-entry::after{content:'任务';font-family:Xiaolai,sans-serif}
+
+/* Keep settings independent of every tutorial highlight and full-screen dialogue. */
+.phone>.settings{position:absolute;top:2.5%;right:3%;z-index:120;opacity:1;filter:none;pointer-events:auto;visibility:visible}
+
+.settings.settings-in-dialog{position:absolute;left:var(--settings-left);top:var(--settings-top);right:auto;width:var(--settings-width);height:var(--settings-height);z-index:120;opacity:1;filter:none;visibility:visible;pointer-events:auto}
+.settings.settings-in-dialog img{display:block;width:100%;height:100%}
+
+.recruit-maxed .recruit-price img{display:none}
