@@ -1,4 +1,4 @@
-/* Self-hosted OFL fonts. Latin and numeric glyphs use Itim in every language. */
+/* Self-hosted fonts. Latin and numeric glyphs use Itim in every language. */
 @font-face{font-family:Itim;src:url('./Itim-Regular.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap;unicode-range:U+0000-024F,U+1E00-1EFF,U+2000-206F,U+20A0-20CF,U+2100-214F,U+2190-21FF,U+2212}
 @font-face{font-family:Xiaolai;src:url('./Xiaolai-Regular.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}
 @font-face{font-family:'Zen Maru Gothic';src:url('./ZenMaruGothic-Regular.woff2') format('woff2');font-style:normal;font-weight:400;font-display:swap}
@@ -11,3 +11,7 @@
 :lang(zh){--game-font:Itim,Xiaolai,sans-serif}
 body,button,input,select,textarea{font-family:var(--game-font)}
 [lang]{font-family:var(--game-font)}
+
+@font-face{font-family:KNMaiyuan;src:url('./KNMaiyuan-Regular.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
+@font-face{font-family:'Lemi Yuanqi Tuantuan';src:url('./Lemi-Yuanqi-Tuantuan.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
+html:lang(zh-CN){--game-font:Itim,KNMaiyuan,sans-serif}

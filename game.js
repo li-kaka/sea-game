@@ -93,6 +93,8 @@ const UPGRADES=createItemUpgrades(BUILDINGS);
 const t=value=>GameI18n.translate(value);
 const KEY='apple-works-demo-v1',$=id=>document.getElementById(id);
 const RETIRED_ITEM_IDS={"tier-2-0": "tier-farmer-0", "tier-2-1": "tier-farmer-1", "tier-2-2": "tier-farmer-2", "tier-2-3": "tier-farmer-3", "tier-2-4": "tier-farmer-4", "tier-2-5": "tier-farmer-5", "tier-2-6": "tier-farmer-6", "tier-2-7": "tier-farmer-7", "tier-2-8": "tier-farmer-8", "tier-2-9": "tier-farmer-9", "tier-2-10": "tier-farmer-10", "tier-2-11": "tier-farmer-11", "tier-2-12": "tier-farmer-12", "tier-2-13": "tier-farmer-13", "tier-2-14": "tier-farmer-14", "tier-8-0": "tier-shark-0", "tier-8-1": "tier-shark-1", "tier-8-2": "tier-shark-2", "tier-8-3": "tier-shark-3", "tier-8-4": "tier-shark-4", "tier-8-5": "tier-shark-5", "tier-8-6": "tier-shark-6", "tier-8-7": "tier-shark-7", "tier-8-8": "tier-shark-8", "tier-8-9": "tier-shark-9", "tier-8-10": "tier-shark-10", "tier-8-11": "tier-shark-11", "tier-8-12": "tier-shark-12", "tier-8-13": "tier-shark-13", "tier-8-14": "tier-shark-14", "mentor-2": "mentor-staff", "mentor-8": "mentor-shark", "supply-gingerbread-trees": "supply-farmer-0", "supply-pure-black-chocolate-cookies": "supply-farmer-1", "supply-pure-white-chocolate-cookies": "supply-farmer-2", "supply-ladyfingers": "supply-farmer-3", "supply-tuiles": "supply-farmer-4", "supply-chocolate-stuffed-biscuits": "supply-farmer-5", "supply-checker-cookies": "supply-farmer-6", "supply-butter-cookies": "supply-farmer-7", "supply-cream-cookies": "supply-farmer-8", "supply-gingersnaps": "supply-farmer-9", "supply-cinnamon-cookies": "supply-farmer-10", "supply-vanity-cookies": "supply-farmer-11", "supply-cigars": "supply-farmer-12", "supply-pinwheel-cookies": "supply-farmer-13", "supply-vanillekipferl": "supply-shark-0", "supply-battenberg-biscuits": "supply-shark-1", "supply-rosette-cookies": "supply-shark-2", "supply-gangmakers": "supply-shark-3", "supply-welsh-cookies": "supply-shark-4", "supply-raspberry-cheesecake-cookies": "supply-shark-5", "supply-bokkenpootjes": "supply-shark-6", "supply-fat-rascals": "supply-shark-7", "supply-ischler-cookies": "supply-shark-8", "supply-matcha-cookies": "supply-shark-9", "supply-dalgona-cookies": "supply-shark-10", "supply-spicy-cookies": "supply-shark-11", "supply-smile-cookies": "supply-shark-12", "supply-kolachy-cookies": "supply-shark-13"};
+let previewFarm='apple';
+let milkBuild={clicks:0,phase:'building'};
 const BUILD_CLICKS_REQUIRED=10;
 const RECRUIT_LIMITS=[30,30,20,1,10];
 const LEGACY_BUILD_MILESTONES=[4,12,16,20,24,28,32,36,40,44];
@@ -116,7 +118,7 @@ const GUARANTEED_GOLD_WINDOWS=[60,240];
 const TUTORIAL_SPEECH_DURATION=3500;
 const FARM_LEVEL_UP_PRICES={1:400,2:800};
 const LEGACY_INITIAL_UPGRADE_PRICES=[25,50,100];
-const fresh=()=>({schema:105,juiceStartupTaps:0,juiceStartupAt:null,juiceFirstOutput:false,computerStartupTaps:0,computerStartupAt:null,computerFirstOutput:false,firstUpgradeAcknowledged:false,farmUpgradeGuide:'done',farmUpgradeGuideTime:0,recruitGoalChoice:null,recruitGoalGuide:'pending',recruitGoalGuideTime:0,newFarmPromptShown:false,missionRewardClaimed:false,claimedMissions:[],soldProducts:{apples:0,juice:0,laptops:0},missionCompletionAnnounced:false,missionUpgradeGuideComplete:false,phase:'construction',openingDialogueStep:0,tutorial:'build',tutorialTime:0,introRecruit:false,buildClicks:0,apples:0,coins:0,earnedCoins:0,autoSellTime:0,total:0,soldApples:0,handmade:0,playSeconds:0,milestoneTimes:{construction:null,fiveEmployees:null,firstFarmUpgrade:null},operationSeconds:0,guaranteedGold:freshGuaranteedGold(),goldenClicks:0,owned:BUILDINGS.map(()=>0),upgrades:[],outfit:null,prizes:[0,0,0],draws:0,events:freshEvents()});
+const fresh=()=>({schema:105,skipTutorial:false,juiceStartupTaps:0,juiceStartupAt:null,juiceFirstOutput:false,computerStartupTaps:0,computerStartupAt:null,computerFirstOutput:false,firstUpgradeAcknowledged:false,farmUpgradeGuide:'done',farmUpgradeGuideTime:0,recruitGoalChoice:null,recruitGoalGuide:'pending',recruitGoalGuideTime:0,newFarmPromptShown:false,missionRewardClaimed:false,claimedMissions:[],soldProducts:{apples:0,juice:0,laptops:0},missionCompletionAnnounced:false,missionUpgradeGuideComplete:false,phase:'construction',openingDialogueStep:0,tutorial:'build',tutorialTime:0,introRecruit:false,buildClicks:0,apples:0,coins:0,earnedCoins:0,autoSellTime:0,total:0,soldApples:0,handmade:0,playSeconds:0,milestoneTimes:{construction:null,fiveEmployees:null,firstFarmUpgrade:null},operationSeconds:0,guaranteedGold:freshGuaranteedGold(),goldenClicks:0,owned:BUILDINGS.map(()=>0),upgrades:[],outfit:null,prizes:[0,0,0],draws:0,gachaOwned:[],gachaPending:null,gachaColor:0,events:freshEvents()});
 let state=fresh(),displayed=0,last=null,saveClock=0,toastTimer,returnFocus;
 try{
  const transfer=sessionStorage.getItem('sea-game-language-progress');
@@ -345,7 +347,7 @@ function nextFarmPurchase(){
  return {level:3,price:FARM_LEVEL_UP_PRICES[2],items:[item]};
 }
 
-function save(){try{sessionStorage.setItem(KEY,JSON.stringify({version:1,state,frenzyExpiresAt:state.events.frenzy>0?Date.now()+state.events.frenzy*1000:0}))}catch{}}
+function save(){persistWardrobeCollection();try{sessionStorage.setItem(KEY,JSON.stringify({version:1,state,frenzyExpiresAt:state.events.frenzy>0?Date.now()+state.events.frenzy*1000:0}))}catch{}}
 function notify(text,alreadyTranslated=false){$('toast').textContent=alreadyTranslated?text:t(text);$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),2000)}
 function earn(amount){state.apples+=amount;state.total+=amount}
 function spendCoins(amount){if(state.coins+1e-9<amount)return false;state.coins=Math.max(0,state.coins-amount);return true}
@@ -471,7 +473,7 @@ function renderTutorial(){
  const active=tutorialActive(),at=TUTORIAL_ORDER.indexOf(state.tutorial),phone=document.querySelector('.phone');
  phone.classList.toggle('operation-tutorial',active);
  const visibility={'.balance':at>=1,'.building-shop':at>=TUTORIAL_ORDER.indexOf('shop'),'.rate':at>=TUTORIAL_ORDER.indexOf('rateFlying'),'.factory-hud':at>=TUTORIAL_ORDER.indexOf('factory')};
- for(const [selector,shown]of Object.entries(visibility))document.querySelector(selector).classList.toggle('tutorial-hidden',active&&!shown);
+ for(const [selector,shown]of Object.entries(visibility))document.querySelector(selector).classList.toggle('tutorial-hidden',active&&!shown||selector==='.building-shop'&&state.skipTutorial&&state.soldApples===0);
  const grow=active&&farmStage()===1&&growGuideLines[state.tutorial];
  const step=grow?(state.tutorial==='appleFlight'?'click':state.tutorial):'';
  if(phone.dataset.growStep!==step)phone.dataset.growStep=step;
@@ -540,7 +542,7 @@ function nextGuideStep(){
  return transitions[step]||HIRE_DELAYS[step]?.[1]||null;
 }
 document.addEventListener('click',event=>{
- if(event.target.closest('.settings,#settingsDialog'))return;
+ if(previewFarm==='milk'||event.target.closest('.settings,#settingsDialog,#resetConfirmDialog,#wardrobeView,#gachaDialog')||state.skipTutorial)return;
  if(openingDialogueActive())return; // The opening already completes a line before advancing.
  const upgrade=$('factoryUpgradeDialog');
  const modal=document.querySelector('dialog[open]');
@@ -672,6 +674,27 @@ function clickEffects(event,n,showApples=true){
 // Short synthesized cues use the browser's audio engine; no external sound files.
 let sfxEnabled=true;
 try{sfxEnabled=localStorage.getItem('sea-game-sfx')!=='off'}catch{}
+// Background music is independent from sound effects and starts on user input.
+let musicEnabled=true,musicActivated=false;
+try{musicEnabled=localStorage.getItem('sea-game-music')!=='off'}catch{}
+const backgroundMusic=new Audio('audio/cozy-game-groove.mp3?v=1.0.235');
+backgroundMusic.loop=true;backgroundMusic.volume=.3;backgroundMusic.preload='metadata';
+function syncBackgroundMusic(){
+ if(!musicEnabled||!musicActivated||document.hidden){backgroundMusic.pause();return}
+ if(backgroundMusic.paused)backgroundMusic.play().catch(()=>{});
+}
+function activateBackgroundMusic(event){
+ if(!event.isTrusted)return;
+ musicActivated=true;
+ // Let the music button apply its new setting before deciding to play.
+ if(event.target.closest?.('#musicToggle'))return;
+ syncBackgroundMusic();
+}
+document.addEventListener('pointerdown',activateBackgroundMusic,{capture:true});
+document.addEventListener('keydown',activateBackgroundMusic,{capture:true});
+document.addEventListener('visibilitychange',syncBackgroundMusic);
+window.addEventListener('pagehide',()=>backgroundMusic.pause());
+window.addEventListener('pageshow',syncBackgroundMusic);
 let clickAudio=null;
 function getClickAudio(){
  if(!sfxEnabled)return null;
@@ -705,15 +728,34 @@ function playHarvestSound(){
   note.onended=()=>{note.disconnect();gain.disconnect()};
  }catch{}
 }
-const recruitSound=new Audio('audio/yahoooo-mario.mp3?v=1.0.197');
+const recruitSound=new Audio('audio/yahoooo-mario.mp3?v=1.0.235');
 recruitSound.preload='auto';
 function playRecruitSound(){
  if(!sfxEnabled)return;
  recruitSound.currentTime=0;
  recruitSound.play().catch(()=>{});
 }
-const cashRegisterSound=new Audio('audio/cha-ching-money.mp3?v=1.0.197');
+const cashRegisterSound=new Audio('audio/cha-ching-money.mp3?v=1.0.235');
 cashRegisterSound.preload='auto';
+// Play the supplied mechanical recording once per successful draw.
+const gachaMechanicalSound=new Audio('audio/gacha_mechanical.wav?v=1.0.235');
+gachaMechanicalSound.preload='auto';
+function stopGachaMechanicalSound(){
+ gachaMechanicalSound.pause();gachaMechanicalSound.currentTime=0;
+}
+function playGachaMechanicalSound(){
+ if(!sfxEnabled)return;
+ stopGachaMechanicalSound();gachaMechanicalSound.play().catch(()=>{});
+}
+const capsuleOpenSound=new Audio('audio/capsule_open_cute.wav?v=1.0.235');
+capsuleOpenSound.preload='auto';
+function stopCapsuleOpenSound(){
+ capsuleOpenSound.pause();capsuleOpenSound.currentTime=0;
+}
+function playCapsuleOpenSound(){
+ if(!sfxEnabled)return;
+ stopCapsuleOpenSound();capsuleOpenSound.play().catch(()=>{});
+}
 function playCashRegisterSound(){
  if(!sfxEnabled)return;
  cashRegisterSound.currentTime=0;
@@ -758,6 +800,7 @@ function produce(event){
 function sellAppleCrates(){
  if(tutorialActive()&&growGuideLines[state.tutorial])return;
  const crates=readyCrateCount();if(crates<1)return;
+ const firstSale=state.soldApples===0;
  const juice=sellingJuice(),sold=unitsInCrates(crates);
  const saleBonus=crates*(state.owned[2]*chefCrateBonus());
  const earnedCoins=crates*crateBasePrice()+saleBonus;
@@ -768,6 +811,7 @@ function sellAppleCrates(){
  state.soldProducts[juice?'juice':farmStage()===3?'laptops':'apples']+=sold;
  state.apples-=sold;state.soldApples+=sold;state.coins+=earnedCoins;state.earnedCoins+=earnedCoins;playCashRegisterSound();
  save();render();
+ if(state.skipTutorial&&firstSale)animateRecruitBoard();
  const saleNotice=farmStage()===3?'苹果电脑已售出':juice?'苹果汁箱已售出':'苹果箱已售出';
  const notice=[`${t(saleNotice)} +${number(earnedCoins)} ${t('金币')}`];
  if(saleBonus)notice.push(`${t('鱼人售货奖励')} +${number(saleBonus)} ${t('金币')}`);
@@ -795,7 +839,7 @@ $('buildings').innerHTML=RECRUITABLE_BUILDING_IDS.map(i=>{
    ${i===3?'':'<span class="recruit-ability"></span>'}
    ${unlock?`<span class="recruit-condition">${unlock.label}</span>`:''}
   </div>
-  <span class="recruit-price" aria-hidden="true"><img src="img/svg/level-one-coin.svg?v=1.0.197" alt=""><span></span></span>
+  <span class="recruit-price" aria-hidden="true"><img src="img/svg/level-one-coin.svg?v=1.0.235" alt=""><span></span></span>
  </div>`;
 }).join('');
 const recruitCards=[...$('buildings').children];
@@ -1483,6 +1527,7 @@ function renderAppleBasket(tutorialFocus){
  }
 }
 function render(){
+ if(previewFarm==='milk')return;
  renderConstruction();renderTutorial();
  const phone=document.querySelector('.phone');
  const stage=state.phase==='operation'?farmStage():1;
@@ -1533,7 +1578,7 @@ function render(){
   el.classList.toggle('unaffordable',show&&!affordable);
   el.classList.toggle('recruit-pulse',affordance.wasAffordable&&now<affordance.pulseUntil);
   const art=el.querySelector('.recruit-art');
-  const source=`img/svg/hiring/${RECRUIT_CARDS[i].art}${show?'':'-locked'}.svg?v=1.0.197`;
+  const source=`img/svg/hiring/${RECRUIT_CARDS[i].art}${show?'':'-locked'}.svg?v=1.0.235`;
   if(art.getAttribute('src')!==source)art.setAttribute('src',source);
   const ability=el.querySelector('.recruit-ability'),recruit=el.querySelector('.recruit-hit');
   const priceLabel=price<1e9?price.toLocaleString('en-US'):number(price);
@@ -2001,7 +2046,8 @@ const missionRows=new Map();
 for(const mission of MISSIONS){
  const row=document.createElement('article');
  row.className='mission-list-row';
- row.innerHTML='<img class="mission-row-fish" src="img/svg/mission-task-fish.svg?v=1.0.197" alt=""><div class="mission-row-copy"><b></b><div class="mission-row-track" role="progressbar"><i></i><span></span></div></div><button class="mission-row-reward"><img src="img/svg/level-one-coin.svg?v=1.0.197" alt=""><span></span></button>';
+ row.innerHTML='<img class="mission-row-fish" src="img/svg/mission-task-fish.svg?v=1.0.235" alt=""><div class="mission-row-copy"><b></b><div class="mission-row-track" role="progressbar"><i></i><span></span></div></div><button class="mission-row-reward"><img src="img/svg/level-one-coin.svg?v=1.0.235" alt=""><span></span></button>';
+ if(['apples','juice','laptops'].includes(mission.id))row.querySelector('.mission-row-fish').src='img/svg/mission-task-apple.svg?v=1.0.235';
  row.querySelector('button').onclick=()=>claimTask(mission.id);
  $('missionList').append(row);missionRows.set(mission.id,row);
 }
@@ -2019,7 +2065,7 @@ function claimTask(id){
  save();render();
 }
 function fullMissionListUnlocked(){
- return state.tutorial==='done'&&employeeCount()>=5&&state.missionUpgradeGuideComplete;
+ return state.skipTutorial?state.soldApples>0:state.tutorial==='done'&&employeeCount()>=5&&state.missionUpgradeGuideComplete;
 }
 function renderMissionList(){
  const full=fullMissionListUnlocked();
@@ -2027,7 +2073,7 @@ function renderMissionList(){
  $('missionList').hidden=!full;
  $('missionTask').hidden=full||missionStep()===4;
  const art=document.querySelector('.mission-board-art');
- const source='img/svg/'+(full?'mission-board-full':'mission-board')+'.svg?v=1.0.197';
+ const source='img/svg/'+(full?'mission-board-full':'mission-board')+'.svg?v=1.0.235';
  if(art.getAttribute('src')!==source)art.setAttribute('src',source);
  for(const mission of MISSIONS){
   const row=missionRows.get(mission.id),claimed=state.claimedMissions.includes(mission.id);
@@ -2053,7 +2099,7 @@ function renderRecruitGoal(){
  const step=missionStep();
  const closeReady=step===7&&state.tutorialTime>=missionLines[7].length*GUIDE_CHARACTER_SECONDS+.6;
  $('missionCloseTap').hidden=!closeReady||$('missionPanel').hidden;
- $('missionEntry').hidden=state.phase!=='operation'||tutorialActive()&&TUTORIAL_ORDER.indexOf(state.tutorial)<TUTORIAL_ORDER.indexOf('mission1');
+ $('missionEntry').hidden=state.phase!=='operation'||state.skipTutorial&&state.soldApples===0||tutorialActive()&&TUTORIAL_ORDER.indexOf(state.tutorial)<TUTORIAL_ORDER.indexOf('mission1');
  const count=Math.min(5,employeeCount()),complete=count>=5;
  $('missionDot').hidden=!complete||state.missionRewardClaimed;
  $('missionProgress').value=count;
@@ -2116,7 +2162,6 @@ function renderFactoryUpgrade(){
  entry.setAttribute('aria-label',t(title));
  setText($('factoryProgressLabel'),`Lv.${stage}`);
  entry.querySelector('.level-plus').hidden=!levelingUp;
- entry.style.setProperty('--level-progress',`${stage/3*100}%`);
  const canAfford=!!next&&state.coins+1e-9>=next.price;
  quick.hidden=true;
  quick.disabled=entry.disabled||quick.hidden||!canAfford;
@@ -2180,6 +2225,16 @@ $('quickFactoryUpgrade').onclick=performFactoryUpgrade;
 $('confirmFactoryUpgrade').onclick=performFactoryUpgrade;
 $('upgrades').addEventListener('click',e=>{const icon=e.target.closest('[data-inspect]');if(icon){selectedItem=selectedItem===icon.dataset.inspect?null:icon.dataset.inspect;renderVending();return}const b=e.target.closest('[data-upgrade]');if(b&&!b.disabled)buyUpgrade(b.dataset.upgrade)});
 $('buyItem').onclick=()=>{if(selectedItem)buyUpgrade(selectedItem)};
+function wardrobeWallet(){return previewFarm==='milk'&&milkBuild.tutorial?milkBuild.tutorial:state}
+function renderWardrobeWallet(){if(wardrobeOpen&&previewFarm==='milk'){$('coinBalance').textContent=number(wardrobeWallet().coins);$('balance').textContent=number(Math.floor(wardrobeWallet().stock))}}
+hydrateWardrobeCollection();
+let wardrobeCategory='helmet',wardrobeRarity='all',wardrobeUnlockedOnly=false;
+const wardrobeHistory=[];
+function rememberWardrobeOutfit(){
+ const fish=document.querySelector('.fish-character')?.contentWindow;
+ if(!fish?.characterWardrobeReady?.())return;
+ wardrobeHistory.push({...fish.getCharacterOutfit()});if(wardrobeHistory.length>20)wardrobeHistory.shift();
+}
 let wardrobeOpen=false,wardrobeMode='single',wardrobeSelected=null,wardrobeGridCategory=null,wardrobeInitTimer;
 const wardrobeItemKey=(category,id)=>category+':'+(id??'default');
 function initializeCharacterWardrobe(attempt=0){
@@ -2190,22 +2245,27 @@ function initializeCharacterWardrobe(attempt=0){
   return;
  }
  fish.document.body.classList.toggle('wardrobe-preview',wardrobeOpen);
- state.outfit=fish.restoreCharacterOutfit(state.outfit||{skin:'milk-frog',helmet:null});renderWardrobe();
+ state.outfit=fish.restoreCharacterOutfit(sanitizeWardrobeOutfit(state.outfit||{skin:'milk-frog',helmet:null}));renderWardrobe();
 }
 function renderWardrobe(){
- const category=wardrobeMode,groups=WARDROBE_CATEGORIES.filter(g=>category==='suit'?g.id==='suit':g.id!=='suit');
+ renderWardrobeWallet();
+ const category=wardrobeMode==='suit'?'suit':wardrobeCategory,groups=WARDROBE_CATEGORIES.filter(g=>g.id===category);
+ if(typeof renderWardrobeCategoryTabs==='function')renderWardrobeCategoryTabs(category);
  document.querySelectorAll('[data-wardrobe-mode]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.wardrobeMode===wardrobeMode)));
- if(wardrobeGridCategory!==category){
-  wardrobeGridCategory=category;
+ const gridSignature=category+':'+wardrobeRarity+':'+wardrobeUnlockedOnly+(wardrobeUnlockedOnly?':'+unlockedWardrobeCount():'');
+ if(wardrobeGridCategory!==gridSignature){
+  wardrobeGridCategory=gridSignature;
   const sections=groups.map(group=>{
    const section=document.createElement('section');section.className='wardrobe-group';section.dataset.clothingCategory=group.id;
    const title=document.createElement('h3');title.textContent=group.name;section.append(title);
    const grid=document.createElement('div');grid.className='wardrobe-group-grid';
-   for(const item of group.items){
+   for(const item of group.items.filter(item=>(wardrobeRarity==='all'||item.rarity===wardrobeRarity)&&(!wardrobeUnlockedOnly||isWardrobeItemUnlocked(group.id,item.id)))){
     const button=document.createElement('button');button.type='button';button.className='wardrobe-item';button.dataset.wardrobeItem=wardrobeItemKey(group.id,item.id);button.dataset.garmentCategory=group.id;button.dataset.garmentId=item.id??'';
-    button.setAttribute('aria-label',item.name);button.setAttribute('aria-pressed','false');
-    const img=document.createElement('img');img.src=item.icon;img.alt='';img.draggable=false;button.append(img);grid.append(button);
+    button.dataset.rarity=item.rarity;
+    button.setAttribute('aria-label',item.name+' · '+item.rarity+' '+t(WARDROBE_RARITIES[item.rarity]));button.setAttribute('aria-pressed','false');
+    const img=document.createElement('img');img.src=item.icon;img.alt='';img.draggable=false;const badge=document.createElement('span');badge.className='rarity-badge rarity-'+item.rarity;badge.textContent=item.rarity;button.append(img,badge);grid.append(button);
    }
+   if(!grid.children.length){const empty=document.createElement('p');empty.className='wardrobe-empty';empty.textContent=t(wardrobeUnlockedOnly?'还没有符合条件的已解锁服装':'暂无该等级服装');section.append(empty)}
    section.append(grid);return section;
   });
   $('wardrobeSlots').replaceChildren(...sections);
@@ -2213,19 +2273,27 @@ function renderWardrobe(){
  const outfit=state.outfit||{skin:'milk-frog',helmet:null};
  $('wardrobeSlots').querySelectorAll('[data-wardrobe-item]').forEach(button=>{
   const id=button.dataset.garmentId||null,wearing=(outfit[button.dataset.garmentCategory]??null)===id;
+  button.classList.toggle('gacha-collected',state.gachaOwned?.includes(button.dataset.wardrobeItem)||false);
   button.classList.toggle('wearing',wearing);button.classList.toggle('selected',button.dataset.wardrobeItem===wardrobeSelected);
-  button.setAttribute('aria-pressed',String(wearing));
+  const unlocked=isWardrobeItemUnlocked(button.dataset.garmentCategory,id);
+  button.disabled=!unlocked;button.classList.toggle('wardrobe-locked',!unlocked);
+  const item=wardrobeCatalogByKey.get(button.dataset.wardrobeItem);
+  const label=item.name+' · '+item.rarity+' '+t(WARDROBE_RARITIES[item.rarity])+(unlocked?'':' · '+t('未解锁，通过扭蛋获得'));
+  button.setAttribute('aria-label',label);button.title=label;
+  button.setAttribute('aria-pressed',String(wearing&&unlocked));
  });
 }
 $('wardrobeSlots').addEventListener('click',e=>{
- const button=e.target.closest('[data-wardrobe-item]');if(!button)return;
+ const button=e.target.closest('[data-wardrobe-item]');if(!button||!isWardrobeItemUnlocked(button.dataset.garmentCategory,button.dataset.garmentId||null))return;
  const fish=document.querySelector('.fish-character')?.contentWindow;if(!fish?.characterWardrobeReady?.())return;
+ rememberWardrobeOutfit();
  wardrobeSelected=button.dataset.wardrobeItem;
  state.outfit=fish.toggleCharacterGarment(button.dataset.garmentCategory,button.dataset.garmentId||null);
  save();renderWardrobe();
 });
 $('clearWardrobe').onclick=()=>{
  const fish=document.querySelector('.fish-character')?.contentWindow;if(!fish?.characterWardrobeReady?.())return;
+ rememberWardrobeOutfit();
  const skin=fish.getCharacterOutfit().skin;
  state.outfit=fish.restoreCharacterOutfit({skin});wardrobeSelected=null;save();renderWardrobe();
 };
@@ -2238,16 +2306,46 @@ function showWardrobe(open){
  $('wardrobeView').hidden=!open;$('wardrobeView').setAttribute('aria-hidden',String(!open));
  const fish=document.querySelector('.fish-character')?.contentWindow;if(fish?.document?.body)fish.document.body.classList.toggle('wardrobe-preview',open);
  if(open)renderWardrobe();
+ if(previewFarm==='milk'){$('milkFarmPreview').hidden=open;if(!open)window.MilkTutorial?.render()}
  if(open)$('wardrobeBack').focus({preventScroll:true});else $('openGacha').focus({preventScroll:true});
 }
 $('openGacha').onclick=()=>showWardrobe(true);
 $('wardrobeBack').onclick=()=>showWardrobe(false);
-$('wardrobeGacha').onclick=()=>notify('扭蛋机 · 功能准备中');
+// The Closet gacha module binds wardrobeGacha after game initialization.
 $('wardrobeOutdoor').onclick=()=>notify('未开放');
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&wardrobeOpen&&!document.querySelector('dialog[open]'))showWardrobe(false)});
 document.querySelectorAll('.placeholder').forEach(b=>b.onclick=()=>notify('这个功能稍后开放'));
 
-$('restart').onclick=()=>{if(!confirm(t('确定重新开始？当前苹果、金币、鱼人和升级进度将被清空。')))return;clearConstructionFlights();clearTutorialFlights();finishBuildEntrance();state=fresh();if(wardrobeOpen)showWardrobe(false);document.querySelectorAll('dialog[open]').forEach(d=>d.close());initializeCharacterWardrobe();displayed=0;workerQueue=[];rateDeferred=0;rateRoll=0;rateFlights=0;resetPurchaseSpeech();save();$('fx').replaceChildren();$('frenzyGlowLayer').replaceChildren();selectedItem=null;render();notify('新农场已开工')};
+function resetFarm(skipTutorial=false){
+ clearConstructionFlights();clearTutorialFlights();finishBuildEntrance();
+ for(const worker of workers.splice(0))retireWorkerFrame(worker.frame);
+ workerQueue=[];state=fresh();hydrateWardrobeCollection();wardrobeHistory.length=0;
+ if(wardrobeOpen)showWardrobe(false);
+ document.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());
+ if(skipTutorial){
+  state.skipTutorial=true;state.openingDialogueStep=2;finishTutorial();
+ }
+ initializeCharacterWardrobe();displayed=0;rateDeferred=0;rateRoll=0;rateFlights=0;
+ resetPurchaseSpeech();$('fx').replaceChildren();$('frenzyGlowLayer').replaceChildren();selectedItem=null;
+ save();render();notify('新农场已开工');
+}
+$('restart').onclick=()=>{if(confirm(t('确定重新开始？当前苹果、金币、鱼人和升级进度将被清空。')))resetFarm()};
+$('resetFromSettings').onclick=()=>{
+ const japanese=GameI18n.language==='ja',dialog=$('resetConfirmDialog');
+ $('resetConfirmArt').src=`img/svg/settings-confirm-${japanese?'ja':'en'}.svg?v=1.0.235`;
+ dialog.dataset.language=japanese?'ja':'en';
+ dialog.setAttribute('aria-label',japanese?'最初からやり直しますか？':'Reset your progress?');
+ $('cancelSettingsReset').setAttribute('aria-label',japanese?'キャンセル':'Cancel');
+ $('confirmSettingsReset').setAttribute('aria-label',japanese?'リセットする':'Reset');
+ dialog.showModal();$('cancelSettingsReset').focus();
+};
+$('cancelSettingsReset').onclick=()=>$('resetConfirmDialog').close();
+$('confirmSettingsReset').onclick=()=>{
+ if(previewFarm==='milk'){
+  document.querySelectorAll('dialog[open]').forEach(dialog=>dialog.close());
+  restartMilkBuild();milkBuild.skipTutorial=true;renderMilkBuild();
+ }else resetFarm(true);
+};
 // Reuse each exported Figma asset for both the scene and its stage bubble.
 const constructionBaseMarkup=$('constructionScene').querySelector('[data-build-step="0"]')?.innerHTML;
 function constructionImages(part){
@@ -2349,6 +2447,7 @@ function renderConstruction(){
  const guide=construction&&!openingDialogueActive()&&!wardrobeOpen;
  const complete=state.phase==='ready';
  phone.classList.toggle('construction-phase',construction);
+ phone.classList.toggle('skip-tutorial',state.skipTutorial===true);
  phone.classList.toggle('build-tutorial',guide);
  phone.classList.toggle('build-completed',complete);
  $('constructionPanel').hidden=!guide;
@@ -2363,7 +2462,7 @@ function renderConstruction(){
  const label=complete?'工厂完成！':clicks===0?'来建造工厂吧！':'建造中！';
  const remaining=BUILD_CLICKS_REQUIRED-clicks;
  const line=complete?'完成啦！做得好！':buildGuideLines.find(([step])=>clicks>=step)[1];
- setTypedGuide($('buildGuideText'),line);
+ if(!state.skipTutorial)setTypedGuide($('buildGuideText'),line);
  setText($('buildFactoryLabel'),label);
  const badge=$('buildGuideRemaining'),button=$('buildFactory');
  button.classList.toggle('build-not-started',clicks===0);
@@ -2403,6 +2502,7 @@ function showConstructionDust(x,y,kind='normal',sizeOverride=null){
  dust.innerHTML=`<svg class="construction-smoke" viewBox="-65 -65 130 130" overflow="visible"><defs><filter id="${id}" x="-50%" y="-50%" width="200%" height="200%" color-interpolation-filters="sRGB"><feMorphology in="SourceAlpha" operator="dilate" radius="${.65*.9/size}" result="edge"/><feFlood flood-color="#a5a5a5"/><feComposite in2="edge" operator="in"/><feMerge><feMergeNode/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs><g fill="#fafafa" filter="url(#${id})">${circles}</g></svg>`;
  document.body.append(dust);const effect={element:dust,timer:null};constructionDust.add(effect);
  effect.timer=setTimeout(()=>{dust.remove();constructionDust.delete(effect)},1750);
+ return effect;
 }
 
 function showFarmRebuildDust(stage=2){
@@ -2445,7 +2545,7 @@ function buildFactory(){
    showConstructionDust(scene.left+112*scale,scene.top+80*scale,'final');
    if(state.milestoneTimes.construction===null)state.milestoneTimes.construction=state.playSeconds;
    state.phase='ready';
-   beginBuildEntrance();
+   if(!state.skipTutorial)beginBuildEntrance();
   }
   save();render();
   if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
@@ -2468,7 +2568,7 @@ function startOperation(){
  const artwork=$('factoryArt'),previous=artwork.getBoundingClientRect();
  clearTimeout(toastTimer);$('toast').classList.remove('show');
  if(state.milestoneTimes.construction===null)state.milestoneTimes.construction=state.playSeconds;
- resetPurchaseSpeech();state.tutorial='start';state.tutorialTime=0;state.phase='operation';state.buildClicks=BUILD_CLICKS_REQUIRED;state.operationSeconds=0;state.guaranteedGold=freshGuaranteedGold();state.events=freshEvents();
+ resetPurchaseSpeech();state.tutorial=state.skipTutorial?'done':'start';state.tutorialTime=0;state.phase='operation';state.buildClicks=BUILD_CLICKS_REQUIRED;state.operationSeconds=0;state.guaranteedGold=freshGuaranteedGold();state.events=freshEvents();
  save();render();
  if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
   const current=artwork.getBoundingClientRect();artwork.getAnimations().forEach(a=>a.cancel());
@@ -2517,6 +2617,7 @@ function syncFeverAnimationSpeed(dt){
  }
 }
 function update(dt){
+ if(previewFarm==='milk'){window.MilkTutorial?.update(dt);updateMilkOperation(dt);return}
  const feverTime=Math.min(dt,state.events.frenzy);
  const animationDt=dt+(FEVER_ANIMATION_RATE-1)*feverTime;
  state.playSeconds+=dt;
@@ -2538,7 +2639,7 @@ function update(dt){
 function frame(now){const dt=last===null?0:Math.max(0,Math.min((now-last)/1000,.25));last=now;if(!document.hidden)update(dt);requestAnimationFrame(frame)}
 document.addEventListener('visibilitychange',()=>{last=null;save()});window.addEventListener('pagehide',save);
 window.advanceTime=ms=>{for(let left=ms;left>0;left-=50)update(Math.min(left,50)/1000)};
-window.render_game_to_text=()=>JSON.stringify({version:'1.0.197',language:GameI18n.language,phase:state.phase,construction:constructionProgress(),tutorial:state.tutorial,introRecruit:state.introRecruit,apples:state.apples,coins:state.coins,earnedCoins:state.earnedCoins,farmStage:farmStage(),juiceStartupTaps:state.juiceStartupTaps,computerStartupTaps:state.computerStartupTaps,factorySaleReady:factorySaleReady(),crateSize:currentCrateSize(),juiceBottles:sellingJuice()?Math.floor(state.apples):0,juiceCratePacked,firstCrateSize:FIRST_APPLE_CRATE_SIZE,total:state.total,soldApples:state.soldApples,playSeconds:state.playSeconds,milestoneTimes:state.milestoneTimes,operationSeconds:state.operationSeconds,guaranteedGold:state.guaranteedGold,factory:{...factoryProgress(),initialUpgradeCount:initialFarmCount(),firstUpgradeAcknowledged:state.firstUpgradeAcknowledged,enhancementLevel:Math.max(1,state.upgrades.length-2)},recruitGoal:{count:employeeCount(),choice:state.recruitGoalChoice,guide:state.recruitGoalGuide},events:state.events,globalMultiplier:upgradeEffects().global,roleEffects:{farmerApplesPerTap:state.owned[1]*farmerTapBonus(),chefCoinsPerCrate:state.owned[2]*chefCrateBonus(),autoSellInterval:state.owned[4]>0?autoSellInterval():null,kingCoinsPerUpgrade:state.owned[3]*kingUpgradeBonus()},cps:cps(),clickPower:clickPower(),buildings:RECRUITABLE_BUILDING_IDS.map(i=>{const b=BUILDINGS[i],unlock=RECRUIT_UNLOCKS[i];return {name:b.name,owned:state.owned[i],price:buildingCost(i),visible:visible(i),unlockConditionRevealed:!!unlock,unlockProgress:unlock?Math.min(unlock.value(),unlock.target):null,unlockTarget:unlock?.target??null}}),upgrades:state.upgrades,nextUpgrade:nextFarmPurchase()?.items[0]?.id||null,wardrobeOpen,outfit:state.outfit,constructionGuide:document.querySelector('.phone').classList.contains('build-tutorial')?$('buildGuideText').textContent:($('purchaseSpeech').hidden?null:$('speechMeasure').textContent),constructionCompleteOpen:$('constructionCompleteDialog').open,factoryUpgradeOpen:$('factoryUpgradeDialog').open});
+window.render_game_to_text=()=>JSON.stringify({version:'1.0.235',farm:previewFarm,previewOnly:previewFarm==='milk'&&!milkBuild.tutorial,milkBuild,language:GameI18n.language,phase:state.phase,construction:constructionProgress(),tutorial:state.tutorial,introRecruit:state.introRecruit,apples:state.apples,coins:state.coins,earnedCoins:state.earnedCoins,farmStage:farmStage(),juiceStartupTaps:state.juiceStartupTaps,computerStartupTaps:state.computerStartupTaps,factorySaleReady:factorySaleReady(),crateSize:currentCrateSize(),juiceBottles:sellingJuice()?Math.floor(state.apples):0,juiceCratePacked,firstCrateSize:FIRST_APPLE_CRATE_SIZE,total:state.total,soldApples:state.soldApples,playSeconds:state.playSeconds,milestoneTimes:state.milestoneTimes,operationSeconds:state.operationSeconds,guaranteedGold:state.guaranteedGold,factory:{...factoryProgress(),initialUpgradeCount:initialFarmCount(),firstUpgradeAcknowledged:state.firstUpgradeAcknowledged,enhancementLevel:Math.max(1,state.upgrades.length-2)},recruitGoal:{count:employeeCount(),choice:state.recruitGoalChoice,guide:state.recruitGoalGuide},events:state.events,globalMultiplier:upgradeEffects().global,roleEffects:{farmerApplesPerTap:state.owned[1]*farmerTapBonus(),chefCoinsPerCrate:state.owned[2]*chefCrateBonus(),autoSellInterval:state.owned[4]>0?autoSellInterval():null,kingCoinsPerUpgrade:state.owned[3]*kingUpgradeBonus()},cps:cps(),clickPower:clickPower(),buildings:RECRUITABLE_BUILDING_IDS.map(i=>{const b=BUILDINGS[i],unlock=RECRUIT_UNLOCKS[i];return {name:b.name,owned:state.owned[i],price:buildingCost(i),visible:visible(i),unlockConditionRevealed:!!unlock,unlockProgress:unlock?Math.min(unlock.value(),unlock.target):null,unlockTarget:unlock?.target??null}}),upgrades:state.upgrades,nextUpgrade:nextFarmPurchase()?.items[0]?.id||null,wardrobeOpen,outfit:state.outfit,constructionGuide:document.querySelector('.phone').classList.contains('build-tutorial')?$('buildGuideText').textContent:($('purchaseSpeech').hidden?null:$('speechMeasure').textContent),constructionCompleteOpen:$('constructionCompleteDialog').open,factoryUpgradeOpen:$('factoryUpgradeDialog').open});
 const produceArt=document.querySelector('.produce-visual');
 setActionArt(produceArt,produceArt.firstElementChild.getAttribute('src'));
 setupConstructionArtwork();render();resumeTutorial();if(FARM_UPGRADE_LINES[state.farmUpgradeGuide])speakTutorial(FARM_UPGRADE_LINES[state.farmUpgradeGuide]);if(!tutorialActive()&&FARM_GOAL_LINES[state.recruitGoalGuide])speakTutorial(FARM_GOAL_LINES[state.recruitGoalGuide]);requestAnimationFrame(frame);
@@ -2603,16 +2704,23 @@ $('catalogGrid').addEventListener('click',event=>{
 });
 
 function preserveProgressForLanguage(){
+ window.MilkTutorial?.settleFeed();
+ try{if(previewFarm==='milk'){sessionStorage.setItem('sea-game-preview-farm','milk');sessionStorage.setItem('sea-game-milk-build',JSON.stringify(milkBuild))}}catch{}
  save();try{sessionStorage.setItem('sea-game-language-progress',sessionStorage.getItem(KEY))}catch{}
 }
 $('languageSwitch').onclick=()=>{preserveProgressForLanguage();GameI18n.switchLanguage()};
 
 // Sound and language preferences are independent of farm progress.
 function renderSettings(){
+ $('resetFromSettings').disabled=false;
  $('sfxToggle').setAttribute('aria-pressed',String(sfxEnabled));
- setActionArt($('sfxToggle'),`img/svg/settings-sfx-${sfxEnabled?'on':'off'}.svg?v=1.0.197`);
- setActionArt(document.querySelector('.settings-music'),'img/svg/settings-music-off.svg?v=1.0.197');
- $('settingsLanguage').textContent={ja:'日本語',en:'English',zh:'简体中文'}[GameI18n.language];
+ setActionArt($('sfxToggle'),`img/svg/settings-sfx-${sfxEnabled?'on':'off'}.svg?v=1.0.235`);
+ $('musicToggle').setAttribute('aria-pressed',String(musicEnabled));
+ setActionArt($('musicToggle'),`img/svg/settings-music-${musicEnabled?'on':'off'}.svg?v=1.0.235`);
+ $('settingsPanelArt').src=`img/svg/settings-panel-${GameI18n.language}.svg?v=1.0.235`;
+ $('settingsStory').setAttribute('aria-label',GameI18n.language==='ja'?'ストーリー（準備中）':'Story (coming soon)');
+ $('settingsLanguage').textContent='';
+ $('settingsLanguage').setAttribute('aria-label',{ja:'日本語',en:'English',zh:'中国语'}[GameI18n.language]);
 }
 document.querySelector('.settings').onclick=event=>{
  event.stopPropagation();renderSettings();
@@ -2622,8 +2730,13 @@ $('closeSettings').onclick=()=>$('settingsDialog').close();
 $('sfxToggle').onclick=()=>{
  sfxEnabled=!sfxEnabled;
  try{localStorage.setItem('sea-game-sfx',sfxEnabled?'on':'off')}catch{}
- if(!sfxEnabled){recruitSound.pause();cashRegisterSound.pause();if(clickAudio?.state==='running')clickAudio.suspend().catch(()=>{})}
+ if(!sfxEnabled){stopCapsuleOpenSound();stopGachaMechanicalSound();recruitSound.pause();cashRegisterSound.pause();if(clickAudio?.state==='running')clickAudio.suspend().catch(()=>{})}
  renderSettings();
+};
+$('musicToggle').onclick=()=>{
+ musicActivated=true;musicEnabled=!musicEnabled;
+ try{localStorage.setItem('sea-game-music',musicEnabled?'on':'off')}catch{}
+ syncBackgroundMusic();renderSettings();
 };
 function chooseSettingsLanguage(direction){
  const languages=['ja','en','zh'],next=languages[(languages.indexOf(GameI18n.language)+direction+languages.length)%languages.length];
@@ -2656,3 +2769,164 @@ for(const dialog of document.querySelectorAll('dialog'))settingsDialogObserver.o
 window.addEventListener('resize',syncSettingsLauncher);
 window.addEventListener('scroll',syncSettingsLauncher,{passive:true});
 syncSettingsLauncher();
+
+// Milk Lv.1 is an isolated design preview until its production rules are built.
+function switchFarmPreview(farm,keepSettings=false){
+ if(farm===previewFarm)return;
+ if(previewFarm==='milk'){window.MilkTutorial?.settleFeed();clearMilkBuildDust()}
+ document.querySelectorAll('dialog[open]').forEach(dialog=>{if(!keepSettings||dialog.id!=='settingsDialog')dialog.close()});
+ $('missionPanel').hidden=true;
+ previewFarm=farm;
+ document.querySelector('.phone').classList.toggle('milk-preview-active',farm==='milk');
+ $('milkFarmPreview').hidden=farm!=='milk';
+ $('milkFarmPreview').inert=false;
+ $('testAppleFarm').hidden=farm!=='milk';
+ $('testMilkFarm').setAttribute('aria-pressed',String(farm==='milk'));
+ renderMilkBuild();
+ if(farm==='apple')render();
+ window.MilkTutorial?.render();
+}
+$('testMilkFarm').onclick=()=>{milkBuild.previewLevel=1;switchFarmPreview('milk');loadMilkBuildScene();renderMilkBuild()};
+$('testAppleFarm').onclick=()=>switchFarmPreview('apple');
+for(const button of document.querySelectorAll('.debug-events button')){
+ if(['testMilkFarm','testAppleFarm'].includes(button.id))continue;
+ button.addEventListener('click',event=>{
+  if(previewFarm==='milk'&&window.MilkTutorial?.fastForward(button.id)){event.stopImmediatePropagation();return}
+  switchFarmPreview('apple');
+ },{capture:true});
+}
+const MILK_BUILD_PARTS={
+ zh:['牛棚主体','乳牛、干草和挤奶设备','右上方储奶槽','输奶管道','粉红色储奶桶','浅蓝色奶槽','黄色加工机与阀门','灰色灌装机','输送带与支脚','奶瓶篮'],
+ ja:['牛舎','乳牛・干し草・搾乳設備','右上の貯乳タンク','送乳管','ピンクの貯乳タンク','水色のタンク','黄色の加工機とバルブ','灰色の充填機','コンベアと支柱','牛乳瓶のかご'],
+ en:['Cowshed','Cows, hay and milking equipment','Upper milk tank','Milk pipes','Pink storage tank','Blue tank','Yellow processor and valve','Grey filling machine','Conveyor and supports','Milk bottle basket']
+};
+let milkScenePromise=null,milkBuildSession=0;
+const milkBuildAnimations=new Set();
+function trackMilkAnimation(animation){
+ milkBuildAnimations.add(animation);
+ animation.finished.then(()=>milkBuildAnimations.delete(animation),()=>milkBuildAnimations.delete(animation));
+ return animation;
+}
+function loadMilkBuildScene(){
+ if(!milkScenePromise){
+  milkScenePromise=fetch('img/svg/milk-factory-level-one-build.svg?v=1.0.235').then(response=>{
+   if(!response.ok)throw Error('Milk construction artwork could not be loaded');
+   return response.text();
+  }).then(markup=>{
+   const root=new DOMParser().parseFromString(markup,'image/svg+xml').documentElement;
+   if(root.localName!=='svg')throw Error('Invalid milk construction artwork');
+   root.setAttribute('aria-hidden','true');
+   $('milkBuildScene').replaceChildren(document.importNode(root,true));
+   renderMilkBuild();
+  }).catch(()=>{milkScenePromise=null;notify('暂未开放')});
+ }
+ return milkScenePromise;
+}
+function renderMilkBuild(){
+ const level=milkBuild.previewLevel||1,advanced=level>1,scene=$('milkLevelScene');
+ $('milkFarmPreview').classList.toggle('milk-advanced-preview',advanced);
+ $('milkFarmPreview').dataset.milkLevel=String(level);
+ scene.hidden=!advanced;
+ if(advanced){
+  const source=`img/svg/milk-factory-level-${level}.svg?v=1.0.235`;
+  if(scene.getAttribute('src')!==source)scene.src=source;
+  scene.alt=`Milk Factory Lv.${level}`;
+ }
+ const root=$('milkBuildScene').querySelector('svg');
+ if(root){
+  root.dataset.buildClicks=milkBuild.clicks;root.dataset.buildPhase=milkBuild.phase;
+  root.classList.toggle('milk-operating',milkBuild.phase==='complete'&&previewFarm==='milk');
+  const liquid=root.querySelector('.milk-liquid');
+  if(liquid&&milkBuild.phase!=='complete')liquid.setAttribute('d','M310 309 C327 297 337 321 350 309 S376 296 390 308 V360 H310Z');
+  for(const group of root.querySelectorAll('[data-milk-step]')){
+   const step=Number(group.dataset.milkStep);
+   group.style.visibility=(step<=milkBuild.clicks||step===11&&milkBuild.clicks===10)?'visible':'hidden';
+  }
+  for(const group of root.querySelectorAll('[data-milk-operating-ui]'))group.style.visibility=milkBuild.phase==='complete'?'visible':'hidden';
+ }
+ const complete=milkBuild.clicks===10;
+ $('milkBuildControls').hidden=milkBuild.phase==='complete';
+ $('milkBuildButton').disabled=!root||milkBuild.phase==='entering'||milkBuild.phase==='complete';
+ $('milkBuildButton').classList.toggle('milk-build-ready',complete);
+ const label=t(complete?'工厂完成！':milkBuild.clicks===0?'来建造工厂吧！':'建造中！');
+ $('milkBuildLabel').textContent=label;
+ $('milkBuildButton').setAttribute('aria-label',complete?label:label+' '+constructionCopy('还需点击{count}次',{count:10-milkBuild.clicks}));
+ $('milkBuildCounter').textContent=(10-milkBuild.clicks).toString();
+ $('milkBuildCounter').hidden=complete;
+ $('milkBuildFinger').hidden=complete;
+ $('milkBuildGuideText').textContent=complete?t('工厂完成！'):milkBuild.clicks===0?t('点击我下面的按钮10次吧！'):
+  MILK_BUILD_PARTS[GameI18n.language][milkBuild.clicks-1]+' · '+t('已完成')+' ('+milkBuild.clicks+'/10)';
+ window.MilkTutorial?.render();
+}
+let milkOperationTime=0,milkWaveFrame=0;
+function updateMilkOperation(dt){
+ if(milkBuild.phase!=='complete'||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+ milkOperationTime+=dt;milkWaveFrame+=dt;
+ if(milkWaveFrame<1/30)return;
+ milkWaveFrame=0;
+ const liquid=$('milkBuildScene').querySelector('.milk-liquid');
+ if(!liquid)return;
+ const phase=milkOperationTime*3;
+ const left=309+Math.sin(phase)*6,right=308+Math.sin(phase+2)*6;
+ // Only the surface changes shape. The bottom extends below the tank's mask.
+ liquid.setAttribute('d',`M310 ${left} C327 ${left-18} 337 ${right+18} 350 309 S376 ${right-18} 390 ${right} V360 H310Z`);
+}
+function restartMilkBuild(){
+ milkOperationTime=0;milkWaveFrame=0;
+ clearMilkBuildDust();
+ milkBuildSession++;
+ for(const animation of milkBuildAnimations)animation.cancel();
+ milkBuildAnimations.clear();milkBuild={clicks:0,phase:'building'};
+ window.MilkTutorial?.reset();
+ renderMilkBuild();
+}
+async function enterMilkResident(){
+ const token=milkBuildSession,root=$('milkBuildScene').querySelector('svg'),resident=root.querySelector('#milkResident');
+ milkBuild.phase='entering';renderMilkBuild();
+ try{
+  if(!milkBuild.skipTutorial&&!matchMedia('(prefers-reduced-motion: reduce)').matches){
+   await trackMilkAnimation(resident.animate([{transform:'translateX(420px)'},{transform:'translateX(0)'}],{duration:1500,easing:'ease-out'})).finished;
+   if(token!==milkBuildSession)return;
+   const arm=root.querySelector('#milkResidentArm');
+   arm.style.transformOrigin='46.5px 467px';
+   await trackMilkAnimation(arm.animate([{transform:'rotate(0deg)'},{transform:'rotate(130deg)',offset:.3},{transform:'rotate(110deg)',offset:.45},{transform:'rotate(145deg)',offset:.6},{transform:'rotate(115deg)',offset:.75},{transform:'rotate(0deg)'}],{duration:1350,easing:'ease-in-out'})).finished;
+  }
+  if(token===milkBuildSession){milkBuild.phase='ready';renderMilkBuild()}
+ }catch{}
+}
+function clearMilkBuildDust(){
+ for(const effect of constructionDust){
+  if(effect.element.dataset.farm!=='milk')continue;
+  clearTimeout(effect.timer);effect.element.remove();constructionDust.delete(effect);
+ }
+}
+function showMilkBuildDust(root,step){
+ const groups=[...root.querySelectorAll(`[data-milk-step="${step}"]`)];
+ const boxes=groups.map(group=>group.getBoundingClientRect()).filter(box=>box.width&&box.height);
+ if(!boxes.length)return;
+ const scene=root.getBoundingClientRect(),scale=scene.width/402;
+ const left=Math.max(scene.left,Math.min(...boxes.map(box=>box.left)));
+ const right=Math.min(scene.right,Math.max(...boxes.map(box=>box.right)));
+ const top=Math.max(scene.top,Math.min(...boxes.map(box=>box.top)));
+ const bottom=Math.min(scene.bottom,Math.max(...boxes.map(box=>box.bottom)));
+ const columns=right-left>110*scale?2:1,rows=bottom-top>105*scale?2:1;
+ for(let row=0;row<rows;row++)for(let column=0;column<columns;column++){
+  const x=left+(column+.5)*(right-left)/columns,y=top+(row+.5)*(bottom-top)/rows;
+  const effect=showConstructionDust(x,y,'part');
+  if(effect)effect.element.dataset.farm='milk';
+ }
+}
+$('milkBuildButton').onclick=()=>{
+ if(previewFarm!=='milk'||milkBuild.phase==='entering')return;
+ if(milkBuild.clicks===10){milkBuild.phase='complete';renderMilkBuild();return}
+ milkBuild.clicks++;renderMilkBuild();playPopSound();
+ const root=$('milkBuildScene').querySelector('svg');
+ showMilkBuildDust(root,milkBuild.clicks);
+ if(!matchMedia('(prefers-reduced-motion: reduce)').matches){
+  for(const group of root.querySelectorAll(`[data-milk-step="${milkBuild.clicks}"]`)){
+   trackMilkAnimation(group.animate([{opacity:0,transform:'translateY(8px)'},{opacity:1,transform:'translateY(0)'}],{duration:380,easing:'ease-out'}));
+  }
+ }
+ if(milkBuild.clicks===10)enterMilkResident();
+};
+try{if(sessionStorage.getItem('sea-game-preview-farm')==='milk'){sessionStorage.removeItem('sea-game-preview-farm');const savedMilk=JSON.parse(sessionStorage.getItem('sea-game-milk-build'));sessionStorage.removeItem('sea-game-milk-build');if(savedMilk&&Number.isInteger(savedMilk.clicks)&&savedMilk.clicks>=0&&savedMilk.clicks<=10)milkBuild={clicks:savedMilk.clicks,phase:savedMilk.phase==='entering'?'ready':savedMilk.phase,tutorial:savedMilk.tutorial,skipTutorial:savedMilk.skipTutorial===true,previewLevel:[2,3].includes(savedMilk.previewLevel)?savedMilk.previewLevel:1};switchFarmPreview('milk',true);loadMilkBuildScene()}}catch{}

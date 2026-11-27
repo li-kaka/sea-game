@@ -1,0 +1,170 @@
+/* Closet.svg dressing room: live character above a three-column category drawer. */
+.phone.wardrobe-open,.phone.wardrobe-open.golden-frenzy{background:#fff0f6 url('img/closet/room.svg?v=1.0.235') center/100% 100% no-repeat}
+.phone.wardrobe-open .mission-entry,.phone.wardrobe-open .fish-character-shadow,.phone.wardrobe-open .wardrobe-outdoor{display:none!important}
+.phone.wardrobe-open .balance{display:flex!important;visibility:visible!important;top:2.8%;left:38%;right:14%;z-index:30}
+.phone.wardrobe-open .fish-character{left:5%;width:90%;height:95%;top:-17%;z-index:1!important}
+.phone.wardrobe-open .wardrobe-back{left:4.3%;right:auto;top:8%;bottom:auto;width:15.8cqw;height:15.8cqw;gap:.5cqw;border:1px solid #30221e;outline:.8cqw solid white;border-radius:1.7cqw;background:#fffce7;box-shadow:inset 0 0 0 .7cqw #f6dccb;color:#c96b5c}
+.phone.wardrobe-open .wardrobe-back svg{width:6cqw;height:6cqw}
+.phone.wardrobe-open .wardrobe-back span{font-size:2.6cqw;color:#71483d}
+.phone.wardrobe-open .wardrobe-gacha{left:4%;top:37.3%;bottom:auto;width:17cqw;height:25cqw}
+.phone.wardrobe-open .wardrobe-gacha .action-caption{bottom:-2.7cqw;border:0;border-radius:4cqw;background:#fff8f2;font-size:2.7cqw;padding:.5cqw 3cqw}
+.wardrobe-inventory{top:53.3%;border:0;border-radius:0;background:#fbf7ed;overflow:hidden;box-shadow:none}
+.wardrobe-toolbar,.wardrobe-legend{display:none}
+.closet-category-tabs{display:flex;align-items:center;gap:1cqw;flex:0 0 17.7cqw;min-height:0;overflow-x:auto;overflow-y:hidden;padding:1cqw;background:#382f2a;scrollbar-width:none;overscroll-behavior-x:contain}
+.closet-category-tabs::-webkit-scrollbar{display:none}
+.closet-category-tabs button{flex:0 0 14cqw;width:14cqw;height:15.2cqw;padding:2.5cqw;border:0;border-radius:2.7cqw;background:none;display:grid;place-items:center;cursor:pointer}
+.closet-category-tabs img{display:block;width:100%;height:100%;object-fit:contain;filter:brightness(0) invert(.95);pointer-events:none}
+.closet-category-tabs button[aria-pressed=true]{background:#f8f3eb}
+.closet-category-tabs button[aria-pressed=true] img{filter:brightness(0)}
+.closet-category-tabs button:focus-visible{outline:2px solid #f48bb7;outline-offset:-2px}
+.wardrobe-scroll{padding:4cqw 8cqw 4cqw 3.8cqw;scrollbar-width:thin;scrollbar-color:#ef8db6 #e8ddcd;scrollbar-gutter:stable;flex:1}
+.wardrobe-scroll::-webkit-scrollbar{width:2cqw}.wardrobe-scroll::-webkit-scrollbar-track{background:#e8ddcd;border-radius:2cqw}.wardrobe-scroll::-webkit-scrollbar-thumb{background:#ef8db6;border-radius:2cqw}
+.wardrobe-group{display:block;margin:0;border:0;border-radius:0;background:none}
+.wardrobe-group h3{display:none}.wardrobe-group-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:3cqw;padding:0}
+.wardrobe-item{aspect-ratio:1;min-width:0;padding:2cqw;background:#eee7d9;border:1px solid transparent;border-radius:2.8cqw;box-shadow:none}
+.wardrobe-item img{width:100%;height:100%;max-height:none;object-fit:contain}
+.wardrobe-item.wearing{background:#ffe5ef;border-color:#f78fb8}
+.wardrobe-item.selected{background:#ffe5ef;border:1px solid #f78fb8;outline:0}
+.wardrobe-group[data-clothing-category=suit] .wardrobe-item{aspect-ratio:110/196;padding:2.5cqw}
+.wardrobe-item.gacha-collected::after{right:1cqw;top:1cqw;font-size:2.8cqw}
+.closet-quick-actions{position:absolute;right:3%;top:35.5%;display:flex;flex-direction:column;gap:2cqw;pointer-events:auto}
+.closet-quick-actions button{display:grid;place-items:center;width:10.5cqw;height:10.5cqw;border:1px solid #7d716c;outline:.8cqw solid #fff;border-radius:50%;box-shadow:inset 0 0 0 .8cqw #fff7,0 .3cqw #0003;background:#fff3a6;color:#282426;padding:2.2cqw}
+.closet-quick-actions button:nth-child(2){background:#f184af}.closet-quick-actions button:nth-child(3){background:#c7edf2}
+.closet-quick-actions button svg{display:block;width:100%;height:100%}
+.closet-quick-actions button:disabled{opacity:.55}
+.phone.wardrobe-open .fish-character{left:-3%;width:106%;top:-18%}
+.closet-category-tabs button{position:relative}
+.closet-category-tabs img{position:absolute;inset:2.5cqw;width:calc(100% - 5cqw);height:calc(100% - 5cqw);min-height:0;min-width:0}
+.wardrobe-item img{position:absolute;inset:8%;width:84%;height:84%;min-height:0;min-width:0}
+
+/* Gacha.svg full-scene overlay; shell artwork comes from the eight supplied variants. */
+#gachaDialog{position:fixed;inset:0;width:var(--gacha-width,min(100vw,46dvh));height:var(--gacha-height,100dvh);max-width:100vw;max-height:100dvh;margin:auto;padding:0;border:0;border-radius:0;overflow:hidden;background:transparent;box-shadow:none;container-type:inline-size;color:white}
+#gachaDialog::backdrop{background:rgb(39 31 35 / 44%);backdrop-filter:blur(4px)}
+#gachaDialog .gacha-header{display:contents}
+#gachaTitle,#gachaPrice{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+#gachaDialog .gacha-wallet{position:absolute;left:38%;top:2.65%;width:20%;height:5.6cqw;display:flex;align-items:center;justify-content:flex-end;background:#ffe49e;border:1px solid #342e27;border-radius:10cqw;outline:.9cqw solid white;color:#fff;font-size:2.8cqw;font-weight:bold;padding:0 1.5cqw 0 5cqw;-webkit-text-stroke:.45cqw #000;paint-order:stroke fill;z-index:5}
+#gachaDialog .gacha-wallet img{position:absolute;left:-2cqw;top:50%;transform:translateY(-50%);width:7.5cqw;height:7.5cqw}
+#gachaDialog #gachaBalance{padding:0;margin:0;background:none;border:0;border-radius:0;white-space:nowrap;line-height:1}
+#gachaDialog .gacha-scene{position:absolute;inset:0;display:block;min-height:0;background:none}
+#gachaDialog .gacha-machine{position:absolute;left:21.65%;top:24.3%;width:56.7%;height:41.88%;max-width:none;object-fit:contain;filter:drop-shadow(0 0 9cqw #fff7ba99)}
+#gachaDialog .gacha-primary{position:absolute;left:23%;top:68.5%;width:54%;height:6%;min-height:0;padding:0 2cqw;margin:0;border:.5cqw solid #ff91af;outline:1cqw solid white;border-radius:20cqw;background:#fff39a;box-shadow:inset 0 1cqw 0 #fff7;color:#ff5980;font:900 6.5cqw/1 inherit;-webkit-text-stroke:1.1cqw white;paint-order:stroke fill;white-space:nowrap;display:grid;place-items:center;z-index:4}
+#gachaDialog .gacha-primary:disabled{background:#d4cebd;color:#8f8685;-webkit-text-stroke:0;border-color:#b0a9a2;opacity:1}
+#gachaDialog #gachaClose{position:absolute;right:4%;top:2%;width:8cqw;height:8cqw;min-height:0;padding:0;margin:0;border:1px solid #fff9;background:#fff2;color:white;font-size:0;z-index:7;border-radius:50%;line-height:1}
+#gachaDialog #gachaClose::before{content:'×';font-size:6cqw}
+#gachaDialog #gachaHint{position:absolute;left:12%;right:12%;top:76%;margin:0;color:white;font-size:3cqw;line-height:1.6;text-shadow:0 1px 3px #0009}
+#gachaDialog[data-stage=machine] #gachaHint{display:none}
+#gachaDialog .gacha-capsule{position:absolute;left:17%;top:28%;width:66%;height:32%;border:0;margin:0;padding:0;background:none;filter:drop-shadow(0 0 10cqw #fff8c9aa);animation:gacha-capsule-drop .45s cubic-bezier(.2,.8,.3,1)}
+#gachaDialog .gacha-capsule img{display:block;width:100%;height:100%;object-fit:contain}
+#gachaDialog .gacha-result{position:absolute;inset:0;width:auto;padding:0;animation:none}
+.gacha-reveal-art{position:absolute;top:16%;left:0;width:100%;height:54%;filter:drop-shadow(0 0 7cqw #fff7b8);pointer-events:none}
+.gacha-reveal-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;will-change:transform}
+#gachaDialog .gacha-prize{position:absolute;left:29%;top:35%;width:42%;height:20%;margin:0;border:0;border-radius:0;background:none;box-shadow:none;z-index:2}
+#gachaDialog .gacha-prize img{width:100%;height:100%;object-fit:contain}
+#gachaDialog #gachaWear{top:75%;left:26%;width:48%;height:7.5%}
+#gachaDialog #gachaNew{position:absolute;top:12%;left:0;width:100%;padding:0;border:0;background:none;color:#fff8b6;font-size:4cqw;text-shadow:0 .4cqw #805b45}
+#gachaDialog #gachaItemName{position:absolute;top:69.5%;left:5%;width:90%;margin:0;color:#fff;font-size:3.4cqw;line-height:1.3;text-shadow:0 1px 3px #0008}
+#gachaDialog #gachaAgain{position:absolute;top:89%;left:32%;width:36%;min-height:0;margin:0;padding:1.5cqw;border:1px solid #fff9;background:#fff2;color:white;border-radius:4cqw;font-size:3cqw}
+#gachaDialog[data-stage=result] #gachaHint{top:84%;font-size:2.8cqw}
+#gachaDialog[data-stage=opening] :is(#gachaWear,#gachaAgain,#gachaHint,#gachaNew,#gachaItemName){visibility:hidden}
+#gachaDialog[data-stage=opening] .gacha-shell-top{animation:gacha-lid-open .85s cubic-bezier(.2,.7,.2,1) both}
+#gachaDialog[data-stage=opening] .gacha-shell-bottom{animation:gacha-bowl-open .85s cubic-bezier(.2,.7,.2,1) both}
+#gachaDialog[data-stage=opening] .gacha-prize{animation:gacha-prize-reveal .85s ease-out both}
+@keyframes gacha-capsule-drop{0%{transform:translateY(-7cqw) rotate(-12deg);opacity:0}70%{transform:translateY(1cqw) rotate(4deg);opacity:1}100%{transform:translateY(0) rotate(0);opacity:1}}
+@keyframes gacha-lid-open{0%,12%{transform:translateY(16%) rotate(0)}65%{transform:translateY(-2%) rotate(-3deg)}100%{transform:translateY(0) rotate(0)}}
+@keyframes gacha-bowl-open{0%,12%{transform:translateY(-16%)}75%{transform:translateY(1%)}100%{transform:translateY(0)}}
+@keyframes gacha-prize-reveal{0%,25%{transform:translateY(8cqw) scale(.45);opacity:0}75%{transform:translateY(-1cqw) scale(1.04);opacity:1}100%{transform:translateY(0) scale(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){#gachaDialog .gacha-capsule,#gachaDialog .gacha-shell-top,#gachaDialog .gacha-shell-bottom,#gachaDialog .gacha-prize{animation:none}}
+#gachaDialog{width:min(100vw,46dvh,500px);height:auto;aspect-ratio:402/874}
+#gachaDialog .gacha-primary{font-family:inherit;font-weight:900;font-size:6.5cqw;line-height:1}
+#gachaDialog #gachaClose{left:4%;right:auto;top:8.2%}
+.gacha-reveal-art img{will-change:auto}
+#gachaDialog[data-stage=opening] .gacha-reveal-art img{will-change:transform}
+
+/* One bounded draw sequence: press, turn the original handle, shake, then dispense. */
+#gachaDialog .gacha-machine-rig{position:absolute;left:21.65%;top:24.3%;width:56.7%;height:41.88%;transform-origin:50% 95%}
+#gachaDialog .gacha-machine-rig .gacha-machine{inset:0;width:100%;height:100%;max-width:none}
+.gacha-knob{position:absolute;left:53.51%;top:76.78%;width:20.18%;height:12.57%;object-fit:contain;transform-origin:center}
+.gacha-ejected{position:absolute;left:29%;top:80%;width:18%;height:12%;object-fit:contain;pointer-events:none}
+#gachaDialog[data-stage=spinning] .gacha-machine-rig{animation:gacha-machine-shake 1.1s ease-in-out both;will-change:transform}
+#gachaDialog[data-stage=spinning] .gacha-knob{animation:gacha-handle-turn 1.1s cubic-bezier(.3,.1,.3,1) both;will-change:transform}
+#gachaDialog[data-stage=spinning] #gachaDraw{animation:gacha-draw-press .22s ease-out both;background:#fff39a;color:#ff5980;-webkit-text-stroke:1.1cqw white;border-color:#ff91af}
+#gachaDialog[data-stage=spinning] .gacha-ejected{animation:gacha-dispense 1.1s ease-in both}
+#gachaDialog[data-stage=spinning] #gachaHint{display:none}
+#gachaDialog #gachaDraw:not(:disabled):active{transform:translateY(.8cqw) scale(.96)}
+@keyframes gacha-draw-press{0%{transform:translateY(0) scale(1)}45%{transform:translateY(1cqw) scale(.94)}100%{transform:translateY(0) scale(1)}}
+@keyframes gacha-handle-turn{0%,10%{transform:rotate(0)}65%,100%{transform:rotate(360deg)}}
+@keyframes gacha-machine-shake{0%,12%,95%,100%{transform:translateX(0) rotate(0)}25%{transform:translateX(-.8cqw) rotate(-2deg)}37%{transform:translateX(.8cqw) rotate(2deg)}49%{transform:translateX(-.6cqw) rotate(-1.5deg)}61%{transform:translateX(.6cqw) rotate(1.5deg)}73%{transform:translateX(-.3cqw) rotate(-.8deg)}85%{transform:translateX(.3cqw) rotate(.8deg)}}
+@keyframes gacha-dispense{0%,68%{transform:translateY(0) scale(.8);opacity:0}73%{transform:translateY(1cqw) scale(1);opacity:1}100%{transform:translateY(16cqw) rotate(35deg) scale(1.35);opacity:1}}
+@media(prefers-reduced-motion:reduce){#gachaDialog .gacha-machine-rig,#gachaDialog .gacha-knob,#gachaDialog #gachaDraw,#gachaDialog .gacha-ejected{animation:none!important}}
+
+/* Original individual capsules tumble behind the glass and stay inside its bowl. */
+.gacha-inner-capsule{transform-box:fill-box;transform-origin:center}
+#gachaDialog[data-stage=spinning] .gacha-inner-capsule{animation:gacha-capsules-tumble 1.1s ease-in-out both;will-change:transform}
+/* Skip outer drop shadows during motion; retain each capsule's own highlights. */
+#gachaDialog[data-stage=spinning] .gacha-inner-capsule>g{filter:none}
+@keyframes gacha-capsules-tumble{
+ 0%,9%{transform:translate(0,0) rotate(0)}
+ 30%{transform:translate(var(--capsule-x1),var(--capsule-y1)) rotate(var(--capsule-turn))}
+ 51%{transform:translate(var(--capsule-x2),var(--capsule-y2)) rotate(var(--capsule-reverse))}
+ 72%{transform:translate(var(--capsule-x3),var(--capsule-y3)) rotate(var(--capsule-settle))}
+ 88%{transform:translate(var(--capsule-x4),var(--capsule-y4)) rotate(0)}
+ 100%{transform:translate(0,0) rotate(0)}
+}
+@media(prefers-reduced-motion:reduce){#gachaDialog .gacha-inner-capsule{animation:none!important}}
+
+/* Shared N/R/SR levels for individual garments and complete outfits. */
+.wardrobe-rarity-filters{display:flex;align-items:center;gap:1.5cqw;padding:2cqw 3.8cqw 0;flex-shrink:0;background:#fbf7ed}
+.wardrobe-rarity-filters button{flex:1;min-width:0;padding:1.1cqw .5cqw;min-height:7cqw;border:1px solid #d1c5b5;border-radius:3cqw;background:#fffaf1;color:#65574d;font:inherit;font-size:2.8cqw;white-space:nowrap}
+.wardrobe-rarity-filters button[aria-pressed=true]{background:#382f2a;border-color:#382f2a;color:#fff}
+.rarity-badge{position:absolute;right:1cqw;bottom:1cqw;min-width:5cqw;padding:.4cqw 1.1cqw;border-radius:2cqw;font:bold 2.6cqw/1.2 system-ui,sans-serif;text-align:center;border:1px solid;pointer-events:none}
+.rarity-N{color:#5d665c;background:#edf1e9;border-color:#c2cdbd}.rarity-R{color:#1c638d;background:#dff1ff;border-color:#8fc2e6}.rarity-SR{color:#845200;background:#fff0ab;border-color:#d5ad3b}
+.wardrobe-item.gacha-collected::after{left:1cqw;right:auto}
+.wardrobe-empty{margin:8cqw 0;text-align:center;font-size:3.3cqw;color:#77685d}
+#gachaDialog #gachaNew[data-rarity=N]{color:#edf1e9}
+#gachaDialog #gachaNew[data-rarity=R]{color:#c8eaff}
+#gachaDialog #gachaNew[data-rarity=SR]{color:#fff09a;text-shadow:0 0 2cqw #e0ac43,0 .4cqw #805b45}
+
+/* Locked items stay visible for discovery, but cannot be equipped. */
+.wardrobe-unlock-status{flex-shrink:0;margin:1.7cqw 4cqw 0;color:#7a6e61;font-size:2.7cqw;line-height:1.4}
+.wardrobe-item.wardrobe-locked:disabled{opacity:1;cursor:not-allowed;background:#e5e2dd;border-color:transparent;outline:0}
+.wardrobe-item.wardrobe-locked img{filter:grayscale(1);opacity:.35}
+.wardrobe-item.wardrobe-locked .rarity-badge{color:#96938d;background:#dedbd5;border-color:#c5c1bb}
+.wardrobe-item.wardrobe-locked::before{content:'🔒';position:absolute;top:1.2cqw;left:1.2cqw;font-size:2.8cqw;filter:grayscale(1);opacity:.65;pointer-events:none}
+
+.wardrobe-unlock-row{display:flex;align-items:center;justify-content:space-between;gap:2cqw;padding:1.5cqw 3.8cqw 0;flex-shrink:0}
+.wardrobe-unlock-row .wardrobe-unlock-status{margin:0;font-size:2.4cqw}
+#wardrobeUnlockedOnly{flex-shrink:0;min-height:6.8cqw;padding:1cqw 2cqw;border:1px solid #c7b9a7;border-radius:3cqw;background:#fffaf1;color:#66594f;font:inherit;font-size:2.5cqw;white-space:nowrap}
+#wardrobeUnlockedOnly[aria-pressed=true]{background:#382f2a;border-color:#382f2a;color:white}
+#wardrobeUnlockedOnly[aria-pressed=true]::before{content:'✓ ';font-weight:bold}
+/* The shared closet is also reachable from the Dairy farm's mirror. */
+.milk-wardrobe-entry{position:absolute;left:84.2%;top:17.1%;width:12.5%;height:7%;z-index:2;padding:0;border:0;background:none;box-shadow:none}
+.phone.milk-preview-active.wardrobe-open>:is(.balance,.fish-character,#wardrobeView){visibility:visible!important;pointer-events:auto!important}
+
+/* SVG build parts set visibility explicitly; hide the farm container itself. */
+.phone.wardrobe-open :is(.stage,.construction-panel,.juice-factory-scene,.computer-factory-art){display:none!important}
+
+/* Button artwork and positions follow Closet.svg, on its 402 × 874 canvas. */
+.phone.wardrobe-open .wardrobe-back{left:3.2338%;top:7.6659%;width:17.6617cqw;height:16.9154cqw;border:0;outline:0;padding:0;background:none;box-shadow:none}
+.phone.wardrobe-open .wardrobe-back img,.closet-quick-actions button>img{display:block;width:100%;height:100%;pointer-events:none}
+.closet-quick-actions{left:85.8209%;right:auto;top:34.7826%;gap:0}
+.closet-quick-actions button{width:12.4378cqw;height:12.4378cqw;padding:0;border:0;outline:0;border-radius:50%;background:none!important;box-shadow:none}
+.phone.wardrobe-open .wardrobe-gacha{left:2.2388%;top:36.3844%;width:19.9005cqw;height:34.3284cqw}
+.phone.wardrobe-open .wardrobe-gacha>img{display:block;width:100%;height:100%;max-width:none;max-height:none;object-fit:contain}
+.closet-category-tabs{gap:0;padding:1.2438cqw;flex-basis:17.5871cqw;touch-action:pan-x;user-select:none;cursor:grab}
+.closet-category-tabs.is-dragging{cursor:grabbing}
+.closet-category-tabs button{flex:0 0 15.0995cqw;width:15.0995cqw;height:15.0995cqw;padding:0;border-radius:2.4876cqw;cursor:inherit}
+.closet-category-tabs img{inset:0;width:100%;height:100%;pointer-events:none}
+
+/* Gacha controls use the supplied outlined labels and their design coordinates. */
+#gachaDialog :is(#gachaDraw,#gachaWear,#gachaClose){padding:0;border:0;outline:0;box-shadow:none;background:none!important;-webkit-text-stroke:0;filter:none;border-radius:0}
+#gachaDialog :is(#gachaDraw,#gachaWear,#gachaClose)>img{display:block;width:100%;height:100%;object-fit:contain;pointer-events:none}
+#gachaDialog #gachaDraw{left:21.6418%;top:67.9176%;width:56.4677%;height:6.8078%}
+#gachaDialog #gachaWear{left:24.6269%;top:74.0847%;width:51.7413%;height:10.0686%}
+#gachaDialog #gachaClose{left:3.2338%;right:auto;top:7.6659%;width:17.6617cqw;height:16.9154cqw}
+#gachaDialog #gachaClose::before{content:none}
+#gachaDialog :is(#gachaNew,#gachaItemName,#gachaAgain){display:none!important}
+#gachaDialog #gachaHint{position:absolute!important;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+#gachaDialog :is(#gachaDraw,#gachaWear,#gachaClose):focus-visible{outline:2px solid #004a86;outline-offset:3px}
+
+/* Keep categories directly above the clothes, without rarity or collection captions. */
+.wardrobe-rarity-filters,.wardrobe-unlock-row,.wardrobe-item .rarity-badge{display:none!important}

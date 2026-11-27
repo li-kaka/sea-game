@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 402 874" fill="none"><g><rect width="402" height="874" fill="#FFE6F0" />
+<g clip-path="url(#clip1_1389_132017)">
+<rect x="304" width="66" height="325" fill="#F6DCE6" />
+<rect x="168" width="66" height="325" fill="#F6DCE6" />
+<rect x="32" width="66" height="325" fill="#F6DCE6" />
+<rect x="-10" y="316" width="422" height="162" stroke-width="20" stroke="#D8929E" />
+<rect x="-1" y="325" width="404" height="144" fill="#E5D2D2" stroke-width="2" stroke="#915965" />
+<path d="M-5 352H402" stroke-width="2" stroke="#D0B0BA" />
+<path d="M-5 382H402" stroke-width="2" stroke="#D0B0BA" />
+<path d="M-5 412H402" stroke-width="2" stroke="#D0B0BA" />
+<path d="M-5 442H402" stroke-width="2" stroke="#D0B0BA" />
+<path d="M377.134 412L402 442.5M353.5 382.169L329.5 352" stroke-width="2" stroke="#D0B0BA" />
+<path d="M201 326V351" stroke-width="2" stroke="#D0B0BA" />
+<path d="M198 441V466" stroke-width="2" stroke="#D0B0BA" />
+<path d="M24.3662 412L-0.5 442.5M48 382.169L72 352" stroke-width="2" stroke="#D0B0BA" />
+<path d="M350 397.535C350 430.929 283.738 458 202 458C120.262 458 54 430.929 54 397.535C54 364.141 120.262 333 202 333C283.738 333 350 364.141 350 397.535Z" fill="#EC96B8" />
+<use xlink:href="#stroke0_1389_132017" fill="#EC96B8" />
+<mask id="stroke1_1389_132017" maskUnits="userSpaceOnUse" x="89" y="353" width="225" height="85" fill="black">
+<rect fill="white" x="89" y="353" width="225" height="85" />
+<use xlink:href="#stroke0_1389_132017" />
+</mask>
+<path d="M308 396.688C308 416.19 260.318 432 201.5 432C142.682 432 95 416.19 95 396.688C95 377.186 142.682 359 201.5 359C260.318 359 308 377.186 308 396.688Z" stroke-width="12" stroke="#FFDFBB" mask="url(#stroke1_1389_132017)" />
+</g>
+<path d="M290 395.265C290 407.821 249.929 418 200.5 418C151.071 418 111 407.821 111 395.265C111 382.709 151.071 371 200.5 371C249.929 371 290 382.709 290 395.265Z" fill="#898989" fill-opacity="0.5" />
+</g><defs>
+<clipPath id="clip1_1389_132017">
+<rect width="402" height="466" fill="white" />
+</clipPath>
+<path id="stroke0_1389_132017" d="M308 396.688C308 416.19 260.318 432 201.5 432C142.682 432 95 416.19 95 396.688C95 377.186 142.682 359 201.5 359C260.318 359 308 377.186 308 396.688Z" />
+</defs>
+</svg>

@@ -15,3 +15,6 @@ img{-webkit-user-drag:none}
 
 /* Extend upward while keeping the original wardrobe preview's ground at 68% of the phone. */
 body.wardrobe-preview .preview{height:71.5789474%}
+/* Upstream studio navigation stays outside the embedded character view. */
+.category-dock,.catalog-total,.color-category-transfer,.color-categories{display:none!important}
+main::before{display:none!important}
