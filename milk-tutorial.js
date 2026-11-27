@@ -6,14 +6,14 @@ window.MilkTutorial=(()=>{
  const ui=document.createElement('div');ui.className='milk-tutorial-ui';
  ui.innerHTML=`
   <div class="milk-live-hud">
-   <img class="milk-header-art" src="img/svg/milk-header.svg?v=1.0.243" alt="">
+   <img class="milk-header-art" src="img/svg/milk-header.svg?v=1.0.244" alt="">
    <button class="milk-level" data-milk-action="upgrade" aria-label="Lv.1 ＋"></button>
    <span class="milk-coins"><b>0</b></span>
    <span class="milk-stock"><b>0</b></span>
   </div>
-  <div class="milk-guide-stock"><img src="img/svg/milk-guide-stock.svg?v=1.0.243" alt=""><b>0</b></div>
-  <div class="milk-guide-coins"><img src="img/svg/milk-guide-coins.svg?v=1.0.243" alt=""><b>0</b></div>
-  <div class="milk-live-rate"><img src="img/svg/milk-bottle.svg?v=1.0.243" alt=""><b>+0/s</b></div>
+  <div class="milk-guide-stock"><img src="img/svg/milk-guide-stock.svg?v=1.0.244" alt=""><b>0</b></div>
+  <div class="milk-guide-coins"><img src="img/svg/milk-guide-coins.svg?v=1.0.244" alt=""><b>0</b></div>
+  <div class="milk-live-rate"><img src="img/svg/milk-bottle.svg?v=1.0.244" alt=""><b>+0/s</b></div>
   <button class="milk-wardrobe-entry" data-milk-action="wardrobe" aria-label="着替え" hidden></button>
   <button class="milk-mission-entry" data-milk-action="mission"><img src="img/svg/mission-icon.svg" alt=""><i hidden></i></button>
   <button class="milk-live-produce" data-milk-action="produce"><span class="milk-produce-title"></span><small class="milk-produce-caption"></small></button>
@@ -23,7 +23,7 @@ window.MilkTutorial=(()=>{
   <div class="milk-tutorial-dialogue build-guide-dialogue" hidden><img src="img/svg/build-guide-fish.svg" alt=""><span role="status" data-translated></span></div>
   <img class="milk-tutorial-finger" src="img/svg/build-guide-tap.svg" alt="" hidden>
   <div class="milk-mission-board" role="dialog" aria-label="Mission Board" hidden>
-   <img class="mission-close-tap milk-mission-close-finger" src="img/svg/sell-guide-tap.svg?v=1.0.243" alt="" hidden>
+   <img class="mission-close-tap milk-mission-close-finger" src="img/svg/sell-guide-tap.svg?v=1.0.244" alt="" hidden>
    <div class="milk-mission-art" aria-hidden="true"></div>
    <button class="milk-panel-close" data-milk-action="closeMission" aria-label="关闭任务板">×</button>
    <div class="milk-mission-tasks"></div>
@@ -173,7 +173,7 @@ window.MilkTutorial=(()=>{
    const price=Math.ceil(BUILDINGS[i].price*Math.pow(1.15,data.owned[i]));
    const ready=unlocked&&data.coins>=price&&data.owned[i]<RECRUIT_LIMITS[i];
    card.classList.toggle('locked',!unlocked);card.classList.toggle('unaffordable',unlocked&&!ready);
-   card.querySelector('.recruit-art').src=`img/svg/hiring/${RECRUIT_CARDS[i].art}${unlocked?'':'-locked'}.svg?v=1.0.243`;
+   card.querySelector('.recruit-art').src=`img/svg/hiring/${RECRUIT_CARDS[i].art}${unlocked?'':'-locked'}.svg?v=1.0.244`;
    card.querySelector('.recruit-count').textContent=data.owned[i]||'';
    card.querySelector('.recruit-name').textContent=unlocked?t(BUILDINGS[i].name):'？？？';
    card.querySelector('.recruit-price span').textContent=data.owned[i]>=RECRUIT_LIMITS[i]?'MAX':number(price);
@@ -186,14 +186,14 @@ window.MilkTutorial=(()=>{
  function renderMission(){
   const data=progress(),tasks=q('.milk-mission-tasks'),full=fullMissionBoard(),copy=missionCopy[GameI18n.language];
   q('.milk-mission-board').classList.toggle('milk-full-mission-board',full);
-  setActionArt(q('.milk-mission-art'),'img/svg/'+(full?'mission-board-full':'mission-board')+'.svg?v=1.0.243',false);
+  setActionArt(q('.milk-mission-art'),'img/svg/'+(full?'mission-board-full':'mission-board')+'.svg?v=1.0.244',false);
   const definitions=full?dairyMissions():dairyMissions().filter(item=>item.id==='hire');
   tasks.replaceChildren(...definitions.map(mission=>{
    const {id,target}=mission,value=Math.min(target,Math.max(0,mission.value)),claimed=data.claimedMissions.includes(id);
    const row=document.createElement('article');row.className='mission-list-row milk-mission-task';row.dataset.mission=id;
    const ready=!claimed&&value>=target&&(step()==='mission8'||full);
    row.classList.toggle('task-ready',ready);row.classList.toggle('task-claimed',claimed);
-   const fish=document.createElement('img');fish.className='mission-row-fish';fish.src=`img/svg/mission-task-${mission.coins?'fish':'cow'}.svg?v=1.0.243`;fish.alt='';
+   const fish=document.createElement('img');fish.className='mission-row-fish';fish.src=`img/svg/mission-task-${mission.coins?'fish':'cow'}.svg?v=1.0.244`;fish.alt='';
    const words=document.createElement('div');words.className='mission-row-copy';
    const name=document.createElement('b');const sharedMission=MISSIONS.find(item=>item.id===id);
    const title=['build','hire','unlock'].includes(id)?t(sharedMission.label):(full?missionTitleCopy[GameI18n.language][id]:milkCopy('雇用5名员工！'));
@@ -203,7 +203,7 @@ window.MilkTutorial=(()=>{
    const fill=document.createElement('i');fill.style.width=value/target*100+'%';
    const amount=document.createElement('span');amount.textContent=value+'/'+target;track.append(fill,amount);words.append(name,track);
    const prize=document.createElement('button');prize.className='mission-row-reward';prize.dataset.milkAction='claim-'+id;prize.disabled=!ready;
-   if(mission.coins){prize.classList.add('milk-money-prize');const coin=document.createElement('div');coin.className='milk-money-prize-art';coin.setAttribute('aria-hidden','true');setActionArt(coin,'img/svg/milk-money-prize.svg?v=1.0.243',false);prize.append(coin)}
+   if(mission.coins){prize.classList.add('milk-money-prize');const coin=document.createElement('div');coin.className='milk-money-prize-art';coin.setAttribute('aria-hidden','true');setActionArt(coin,'img/svg/milk-money-prize.svg?v=1.0.244',false);prize.append(coin)}
    else{
     prize.classList.add('milk-outfit-reward');
     const icon=document.createElementNS('http://www.w3.org/2000/svg','svg');icon.setAttribute('viewBox','0 0 32 32');icon.setAttribute('aria-hidden','true');
@@ -214,7 +214,7 @@ window.MilkTutorial=(()=>{
    if(mission.outfit){
     row.classList.add('milk-outfit-task');
     const art=document.createElement('div');art.className='milk-outfit-task-art';art.setAttribute('aria-hidden','true');
-    setActionArt(art,`img/svg/milk-outfit-mission-${claimed?'done':ready?'complete':'progress'}.svg?v=1.0.243`,false);
+    setActionArt(art,`img/svg/milk-outfit-mission-${claimed?'done':ready?'complete':'progress'}.svg?v=1.0.244`,false);
     row.append(art);
    }
    row.append(fish,words,prize);return row;
@@ -266,7 +266,10 @@ window.MilkTutorial=(()=>{
   q('.milk-level').disabled=!complete||!['mission10','mission11','done'].includes(s);
   q('.milk-coins b').textContent=q('.milk-guide-coins b').textContent=number(data.coins);q('.milk-stock b').textContent=q('.milk-guide-stock b').textContent=number(Math.floor(data.stock));
   q('.milk-live-rate b').textContent='+'+precise(data.owned[0]*.2)+'/s';
-  const produce=q('.milk-live-produce'),sell=q('.milk-live-sell');produce.hidden=sell.hidden=!complete;
+  const produce=q('.milk-live-produce'),sell=q('.milk-live-sell');
+  const artworkLanguage=GameI18n.language==='ja'?'ja':'frame';
+  renderButtonArt(produce,`img/svg/milk-produce-${artworkLanguage}.svg?v=1.0.244`);
+  renderButtonArt(sell,`img/svg/milk-sell-${artworkLanguage}.svg?v=1.0.244`);produce.hidden=sell.hidden=!complete;
   produce.disabled=!canProduce();sell.disabled=!canSell();
   sell.style.zIndex=canSell()&&['growComplete','sellIntro'].includes(s)?'8':'';
   produce.querySelector('.milk-produce-title').textContent=label('produce');
@@ -326,7 +329,7 @@ window.MilkTutorial=(()=>{
  function feedCow(){
   const data=progress(),session=milkBuild;
   data.feeds=(data.feeds||0)+1;
-  const hay=document.createElement('img');hay.className='milk-feed-hay';hay.src='img/svg/cow-food.svg?v=1.0.243';hay.alt='';host.append(hay);
+  const hay=document.createElement('img');hay.className='milk-feed-hay';hay.src='img/svg/cow-food.svg?v=1.0.244';hay.alt='';host.append(hay);
   const width=host.clientWidth,height=host.clientHeight;
   const button=q('.milk-live-produce').getBoundingClientRect();
   const counter=q('.milk-guide-stock').hidden?q('.milk-stock'):q('.milk-guide-stock');
