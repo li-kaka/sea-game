@@ -1056,7 +1056,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 #frenzyGlowLayer{position:fixed;inset:0;z-index:9;overflow:hidden;pointer-events:none;mix-blend-mode:plus-lighter}
 #frenzyGlowLayer .frenzy-glow{mix-blend-mode:normal;color:#fff34c;-webkit-text-fill-color:#fff34c;-webkit-text-stroke:0;text-shadow:0 0 .25em #fff98a,0 0 .7em #ffe92d,0 0 1.25em #ffdf3299;filter:blur(3px);opacity:.7}
 .frenzy-number:not(.frenzy-glow){text-shadow:none}
-#testBuildComplete,#testFiveEmployees,#testFarmLevelTwo,#testFarmLevelThree,#testUnlockAllRecruits{font-size:11px}
+
 
 /* Shared currency and crate sales stay inside the existing HUD and action area. */
 .balance strong{padding-right:22cqw}
@@ -1091,7 +1091,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 
 /* Apple Factory Level 1: SVG scenery with live game controls above it. */
 .phone:not(.wardrobe-open){
- background:#4eb5ff url("img/svg/level-one-scene.svg?v=1.0.236") center / 100% 100% no-repeat;
+ background:#4eb5ff url("img/svg/level-one-scene.svg?v=1.0.243") center / 100% 100% no-repeat;
 }
 .phone>header{top:2.5%;left:4%;right:3%;height:9cqw;justify-content:space-between}
 .phone .nameplate{
@@ -1284,13 +1284,13 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 /* Hiring Section artwork uses a 402 × 159 design grid. */
 .phone .building-shop{
  top:82.61%;border:0;border-radius:0;padding:0;overflow:visible;
- background:#edba69 url("img/svg/hiring/board.svg?v=1.0.236") center / 100% 100% no-repeat;
+ background:#edba69 url("img/svg/hiring/board.svg?v=1.0.243") center / 100% 100% no-repeat;
 }
 .phone .building-shop::before{display:none}
 .phone .building-shop .shop-head{position:absolute;inset:0 0 auto;height:18%;padding:0;z-index:6;pointer-events:none}
 .phone .building-shop .shop-head::before{
  content:'';position:absolute;left:35.82%;top:6.99%;width:28.36%;height:94.34%;
- background:url("img/svg/hiring/board-title.svg?v=1.0.236") center / 100% 100% no-repeat;
+ background:url("img/svg/hiring/board-title.svg?v=1.0.243") center / 100% 100% no-repeat;
 }
 .phone .building-shop h1{
  position:absolute;left:36.6%;top:11%;width:25.7%;height:82%;
@@ -1346,7 +1346,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 .recruit-price{
  position:absolute;inset:87.1% 0 3.45%;
  display:flex;align-items:center;justify-content:center;gap:.7cqw;padding:.1cqw .8cqw 0;
- background:url("img/svg/hiring/price.svg?v=1.0.236") center / 100% 100% no-repeat;
+ background:url("img/svg/hiring/price.svg?v=1.0.243") center / 100% 100% no-repeat;
  font:700 2.75cqw/1 Itim,sans-serif;color:#211a13;white-space:nowrap;pointer-events:none;
 }
 .recruit-price img{width:2.4cqw;height:2.4cqw}
@@ -1369,7 +1369,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 
 /* The first farm upgrade reveals the juice factory. */
 .phone.farm-level-two:not(.wardrobe-open){
- background-image:url("img/svg/level-two-scene.svg?v=1.0.236");
+ background-image:url("img/svg/level-two-scene.svg?v=1.0.243");
 }
 .farm-level-two .factory-art .operating-factory-art,
 .farm-level-two .factory-art .golden-art,
@@ -1393,7 +1393,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 
 /* Keep the Level 3 factory visible through later enhancements. */
 .phone.farm-level-three:not(.wardrobe-open){
- background-image:url("img/svg/level-three-scene.svg?v=1.0.236");
+ background-image:url("img/svg/level-three-scene.svg?v=1.0.243");
 }
 /* Match the resident's resting pose to the fishman at the right of the 402 × 874 design. */
 .phone.farm-level-three:not(.wardrobe-open) :is(.fish-character,.fish-character-shadow){
@@ -1470,7 +1470,7 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
  inset:50% auto auto 50%;width:96.52cqw;height:26.12cqw;
  transform:translate(-50%,-50%);
  border:0;border-radius:0;
- background:url('img/svg/build-guide-button.svg?v=1.0.236') center / 100% 100% no-repeat;
+ background:url('img/svg/build-guide-button.svg?v=1.0.243') center / 100% 100% no-repeat;
 }
 .phone.build-tutorial .build-factory > img{opacity:0;position:absolute;left:9%}
 .phone.build-tutorial .build-factory > span{
@@ -1481,19 +1481,19 @@ h1>span img{width:4.6cqw;height:4.6cqw;display:block}
 html:lang(ja) .phone.build-tutorial .build-factory > span{
  position:absolute;inset:0;color:transparent;-webkit-text-stroke:0;
  background:var(--build-label-art) center / 100% 100% no-repeat;
- --build-label-art:url('img/svg/build-label-progress.svg?v=1.0.236');
+ --build-label-art:url('img/svg/build-label-progress.svg?v=1.0.243');
 }
 html:lang(ja) .phone.build-tutorial .build-factory.build-not-started > span{
- --build-label-art:url('img/svg/build-label-start.svg?v=1.0.236');
+ --build-label-art:url('img/svg/build-label-start.svg?v=1.0.243');
 }
 html:lang(ja) .phone.build-tutorial.build-completed .build-factory > span{
  color:transparent;
- --build-label-art:url('img/svg/build-label-complete.svg?v=1.0.236');
+ --build-label-art:url('img/svg/build-label-complete.svg?v=1.0.243');
 }
 .build-guide-remaining{
  position:absolute;z-index:2;left:44.03%;top:78.72%;
  width:12.44cqw;height:6.97cqw;display:grid;place-items:center;
- background:url('img/svg/build-guide-count.svg?v=1.0.236') center / contain no-repeat;
+ background:url('img/svg/build-guide-count.svg?v=1.0.243') center / contain no-repeat;
  color:#000;font-size:3.5cqw;font-weight:900;
 }
 .build-guide-tap{
@@ -1501,7 +1501,7 @@ html:lang(ja) .phone.build-tutorial.build-completed .build-factory > span{
  width:25.5cqw;height:auto;
 }
 .phone.build-tutorial.build-completed .build-factory::before{
- background-image:url('img/svg/build-guide-button-complete.svg?v=1.0.236');
+ background-image:url('img/svg/build-guide-button-complete.svg?v=1.0.243');
 }
 .phone.build-tutorial.build-completed .build-factory > span{color:#a7470d}
 .build-completed .build-guide-tap{display:none}
@@ -1663,7 +1663,7 @@ html:lang(ja) .phone.build-tutorial.build-completed .build-factory > span{
  display:block;position:absolute;left:8.5%;top:89.3%;width:12.5cqw;height:auto;
 }
 .phone:is([data-hire-step="hireFirst"],[data-hire-step="employee"],[data-hire-step="rateFlying"],[data-hire-step="rate"],[data-hire-step="hireSkills"],[data-hire-step="hireHelp"]) .building-shop{
- background-image:linear-gradient(rgb(70 70 70 / 48%),rgb(70 70 70 / 48%)),url("img/svg/hiring/board.svg?v=1.0.236");
+ background-image:linear-gradient(rgb(70 70 70 / 48%),rgb(70 70 70 / 48%)),url("img/svg/hiring/board.svg?v=1.0.243");
 }
 .phone:is([data-hire-step="hireFirst"],[data-hire-step="employee"],[data-hire-step="rateFlying"],[data-hire-step="rate"],[data-hire-step="hireSkills"],[data-hire-step="hireHelp"]) :is(.shop-head,.recruit-card:not([data-building="0"])){
  filter:brightness(.69) contrast(.725);
@@ -1754,7 +1754,7 @@ body:has(.phone[data-mission-step="11"]) .mission-upgrade-hint{display:block;fon
 /* Apple Rate.svg supplies the frame and apple, with the live production value overlaid. */
 .phone .rate{
  width:19.403cqw;height:6.965cqw;padding:0;border:0;border-radius:0;
- background:url('img/svg/apple-rate.svg?v=1.0.236') center / 100% 100% no-repeat;
+ background:url('img/svg/apple-rate.svg?v=1.0.243') center / 100% 100% no-repeat;
  box-shadow:none;gap:0;
 }
 .phone .rate .rate-unit{display:none}
@@ -1793,7 +1793,7 @@ body:has(.phone[data-mission-step="11"]) .mission-upgrade-hint{
 }
 body:has(.phone[data-mission-step="11"]) .mission-upgrade-hint::before{
  content:'';position:absolute;left:-44px;top:-12px;width:70px;height:70px;
- background:url('img/svg/build-guide-fish.svg?v=1.0.236') center / contain no-repeat;
+ background:url('img/svg/build-guide-fish.svg?v=1.0.243') center / contain no-repeat;
 }
 
 /* Mission 9–11 returns to a guided overlay after normal play. */
@@ -1814,7 +1814,7 @@ body:has(.phone[data-mission-step="11"]) #factoryUpgradeDialog::backdrop{backgro
  position:fixed;left:50%;top:var(--upgrade-panel-top,27vh);transform:translateX(-50%);
  margin:0;width:calc(var(--upgrade-game-width,402px) * 265 / 402);
  height:auto;aspect-ratio:265/188;max-height:none;padding:0;border:0;border-radius:0;
- overflow:visible;box-shadow:none;background:url('img/svg/next-level-panel.svg?v=1.0.236') center / 100% 100% no-repeat;
+ overflow:visible;box-shadow:none;background:url('img/svg/next-level-panel.svg?v=1.0.243') center / 100% 100% no-repeat;
 }
 #factoryUpgradeDialog :is(h2,#factoryStageCount,.farm-dialog-level,.upgrade-caption,#factoryNextEffect,#factoryNextHint,#openNewFactory){display:none}
 #factoryUpgradeDialog #factoryNext{position:absolute;inset:0}
@@ -1830,7 +1830,7 @@ body:has(.phone[data-mission-step="11"]) #factoryUpgradeDialog::backdrop{backgro
  padding:0;border:0;border-radius:30px;box-shadow:none;background:none;color:transparent;font-size:0;
 }
 #factoryUpgradeDialog.can-upgrade #confirmFactoryUpgrade{
- background:url('img/svg/level-up-ready.svg?v=1.0.236') center / 100% 100% no-repeat;
+ background:url('img/svg/level-up-ready.svg?v=1.0.243') center / 100% 100% no-repeat;
 }
 #factoryUpgradeDialog.can-upgrade #confirmFactoryUpgrade::after{content:none}
 #factoryUpgradeDialog #closeFactoryUpgrade{
@@ -1931,8 +1931,8 @@ html:lang(en) .action-caption{font-size:1.9cqw}
 html:lang(en) .grow-guide-dialogue{font-size:2.8cqw}
 html:lang(en) .build-guide-dialogue{font-size:2.7cqw}
 
-html:lang(en) #factoryUpgradeDialog{background-image:url('img/svg/next-level-panel-en.svg?v=1.0.236')}
-html:lang(zh-CN) #factoryUpgradeDialog{background-image:url('img/svg/next-level-panel-zh.svg?v=1.0.236')}
+html:lang(en) #factoryUpgradeDialog{background-image:url('img/svg/next-level-panel-en.svg?v=1.0.243')}
+html:lang(zh-CN) #factoryUpgradeDialog{background-image:url('img/svg/next-level-panel-zh.svg?v=1.0.243')}
 html:lang(en) .recruit-english{display:none}
 html:lang(en) .recruit-card:not(.locked) .recruit-name{inset:82% 1% 0;display:flex;align-items:center;justify-content:center;font-size:1.9cqw}
 html:lang(en) .mission-entry::after,html:lang(zh-CN) .mission-entry::after{content:'Missions';position:absolute;left:1%;right:1%;bottom:1%;height:18%;display:grid;place-items:center;background:#fff8db;border-radius:2cqw;color:#111;font:900 1.8cqw 'Futehodo Maru Gothic',sans-serif}
@@ -1982,10 +1982,10 @@ body:has(.milk-preview-active) :is(#fx,#frenzyGlowLayer){visibility:hidden}
 .milk-build-scene>svg,.milk-build-scene>img{display:block;width:100%;height:100%}
 .milk-build-controls{pointer-events:none}
 .milk-build-guide{top:65.4%;font-family:var(--game-font)}
-.milk-build-button{position:absolute;left:6.846%;top:72.319%;width:86.07%;height:7.388%;padding:0;border:0;background:url('img/svg/build-guide-button.svg?v=1.0.236') center/112% 140% no-repeat;box-shadow:none;pointer-events:auto}
+.milk-build-button{position:absolute;left:6.846%;top:72.319%;width:86.07%;height:7.388%;padding:0;border:0;background:url('img/svg/build-guide-button.svg?v=1.0.243') center/112% 140% no-repeat;box-shadow:none;pointer-events:auto}
 .milk-build-button>span{color:#004a86;font:900 6.1cqw 'Futehodo Maru Gothic',var(--game-font);-webkit-text-stroke:1.2cqw white;paint-order:stroke fill}
 .milk-build-button:disabled{opacity:1;cursor:default}
-.milk-build-button.milk-build-ready{background-image:url('img/svg/build-guide-button-complete.svg?v=1.0.236')}
+.milk-build-button.milk-build-ready{background-image:url('img/svg/build-guide-button-complete.svg?v=1.0.243')}
 .milk-build-button.milk-build-ready>span{color:#a7470d}
 .milk-build-counter{position:absolute;top:79.2%;left:43%;width:14%;padding:.7cqw;border:1px solid #111;border-radius:5cqw;background:white;color:#111;text-align:center;font-size:3cqw}
 .milk-build-finger{position:absolute;left:75%;top:72.5%;width:23%;height:auto;transform-origin:30% 25%}
@@ -1993,7 +1993,7 @@ body:has(.milk-preview-active) :is(#fx,#frenzyGlowLayer){visibility:hidden}
 html:lang(zh-CN) .milk-build-button>span{font-family:'Lemi Yuanqi Tuantuan',KNMaiyuan,sans-serif;font-weight:400}
 
 /* Milk reuses Apple dialogue content while keeping its game progress isolated. */
-.milk-tutorial-ui{position:absolute;inset:0;pointer-events:none}
+.milk-tutorial-ui{position:absolute;inset:0;z-index:3;pointer-events:none}
 .milk-tutorial-ui button{pointer-events:auto;font-family:var(--game-font);cursor:pointer}
 .milk-tutorial-ui [hidden]{display:none!important}
 .milk-live-hud{position:absolute;left:3%;top:2.5%;width:84%;height:6%;display:flex;align-items:center;gap:1.5%;z-index:2}
@@ -2058,18 +2058,18 @@ html:lang(zh-CN) .milk-build-button>span{font-family:'Lemi Yuanqi Tuantuan',KNMa
 .milk-live-hud>.milk-level{position:absolute;left:3%;top:9%;width:34%;height:75%;padding:0;background:none;border:0;border-radius:0;box-shadow:none}
 .milk-live-hud>.milk-coins,.milk-live-hud>.milk-stock{position:absolute;top:39.2692%;height:27.6154%;margin:0;padding:0;background:none;border:0;box-shadow:none;border-radius:0;font:900 3cqw 'Futehodo Maru Gothic',var(--game-font);color:#111;-webkit-text-stroke:.65cqw white;paint-order:stroke fill;text-align:center;line-height:1;display:flex;align-items:center;justify-content:center}
 .milk-live-hud>.milk-coins{left:44.7761%;width:13.2338%}.milk-live-hud>.milk-stock{left:69.6517%;width:15.9701%}
-.milk-live-produce{left:5.9701%;top:65.103%;width:87.0647%;height:6.1785%;display:block;gap:0;padding:0;border:0;border-radius:0;background:url('img/svg/milk-produce-frame.svg?v=1.0.236') center/100% 100% no-repeat;box-shadow:none}
+.milk-live-produce{left:5.9701%;top:65.103%;width:87.0647%;height:6.1785%;display:block;gap:0;padding:0;border:0;border-radius:0;background:url('img/svg/milk-produce-frame.svg?v=1.0.243') center/100% 100% no-repeat;box-shadow:none}
 .milk-produce-title{position:absolute;left:43.5%;top:12%;width:34%;text-align:center;font:900 3.65cqw 'Futehodo Maru Gothic',var(--game-font);line-height:1.2;color:#111;-webkit-text-stroke:.7cqw white;paint-order:stroke fill}
 .milk-produce-caption{position:absolute;left:36%;top:58%;width:48%;font-size:2.1cqw;font-weight:900;line-height:1.1;color:#111}
-.milk-live-sell{left:5.9701%;top:70.7094%;width:91.0448%;height:9.4966%;display:block;gap:0;padding:0;border:0;border-radius:0;background:url('img/svg/milk-sell-frame.svg?v=1.0.236') center/100% 100% no-repeat;box-shadow:none;text-align:center}
+.milk-live-sell{left:5.9701%;top:70.7094%;width:91.0448%;height:9.4966%;display:block;gap:0;padding:0;border:0;border-radius:0;background:url('img/svg/milk-sell-frame.svg?v=1.0.243') center/100% 100% no-repeat;box-shadow:none;text-align:center}
 .milk-live-sell:disabled{filter:none;opacity:1}
 .milk-sale-title{position:absolute;left:22%;top:36%;width:15%;font-size:2.25cqw;font-weight:900;line-height:1;color:#111;-webkit-text-stroke:.65cqw white;paint-order:stroke fill}
 .milk-sale-progress{position:absolute;left:19.7%;top:57%;width:17%;font-size:2.6cqw;line-height:1;white-space:nowrap;font-weight:900;color:#111;-webkit-text-stroke:.65cqw white;paint-order:stroke fill}
 .milk-reward-title{position:absolute;left:47%;top:36%;width:17%;font-size:2.3cqw;line-height:1;font-weight:900;color:#111;-webkit-text-stroke:.65cqw white;paint-order:stroke fill}
 .milk-sale-reward{position:absolute;left:52%;top:57%;width:11%;font-size:3cqw;font-weight:900;line-height:1;color:#111;-webkit-text-stroke:.65cqw white;paint-order:stroke fill}
 .milk-live-sell strong{position:absolute;left:68%;top:40%;width:23%;margin:0;padding:0;border:0;border-radius:0;background:none;box-shadow:none;font:900 5cqw 'Futehodo Maru Gothic',var(--game-font);line-height:1;color:#d45200;-webkit-text-stroke:1cqw white;paint-order:stroke fill}
-html:lang(ja) .milk-live-produce{background-image:url('img/svg/milk-produce-ja.svg?v=1.0.236')}
-html:lang(ja) .milk-live-sell{background-image:url('img/svg/milk-sell-ja.svg?v=1.0.236')}
+html:lang(ja) .milk-live-produce{background-image:url('img/svg/milk-produce-ja.svg?v=1.0.243')}
+html:lang(ja) .milk-live-sell{background-image:url('img/svg/milk-sell-ja.svg?v=1.0.243')}
 html:lang(ja) :is(.milk-produce-title,.milk-produce-caption,.milk-sale-title,.milk-reward-title,.milk-live-sell strong){visibility:hidden}
 .milk-live-sell:disabled::after{content:'';position:absolute;left:65.5%;top:26.5%;width:27%;height:59%;border-radius:7cqw;background:#bbb;mix-blend-mode:color;pointer-events:none}
 .milk-feed-hay{position:absolute;left:0;top:0;width:14%;height:auto;z-index:9;pointer-events:none;will-change:transform,opacity}
@@ -2114,7 +2114,7 @@ html:lang(zh-CN) :is(.milk-produce-title,.milk-sale-title,.milk-reward-title){fo
 .phone .milk-farm-preview[data-milk-guide-kind="hire"] .milk-tutorial-dialogue{left:var(--milk-hire-left);top:var(--milk-hire-top);width:var(--milk-hire-width)}
 .milk-farm-preview[data-milk-guide-kind="grow"] .milk-live-produce{animation:grow-guide-glow .9s ease-in-out infinite alternate}
 .milk-farm-preview:is([data-milk-tutorial="growComplete"],[data-milk-tutorial="start"]) .milk-live-produce{animation:none}
-.milk-farm-preview:is([data-milk-tutorial="hireFirst"],[data-milk-tutorial="employee"],[data-milk-tutorial="rateFlying"],[data-milk-tutorial="rate"],[data-milk-tutorial="hireSkills"],[data-milk-tutorial="hireHelp"]) .milk-live-hiring{background-image:linear-gradient(rgb(70 70 70 / 48%),rgb(70 70 70 / 48%)),url('img/svg/hiring/board.svg?v=1.0.236')}
+.milk-farm-preview:is([data-milk-tutorial="hireFirst"],[data-milk-tutorial="employee"],[data-milk-tutorial="rateFlying"],[data-milk-tutorial="rate"],[data-milk-tutorial="hireSkills"],[data-milk-tutorial="hireHelp"]) .milk-live-hiring{background-image:linear-gradient(rgb(70 70 70 / 48%),rgb(70 70 70 / 48%)),url('img/svg/hiring/board.svg?v=1.0.243')}
 .milk-farm-preview:is([data-milk-tutorial="hireFirst"],[data-milk-tutorial="employee"],[data-milk-tutorial="rateFlying"],[data-milk-tutorial="rate"],[data-milk-tutorial="hireSkills"],[data-milk-tutorial="hireHelp"]) :is(.milk-live-hiring .shop-head,.milk-live-hiring .recruit-card:not([data-building="0"])){filter:brightness(.69) contrast(.725)}
 .milk-farm-preview[data-milk-tutorial="click"] .milk-tutorial-finger{left:75%!important;top:64%!important;width:22.5cqw}
 .milk-farm-preview:is([data-milk-tutorial="balance"],[data-milk-tutorial="sellGoal"]) .milk-tutorial-finger{left:77%!important;top:64.5%!important;width:19cqw}
@@ -2188,7 +2188,7 @@ html:lang(en) .milk-full-mission-board .milk-outfit-reward{font-size:1.5cqw}
 
 /* Prize.svg artwork with live money amounts; outfit rewards stay separate. */
 .milk-mission-task .mission-row-reward.milk-money-prize{padding:0;border:0;background:none;box-shadow:none;overflow:visible;opacity:1}
-.milk-mission-task .milk-money-prize img.milk-money-prize-art{position:absolute;inset:0;width:100%;height:100%;object-fit:fill}
+.milk-mission-task .milk-money-prize .milk-money-prize-art{position:absolute;inset:0;width:100%;height:100%;object-fit:fill}
 .milk-money-prize>span{position:absolute;left:43%;right:4%;top:0;height:100%;display:flex;align-items:center;justify-content:center;z-index:1;font-size:2.5cqw;color:#ffe244;-webkit-text-stroke:.12cqw #111;paint-order:stroke fill;white-space:nowrap}
 .milk-mission-task:not(.task-ready) .milk-money-prize-art{filter:grayscale(1)}
 .milk-mission-task:not(.task-ready) .milk-money-prize>span{color:#fff}
@@ -2209,12 +2209,12 @@ html:lang(en) .phone .milk-full-mission-board .milk-mission-task .mission-row-co
 .phone .milk-mission-task[data-mission=unlock] .milk-money-prize>span{font-size:2cqw;left:43%;right:7%;letter-spacing:0;-webkit-text-stroke:.223cqw #000}
 
 /* The Dairy upgrade panel shares Apple's original 265 × 188 SVG layout. */
-.milk-upgrade-panel{left:17.0398%;top:25.6293%;width:65.9204%;height:auto;aspect-ratio:265/188;padding:0;border:0;border-radius:0;box-shadow:none;overflow:visible;background:url('img/svg/next-level-panel.svg?v=1.0.236') center/100% 100% no-repeat}
+.milk-upgrade-panel{left:17.0398%;top:25.6293%;width:65.9204%;height:auto;aspect-ratio:265/188;padding:0;border:0;border-radius:0;box-shadow:none;overflow:visible;background:url('img/svg/next-level-panel.svg?v=1.0.243') center/100% 100% no-repeat}
 .milk-upgrade-panel>p{display:none}
 .milk-upgrade-panel>strong{position:absolute;left:40.8%;top:36.5%;width:35%;height:15.7%;display:flex;align-items:center;justify-content:center;gap:0;font-family:'Futehodo Maru Gothic',sans-serif;font-size:5.2cqw;font-weight:900;line-height:1;color:#ffe244;-webkit-text-stroke:.5cqw #111;paint-order:stroke fill}
 .milk-upgrade-panel>strong img{display:none}
 .milk-upgrade-panel .milk-level-ready{position:absolute;left:11.17%;top:62.02%;width:73.21%;height:25.8%;margin:0;padding:0;border:0;box-shadow:none;border-radius:30px;background:none;color:transparent;font-size:0;opacity:1}
-.milk-upgrade-panel.milk-upgrade-ready .milk-level-ready{background:url('img/svg/level-up-ready.svg?v=1.0.236') center/100% 100% no-repeat}
+.milk-upgrade-panel.milk-upgrade-ready .milk-level-ready{background:url('img/svg/level-up-ready.svg?v=1.0.243') center/100% 100% no-repeat}
 .milk-upgrade-panel>.milk-panel-close{left:83.47%;right:auto;top:2.77%;width:14.57%;height:20.53%;opacity:0}
 #factoryUpgradeDialog #factoryNextPrice{-webkit-text-stroke:calc(var(--upgrade-game-width,402px) * .005) #111}
 
@@ -2232,3 +2232,23 @@ html:lang(en) .phone .milk-full-mission-board .milk-mission-task .mission-row-co
 .mobile-demo-dialog .demo-column{width:100%;max-width:none}
 .mobile-demo-dialog .demo-column:first-child button{width:100%;min-height:44px;font-size:14px;padding:12px}
 .mobile-demo-dialog .demo-column+.demo-column{display:none}
+
+/* Render vector labels inline so iOS does not magnify a filtered image texture. */
+.settings-art>svg{display:block;width:100%;height:100%}
+
+/* Construction focus is based on build progress, independently of tutorial mode. */
+.milk-construction-active .milk-live-hud{filter:brightness(.58)}
+.milk-construction-active #milkBuildScene [data-milk-side-ui]{filter:none!important}
+
+/* Give every DEMO shortcut the same text geometry in every language. */
+.debug-events .demo-column:first-child button{display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--game-font);font-size:14px;font-weight:400;line-height:1.5;letter-spacing:0}
+
+/* Inline vectors avoid low-resolution mobile background-image textures. */
+#factoryUpgradeDialog,.milk-upgrade-panel{background:none!important}
+.upgrade-panel-art{position:absolute;inset:0;pointer-events:none}
+.upgrade-panel-art>svg,.upgrade-panel-art>img,.upgrade-ready-art>svg,.upgrade-ready-art>img{display:block;width:100%;height:100%}
+.upgrade-ready-art{display:none;position:absolute;inset:0;pointer-events:none}
+#factoryUpgradeDialog.can-upgrade #confirmFactoryUpgrade,.milk-upgrade-panel.milk-upgrade-ready .milk-level-ready{background:none}
+#factoryUpgradeDialog.can-upgrade .upgrade-ready-art,.milk-upgrade-ready .upgrade-ready-art{display:block}
+
+.milk-mission-art>svg,.milk-mission-art>img,.milk-money-prize-art>svg,.milk-money-prize-art>img,.milk-outfit-task-art>svg,.milk-outfit-task-art>img{display:block;width:100%;height:100%}

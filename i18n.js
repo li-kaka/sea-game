@@ -451,7 +451,7 @@
  }
  Object.assign(dictionary,language==='en'?{'快进：完成教学':'Skip to: tutorial complete','已达雇用上限':'Hiring limit reached'}:{'快进：完成教学':'早送り：チュートリアル完了','已达雇用上限':'雇用上限に達しました'});
  Object.assign(dictionary,language==='en'?{'重新开始，跳过教学':'Reset game and skip tutorial'}:{'重新开始，跳过教学':'リセットしてチュートリアルをスキップ'});
- Object.assign(dictionary,language==='en'?{'快进：牛奶农场 Lv.1':'Skip to: Milk Farm Lv.1','返回：苹果农场':'Back to Apple Farm','牛奶农场 Lv.1 画面预览':'Milk Farm Lv.1 design preview','牛奶农场 Lv.1：牛棚、输奶管道、加工设备和奶瓶输送带':'Milk Farm Lv.1: cowshed, milk pipes, processing equipment and bottle conveyor'}:{'快进：牛奶农场 Lv.1':'早送り：ミルク農場 Lv.1','返回：苹果农场':'リンゴ農場に戻る','牛奶农场 Lv.1 画面预览':'ミルク農場 Lv.1 画面プレビュー','牛奶农场 Lv.1：牛棚、输奶管道、加工设备和奶瓶输送带':'ミルク農場 Lv.1：牛舎、送乳管、加工設備と牛乳瓶のコンベア'});
+ Object.assign(dictionary,language==='en'?{'快进：牛奶农场':'Skip to: Dairy Farm','快进：苹果农场':'Skip to: Apple Farm','牛奶农场 Lv.1 画面预览':'Milk Farm Lv.1 design preview','牛奶农场 Lv.1：牛棚、输奶管道、加工设备和奶瓶输送带':'Milk Farm Lv.1: cowshed, milk pipes, processing equipment and bottle conveyor'}:{'快进：牛奶农场':'早送り：ミルク農場','快进：苹果农场':'早送り：リンゴ農場','牛奶农场 Lv.1 画面预览':'ミルク農場 Lv.1 画面プレビュー','牛奶农场 Lv.1：牛棚、输奶管道、加工设备和奶瓶输送带':'ミルク農場 Lv.1：牛舎、送乳管、加工設備と牛乳瓶のコンベア'});
  const sourcePattern=new RegExp(Object.keys(dictionary).sort((a,b)=>b.length-a.length).map(term=>term.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')).join('|'),'g');
  function translate(value){
   const text=String(value);if(language==='zh'||!/[\u3400-\u9fff]/.test(text))return text;

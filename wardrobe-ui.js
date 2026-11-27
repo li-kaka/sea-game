@@ -20,7 +20,7 @@ const wardrobeNav=document.createElement('nav');wardrobeNav.id='wardrobeCategory
 for(const id of wardrobeCategoryOrder){
  const group=WARDROBE_CATEGORIES.find(group=>group.id===id);if(!group)continue;
  const button=document.createElement('button');button.type='button';button.dataset.category=id;button.setAttribute('aria-label',t(group.name));button.title=t(group.name);button.setAttribute('aria-pressed','false');
- const img=document.createElement('img');img.alt='';img.src=`img/closet/tab-${id}.svg?v=1.0.236`;img.draggable=false;
+ const img=document.createElement('img');img.alt='';img.src=`img/closet/tab-${id}.svg?v=1.0.243`;img.draggable=false;
  button.append(img);button.onclick=()=>chooseWardrobeCategory(id);wardrobeNav.append(button);
 }
 $('wardrobeScroll').before(wardrobeNav);
@@ -70,7 +70,7 @@ undo.onclick=()=>{
  const fish=document.querySelector('.fish-character')?.contentWindow;if(!fish?.characterWardrobeReady?.()||!wardrobeHistory.length)return;
  state.outfit=fish.restoreCharacterOutfit(sanitizeWardrobeOutfit(wardrobeHistory.pop()));wardrobeSelected=null;save();renderWardrobe();
 };
-$('wardrobeGacha').querySelector('img').src='img/gacha/machine.svg?v=1.0.236';
+$('wardrobeGacha').querySelector('img').src='img/gacha/machine.svg?v=1.0.243';
 renderWardrobe();
 
 // Keep touch swiping native; add the same left/right dragging for a mouse.
@@ -103,5 +103,5 @@ wardrobeNav.addEventListener('keydown',event=>{
  button.focus();button.scrollIntoView({block:'nearest',inline:'nearest'});
 });
 for(const [id,asset]of [['wardrobeBack','back'],['wardrobeShuffle','shuffle'],['clearWardrobe','clear'],['wardrobeUndo','undo'],['wardrobeGacha','gacha']]){
- const button=$(id),img=document.createElement('img');img.src=`img/closet/${asset}-button.svg?v=1.0.236`;img.alt='';img.draggable=false;button.replaceChildren(img);
+ setActionArt($(id),`img/closet/${asset}-button.svg?v=1.0.243`,false);
 }
