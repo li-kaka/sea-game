@@ -33,7 +33,7 @@ function setGachaButtonArt(button,asset,label){
  button.setAttribute('aria-label',label);
  let img=button.querySelector('img');
  if(!img){img=document.createElement('img');img.alt='';img.draggable=false;button.replaceChildren(img)}
- const src=asset+'?v=1.0.235';if(img.getAttribute('src')!==src)img.src=src;
+ const src=asset+'?v=1.0.236';if(img.getAttribute('src')!==src)img.src=src;
 }
 function renderGacha(){
  const spinning=gachaStage==='spinning',machine=gachaStage==='machine',capsule=gachaStage==='capsule',result=gachaStage==='result',opening=gachaStage==='opening';
@@ -45,7 +45,7 @@ function renderGacha(){
  setText($('gachaBalance'),number(wardrobeWallet().coins));
  const color=state.gachaColor||0;
  for(const [el,file] of [[$('gachaEjected'),`capsule-${color}`],[$('gachaCapsuleButton').querySelector('img'),`capsule-${color}`],[$('gachaCapsuleTop'),`capsule-top-${color}`],[$('gachaCapsuleBottom'),`capsule-bottom-${color}`]]){
-  const src=`img/gacha/${file}.svg?v=1.0.235`;if(el.getAttribute('src')!==src)el.src=src;
+  const src=`img/gacha/${file}.svg?v=1.0.236`;if(el.getAttribute('src')!==src)el.src=src;
  }
  setText($('gachaPrice'),gachaCopy('每次 100 金币 · 服装等概率抽取','1回100コイン・各アイテム同確率','100 coins per draw · equal odds'));
  $('gachaMachineRig').hidden=!(machine||spinning);$('gachaEjected').hidden=!spinning;$('gachaCapsuleButton').hidden=!capsule;$('gachaResult').hidden=!(result||opening);

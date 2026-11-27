@@ -542,7 +542,7 @@ function nextGuideStep(){
  return transitions[step]||HIRE_DELAYS[step]?.[1]||null;
 }
 document.addEventListener('click',event=>{
- if(previewFarm==='milk'||event.target.closest('.settings,#settingsDialog,#resetConfirmDialog,#wardrobeView,#gachaDialog')||state.skipTutorial)return;
+ if(previewFarm==='milk'||event.target.closest('.settings,#settingsDialog,#resetConfirmDialog,#wardrobeView,#gachaDialog,#mobileDemoDialog,#mobileDemoToggle,.debug-events')||state.skipTutorial)return;
  if(openingDialogueActive())return; // The opening already completes a line before advancing.
  const upgrade=$('factoryUpgradeDialog');
  const modal=document.querySelector('dialog[open]');
@@ -677,7 +677,7 @@ try{sfxEnabled=localStorage.getItem('sea-game-sfx')!=='off'}catch{}
 // Background music is independent from sound effects and starts on user input.
 let musicEnabled=true,musicActivated=false;
 try{musicEnabled=localStorage.getItem('sea-game-music')!=='off'}catch{}
-const backgroundMusic=new Audio('audio/cozy-game-groove.mp3?v=1.0.235');
+const backgroundMusic=new Audio('audio/cozy-game-groove.mp3?v=1.0.236');
 backgroundMusic.loop=true;backgroundMusic.volume=.3;backgroundMusic.preload='metadata';
 function syncBackgroundMusic(){
  if(!musicEnabled||!musicActivated||document.hidden){backgroundMusic.pause();return}
@@ -728,17 +728,17 @@ function playHarvestSound(){
   note.onended=()=>{note.disconnect();gain.disconnect()};
  }catch{}
 }
-const recruitSound=new Audio('audio/yahoooo-mario.mp3?v=1.0.235');
+const recruitSound=new Audio('audio/yahoooo-mario.mp3?v=1.0.236');
 recruitSound.preload='auto';
 function playRecruitSound(){
  if(!sfxEnabled)return;
  recruitSound.currentTime=0;
  recruitSound.play().catch(()=>{});
 }
-const cashRegisterSound=new Audio('audio/cha-ching-money.mp3?v=1.0.235');
+const cashRegisterSound=new Audio('audio/cha-ching-money.mp3?v=1.0.236');
 cashRegisterSound.preload='auto';
 // Play the supplied mechanical recording once per successful draw.
-const gachaMechanicalSound=new Audio('audio/gacha_mechanical.wav?v=1.0.235');
+const gachaMechanicalSound=new Audio('audio/gacha_mechanical.wav?v=1.0.236');
 gachaMechanicalSound.preload='auto';
 function stopGachaMechanicalSound(){
  gachaMechanicalSound.pause();gachaMechanicalSound.currentTime=0;
@@ -747,7 +747,7 @@ function playGachaMechanicalSound(){
  if(!sfxEnabled)return;
  stopGachaMechanicalSound();gachaMechanicalSound.play().catch(()=>{});
 }
-const capsuleOpenSound=new Audio('audio/capsule_open_cute.wav?v=1.0.235');
+const capsuleOpenSound=new Audio('audio/capsule_open_cute.wav?v=1.0.236');
 capsuleOpenSound.preload='auto';
 function stopCapsuleOpenSound(){
  capsuleOpenSound.pause();capsuleOpenSound.currentTime=0;
@@ -839,7 +839,7 @@ $('buildings').innerHTML=RECRUITABLE_BUILDING_IDS.map(i=>{
    ${i===3?'':'<span class="recruit-ability"></span>'}
    ${unlock?`<span class="recruit-condition">${unlock.label}</span>`:''}
   </div>
-  <span class="recruit-price" aria-hidden="true"><img src="img/svg/level-one-coin.svg?v=1.0.235" alt=""><span></span></span>
+  <span class="recruit-price" aria-hidden="true"><img src="img/svg/level-one-coin.svg?v=1.0.236" alt=""><span></span></span>
  </div>`;
 }).join('');
 const recruitCards=[...$('buildings').children];
@@ -1578,7 +1578,7 @@ function render(){
   el.classList.toggle('unaffordable',show&&!affordable);
   el.classList.toggle('recruit-pulse',affordance.wasAffordable&&now<affordance.pulseUntil);
   const art=el.querySelector('.recruit-art');
-  const source=`img/svg/hiring/${RECRUIT_CARDS[i].art}${show?'':'-locked'}.svg?v=1.0.235`;
+  const source=`img/svg/hiring/${RECRUIT_CARDS[i].art}${show?'':'-locked'}.svg?v=1.0.236`;
   if(art.getAttribute('src')!==source)art.setAttribute('src',source);
   const ability=el.querySelector('.recruit-ability'),recruit=el.querySelector('.recruit-hit');
   const priceLabel=price<1e9?price.toLocaleString('en-US'):number(price);
@@ -2046,8 +2046,8 @@ const missionRows=new Map();
 for(const mission of MISSIONS){
  const row=document.createElement('article');
  row.className='mission-list-row';
- row.innerHTML='<img class="mission-row-fish" src="img/svg/mission-task-fish.svg?v=1.0.235" alt=""><div class="mission-row-copy"><b></b><div class="mission-row-track" role="progressbar"><i></i><span></span></div></div><button class="mission-row-reward"><img src="img/svg/level-one-coin.svg?v=1.0.235" alt=""><span></span></button>';
- if(['apples','juice','laptops'].includes(mission.id))row.querySelector('.mission-row-fish').src='img/svg/mission-task-apple.svg?v=1.0.235';
+ row.innerHTML='<img class="mission-row-fish" src="img/svg/mission-task-fish.svg?v=1.0.236" alt=""><div class="mission-row-copy"><b></b><div class="mission-row-track" role="progressbar"><i></i><span></span></div></div><button class="mission-row-reward"><img src="img/svg/level-one-coin.svg?v=1.0.236" alt=""><span></span></button>';
+ if(['apples','juice','laptops'].includes(mission.id))row.querySelector('.mission-row-fish').src='img/svg/mission-task-apple.svg?v=1.0.236';
  row.querySelector('button').onclick=()=>claimTask(mission.id);
  $('missionList').append(row);missionRows.set(mission.id,row);
 }
@@ -2073,7 +2073,7 @@ function renderMissionList(){
  $('missionList').hidden=!full;
  $('missionTask').hidden=full||missionStep()===4;
  const art=document.querySelector('.mission-board-art');
- const source='img/svg/'+(full?'mission-board-full':'mission-board')+'.svg?v=1.0.235';
+ const source='img/svg/'+(full?'mission-board-full':'mission-board')+'.svg?v=1.0.236';
  if(art.getAttribute('src')!==source)art.setAttribute('src',source);
  for(const mission of MISSIONS){
   const row=missionRows.get(mission.id),claimed=state.claimedMissions.includes(mission.id);
@@ -2332,7 +2332,7 @@ function resetFarm(skipTutorial=false){
 $('restart').onclick=()=>{if(confirm(t('确定重新开始？当前苹果、金币、鱼人和升级进度将被清空。')))resetFarm()};
 $('resetFromSettings').onclick=()=>{
  const japanese=GameI18n.language==='ja',dialog=$('resetConfirmDialog');
- $('resetConfirmArt').src=`img/svg/settings-confirm-${japanese?'ja':'en'}.svg?v=1.0.235`;
+ $('resetConfirmArt').src=`img/svg/settings-confirm-${japanese?'ja':'en'}.svg?v=1.0.236`;
  dialog.dataset.language=japanese?'ja':'en';
  dialog.setAttribute('aria-label',japanese?'最初からやり直しますか？':'Reset your progress?');
  $('cancelSettingsReset').setAttribute('aria-label',japanese?'キャンセル':'Cancel');
@@ -2639,7 +2639,7 @@ function update(dt){
 function frame(now){const dt=last===null?0:Math.max(0,Math.min((now-last)/1000,.25));last=now;if(!document.hidden)update(dt);requestAnimationFrame(frame)}
 document.addEventListener('visibilitychange',()=>{last=null;save()});window.addEventListener('pagehide',save);
 window.advanceTime=ms=>{for(let left=ms;left>0;left-=50)update(Math.min(left,50)/1000)};
-window.render_game_to_text=()=>JSON.stringify({version:'1.0.235',farm:previewFarm,previewOnly:previewFarm==='milk'&&!milkBuild.tutorial,milkBuild,language:GameI18n.language,phase:state.phase,construction:constructionProgress(),tutorial:state.tutorial,introRecruit:state.introRecruit,apples:state.apples,coins:state.coins,earnedCoins:state.earnedCoins,farmStage:farmStage(),juiceStartupTaps:state.juiceStartupTaps,computerStartupTaps:state.computerStartupTaps,factorySaleReady:factorySaleReady(),crateSize:currentCrateSize(),juiceBottles:sellingJuice()?Math.floor(state.apples):0,juiceCratePacked,firstCrateSize:FIRST_APPLE_CRATE_SIZE,total:state.total,soldApples:state.soldApples,playSeconds:state.playSeconds,milestoneTimes:state.milestoneTimes,operationSeconds:state.operationSeconds,guaranteedGold:state.guaranteedGold,factory:{...factoryProgress(),initialUpgradeCount:initialFarmCount(),firstUpgradeAcknowledged:state.firstUpgradeAcknowledged,enhancementLevel:Math.max(1,state.upgrades.length-2)},recruitGoal:{count:employeeCount(),choice:state.recruitGoalChoice,guide:state.recruitGoalGuide},events:state.events,globalMultiplier:upgradeEffects().global,roleEffects:{farmerApplesPerTap:state.owned[1]*farmerTapBonus(),chefCoinsPerCrate:state.owned[2]*chefCrateBonus(),autoSellInterval:state.owned[4]>0?autoSellInterval():null,kingCoinsPerUpgrade:state.owned[3]*kingUpgradeBonus()},cps:cps(),clickPower:clickPower(),buildings:RECRUITABLE_BUILDING_IDS.map(i=>{const b=BUILDINGS[i],unlock=RECRUIT_UNLOCKS[i];return {name:b.name,owned:state.owned[i],price:buildingCost(i),visible:visible(i),unlockConditionRevealed:!!unlock,unlockProgress:unlock?Math.min(unlock.value(),unlock.target):null,unlockTarget:unlock?.target??null}}),upgrades:state.upgrades,nextUpgrade:nextFarmPurchase()?.items[0]?.id||null,wardrobeOpen,outfit:state.outfit,constructionGuide:document.querySelector('.phone').classList.contains('build-tutorial')?$('buildGuideText').textContent:($('purchaseSpeech').hidden?null:$('speechMeasure').textContent),constructionCompleteOpen:$('constructionCompleteDialog').open,factoryUpgradeOpen:$('factoryUpgradeDialog').open});
+window.render_game_to_text=()=>JSON.stringify({version:'1.0.236',farm:previewFarm,previewOnly:previewFarm==='milk'&&!milkBuild.tutorial,milkBuild,language:GameI18n.language,phase:state.phase,construction:constructionProgress(),tutorial:state.tutorial,introRecruit:state.introRecruit,apples:state.apples,coins:state.coins,earnedCoins:state.earnedCoins,farmStage:farmStage(),juiceStartupTaps:state.juiceStartupTaps,computerStartupTaps:state.computerStartupTaps,factorySaleReady:factorySaleReady(),crateSize:currentCrateSize(),juiceBottles:sellingJuice()?Math.floor(state.apples):0,juiceCratePacked,firstCrateSize:FIRST_APPLE_CRATE_SIZE,total:state.total,soldApples:state.soldApples,playSeconds:state.playSeconds,milestoneTimes:state.milestoneTimes,operationSeconds:state.operationSeconds,guaranteedGold:state.guaranteedGold,factory:{...factoryProgress(),initialUpgradeCount:initialFarmCount(),firstUpgradeAcknowledged:state.firstUpgradeAcknowledged,enhancementLevel:Math.max(1,state.upgrades.length-2)},recruitGoal:{count:employeeCount(),choice:state.recruitGoalChoice,guide:state.recruitGoalGuide},events:state.events,globalMultiplier:upgradeEffects().global,roleEffects:{farmerApplesPerTap:state.owned[1]*farmerTapBonus(),chefCoinsPerCrate:state.owned[2]*chefCrateBonus(),autoSellInterval:state.owned[4]>0?autoSellInterval():null,kingCoinsPerUpgrade:state.owned[3]*kingUpgradeBonus()},cps:cps(),clickPower:clickPower(),buildings:RECRUITABLE_BUILDING_IDS.map(i=>{const b=BUILDINGS[i],unlock=RECRUIT_UNLOCKS[i];return {name:b.name,owned:state.owned[i],price:buildingCost(i),visible:visible(i),unlockConditionRevealed:!!unlock,unlockProgress:unlock?Math.min(unlock.value(),unlock.target):null,unlockTarget:unlock?.target??null}}),upgrades:state.upgrades,nextUpgrade:nextFarmPurchase()?.items[0]?.id||null,wardrobeOpen,outfit:state.outfit,constructionGuide:document.querySelector('.phone').classList.contains('build-tutorial')?$('buildGuideText').textContent:($('purchaseSpeech').hidden?null:$('speechMeasure').textContent),constructionCompleteOpen:$('constructionCompleteDialog').open,factoryUpgradeOpen:$('factoryUpgradeDialog').open});
 const produceArt=document.querySelector('.produce-visual');
 setActionArt(produceArt,produceArt.firstElementChild.getAttribute('src'));
 setupConstructionArtwork();render();resumeTutorial();if(FARM_UPGRADE_LINES[state.farmUpgradeGuide])speakTutorial(FARM_UPGRADE_LINES[state.farmUpgradeGuide]);if(!tutorialActive()&&FARM_GOAL_LINES[state.recruitGoalGuide])speakTutorial(FARM_GOAL_LINES[state.recruitGoalGuide]);requestAnimationFrame(frame);
@@ -2714,10 +2714,10 @@ $('languageSwitch').onclick=()=>{preserveProgressForLanguage();GameI18n.switchLa
 function renderSettings(){
  $('resetFromSettings').disabled=false;
  $('sfxToggle').setAttribute('aria-pressed',String(sfxEnabled));
- setActionArt($('sfxToggle'),`img/svg/settings-sfx-${sfxEnabled?'on':'off'}.svg?v=1.0.235`);
+ setActionArt($('sfxToggle'),`img/svg/settings-sfx-${sfxEnabled?'on':'off'}.svg?v=1.0.236`);
  $('musicToggle').setAttribute('aria-pressed',String(musicEnabled));
- setActionArt($('musicToggle'),`img/svg/settings-music-${musicEnabled?'on':'off'}.svg?v=1.0.235`);
- $('settingsPanelArt').src=`img/svg/settings-panel-${GameI18n.language}.svg?v=1.0.235`;
+ setActionArt($('musicToggle'),`img/svg/settings-music-${musicEnabled?'on':'off'}.svg?v=1.0.236`);
+ $('settingsPanelArt').src=`img/svg/settings-panel-${GameI18n.language}.svg?v=1.0.236`;
  $('settingsStory').setAttribute('aria-label',GameI18n.language==='ja'?'ストーリー（準備中）':'Story (coming soon)');
  $('settingsLanguage').textContent='';
  $('settingsLanguage').setAttribute('aria-label',{ja:'日本語',en:'English',zh:'中国语'}[GameI18n.language]);
@@ -2809,7 +2809,7 @@ function trackMilkAnimation(animation){
 }
 function loadMilkBuildScene(){
  if(!milkScenePromise){
-  milkScenePromise=fetch('img/svg/milk-factory-level-one-build.svg?v=1.0.235').then(response=>{
+  milkScenePromise=fetch('img/svg/milk-factory-level-one-build.svg?v=1.0.236').then(response=>{
    if(!response.ok)throw Error('Milk construction artwork could not be loaded');
    return response.text();
   }).then(markup=>{
@@ -2828,7 +2828,7 @@ function renderMilkBuild(){
  $('milkFarmPreview').dataset.milkLevel=String(level);
  scene.hidden=!advanced;
  if(advanced){
-  const source=`img/svg/milk-factory-level-${level}.svg?v=1.0.235`;
+  const source=`img/svg/milk-factory-level-${level}.svg?v=1.0.236`;
   if(scene.getAttribute('src')!==source)scene.src=source;
   scene.alt=`Milk Factory Lv.${level}`;
  }
@@ -2930,3 +2930,15 @@ $('milkBuildButton').onclick=()=>{
  if(milkBuild.clicks===10)enterMilkResident();
 };
 try{if(sessionStorage.getItem('sea-game-preview-farm')==='milk'){sessionStorage.removeItem('sea-game-preview-farm');const savedMilk=JSON.parse(sessionStorage.getItem('sea-game-milk-build'));sessionStorage.removeItem('sea-game-milk-build');if(savedMilk&&Number.isInteger(savedMilk.clicks)&&savedMilk.clicks>=0&&savedMilk.clicks<=10)milkBuild={clicks:savedMilk.clicks,phase:savedMilk.phase==='entering'?'ready':savedMilk.phase,tutorial:savedMilk.tutorial,skipTutorial:savedMilk.skipTutorial===true,previewLevel:[2,3].includes(savedMilk.previewLevel)?savedMilk.previewLevel:1};switchFarmPreview('milk',true);loadMilkBuildScene()}}catch{}
+
+// Reuse the same DEMO controls in a touch-friendly mobile dialog.
+const mobileDemoDialog=$('mobileDemoDialog'),demoControls=document.querySelector('.debug-events');
+const demoHome=document.createComment('Desktop DEMO position');demoControls.before(demoHome);
+$('mobileDemoToggle').onclick=()=>{
+ $('mobileDemoContent').append(demoControls);mobileDemoDialog.showModal();
+};
+$('closeMobileDemo').onclick=()=>mobileDemoDialog.close();
+mobileDemoDialog.addEventListener('close',()=>{demoHome.after(demoControls);$('mobileDemoToggle').focus({preventScroll:true})});
+mobileDemoDialog.addEventListener('click',event=>{
+ if(event.target.closest('.debug-events button'))mobileDemoDialog.close();
+});
